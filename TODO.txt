@@ -1,0 +1,19 @@
+const int x = ;  -- ovo baca fatalnu gresku?
+
+// ime fje ne moze da bude isto kao i ime neke promenljive ili konstante u isti scope
+mjparser.cup
+	1) IF ELSE matched unmachted (SR conflict)
+	
+	
+	
+	
+	
+	ActParse, Condition , CondFact can be EPSILON!!-
+	
+	
+	
+	isAssign boolean ? 
+	
+	
+	
+	OPORAVAK OD GRESKE : liste parametra u pozivu metode OBJEKSTA (nije uradjeo ovo za objekat vec generlani slucaj)

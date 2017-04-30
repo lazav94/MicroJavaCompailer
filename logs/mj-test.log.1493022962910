@@ -1,0 +1,68 @@
+INFO   - Compiling source file: C:\Users\Lazar.Vasic\Documents\MEGA\PP1 Domaci\project workspace\ProjectRework\test\v2_test1.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #48 int
+INFO   - #48 var1
+INFO   - #39 ,
+INFO   - (5) Ubacena: (globalna) sa imenom 'var1'
+INFO   - #48 var2
+INFO   - #39 ,
+INFO   - (5) Ubacena: (globalna) sa imenom 'var2'
+INFO   - #48 var3
+INFO   - #38 ;
+INFO   - (5) Ubacena: (globalna) sa imenom 'var3'
+INFO   - #48 char
+INFO   - #48 c1
+INFO   - #39 ,
+INFO   - (6) Ubacena: (globalna) sa imenom 'c1'
+INFO   - #48 c2
+INFO   - #38 ;
+INFO   - (6) Ubacena: (globalna) sa imenom 'c2'
+INFO   - #48 char
+INFO   - #48 array
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (7) Ubacen novi niz: (globalna) sa imenom 'array'
+INFO   - #48 bool
+INFO   - #48 t
+INFO   - #39 ,
+INFO   - (8) Ubacena: (globalna) sa imenom 't'
+INFO   - #48 f
+INFO   - #38 ;
+INFO   - (8) Ubacena: (globalna) sa imenom 'f'
+INFO   - #48 int
+INFO   - #48 size
+INFO   - #17 =
+ERROR  - JBG
+INFO   - #47 4
+INFO   - #38 ;
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 main
+INFO   - (9) Oporavak (;) Definicija globalne promenljive.
+INFO   - #40 (
+INFO   - (16) Obradjuje se funcija 'main'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==================SINTAKSNA ANALIZA====================
+
+INFO   - Broj definicijea globalnih promenljivih = 7
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 0
+INFO   - Broj definicije globalnih konstanti = 0
+INFO   - Broj dekleracije globalnih nizova = 1
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
+INFO   - Broj blokovi naredbi = 0
+INFO   - Broj poziv funkicje u telu metode main = 0
+INFO   - Broj delaracija formalnih argumenata funkcije  = 0
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 0
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
+INFO   - Parsiranje NIJE uspesno zavrseno!
+INFO   - Succesfull!!!

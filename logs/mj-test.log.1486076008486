@@ -1,0 +1,129 @@
+INFO   - Compiling source file: D:\MEGA\PP1 Domaci\project workspace\ProjectRework\test\semantic_test2.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 size
+INFO   - #17 =
+INFO   - #47 10
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'size' vrednosti = 10
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #17 =
+INFO   - #47 1
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'x' vrednosti = 1
+INFO   - #48 y
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'y' vrednosti = 2
+INFO   - #48 int
+INFO   - #48 var1
+INFO   - #39 ,
+INFO   - (6) Ubacena: (globalna) sa imenom 'var1'
+INFO   - #48 var2
+INFO   - #39 ,
+INFO   - (6) Ubacena: (globalna) sa imenom 'var2'
+INFO   - #48 var3
+INFO   - #38 ;
+INFO   - (6) Ubacena: (globalna) sa imenom 'var3'
+INFO   - #48 char
+INFO   - #48 c1
+INFO   - #39 ,
+INFO   - (7) Ubacena: (globalna) sa imenom 'c1'
+INFO   - #48 c2
+INFO   - #38 ;
+INFO   - (7) Ubacena: (globalna) sa imenom 'c2'
+INFO   - #48 int
+INFO   - #48 niz
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #39 ,
+INFO   - (9) Ubacen novi niz: (globalna) sa imenom 'niz'
+INFO   - #48 niz1
+INFO   - #39 ,
+INFO   - (9) Ubacena: (globalna) sa imenom 'niz1'
+INFO   - #48 niz2
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (9) Ubacen novi niz: (globalna) sa imenom 'niz2'
+INFO   - #3 class
+INFO   - #48 Table
+INFO   - #42 {
+INFO   - Obradjivanje nove klase 'Table' na liniji 12
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (13) Ubacen novi niz: polje klase: Table(globalna) sa imenom 'x'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 putp
+INFO   - #40 (
+INFO   - (15) Obradjuje se funcija 'putp'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (15) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'a'
+INFO   - #48 int
+INFO   - #48 idx
+INFO   - #41 )
+INFO   - (15) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'idx'
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #38 ;
+INFO   - (15) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'x'
+INFO   - #42 {
+INFO   - #48 x
+INFO   - #31 +=
+INFO   - Koriscenje simbola 'x' na liniji 16
+INFO   - #48 x
+INFO   - #18 +
+INFO   - Koriscenje simbola 'x' na liniji 16
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - Koriscenje simbola 'a' na liniji 16
+INFO   - Operacija + uspesna! Linija: 16
+INFO   - Izvrena operacija =
+INFO   - #48 x
+INFO   - #32 -=
+INFO   - Koriscenje simbola 'x' na liniji 17
+INFO   - #48 var1
+INFO   - #38 ;
+INFO   - Koriscenje simbola 'var1' na liniji 17
+INFO   - Operacija + uspesna! Linija: 17
+INFO   - Izvrena operacija =
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #48 Table
+INFO   - #48 val
+INFO   - #38 ;
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==================SINTAKSNA ANALIZA====================
+
+INFO   - Broj definicijea globalnih promenljivih = 6
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 0
+INFO   - Broj definicije globalnih konstanti = 3
+INFO   - Broj dekleracije globalnih nizova = 2
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
+INFO   - Broj blokovi naredbi = 0
+INFO   - Broj poziv funkicje u telu metode main = 0
+INFO   - Broj delaracija formalnih argumenata funkcije  = 2
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 1
+INFO   - Broj deklaracija polja unutrasnjih klasa = 1
+INFO   - Succesfull!!!

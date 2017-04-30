@@ -1,0 +1,33 @@
+INFO   - Compiling source file: C:\Users\Lazar.Vasic\Documents\MEGA\PP1 Domaci\project workspace\ProjectRework\test\v2_test1.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'x' vrednosti = 2
+INFO   - #48 xx
+INFO   - #17 =
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'xx' vrednosti = 3
+INFO   - #7 const
+INFO   - #48 bool
+INFO   - #48 boolijan
+INFO   - #17 =
+INFO   - #49 false
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'boolijan' vrednosti = 0
+INFO   - #48 baki
+INFO   - #17 =
+INFO   - #49 false
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'baki' vrednosti = 0
+INFO   - #7 const
+INFO   - #48 char
+INFO   - #48 aa
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #38 ;

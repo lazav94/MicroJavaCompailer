@@ -1,0 +1,101 @@
+program P
+    const int size = 10;
+    const int x = 1, y = 2;
+    const char a = 'a', b = 'B';
+    const bool flag = true;
+    const bool flag2 = false;
+   
+   
+    int var1, var2, var3;
+    char c1, c2;
+    char array[];
+//    char var2;
+    bool t, f;
+//   int size;
+   
+//   int array[];
+   
+   
+   	
+   	  
+   	
+    class Table {
+        int  x[];
+        bool y;
+        char z;
+ 
+        int pos[], neg[];
+        {
+            void putp (int a, int idx) int x; { this.x[idx]=a;}
+            void putn (int a, int idx) { this.neg[idx]=a; }
+ //           int x (int a, int idx) { this.neg[idx]=a; }
+            static char static_char(int x, bool r) { array[0] = 1; }
+            int getp (int idx) int temp; { return pos[idx]; }
+            int getn (int idx) { return neg[idx]; }
+        }
+    }
+  
+     
+   
+   
+   
+    class IzvedenaIspavrno extends Table {
+        int  xi;
+        bool yi;
+        char zig;
+       
+        {
+            void putpi (int a, int idx) { this.xi[idx]=a;}
+            void putni (int a, int idx) { this.yi[idx]=a; }
+        }
+    }
+    
+      
+
+ 
+    
+   
+    Table val;
+    IzvedenaIspavrno val_i;
+    {
+    	
+        void main()
+        int local1, local2;
+        int i;
+   
+        {
+ 
+            val = new Table;
+    //         valz = new Table;
+    //        val.pos = new int [size];
+   //         val.neg = new int [size];
+           
+            chr(eol);
+            ord(5);
+            for (i = 0 ; i<size; i++)
+            {
+    //            val.putp(0,i);
+     //           val.putn(0,i);
+            }
+ 
+            read(i);
+            for (;x > 0;)
+            {
+                if (0 <= x && x < size)
+                {
+    //               val.putp(val.getp(x)+1  );
+    				 continue;
+                }
+                else
+                    if (-size < x && x < 0)
+                    {
+    //                    val.putn(val.getn(-x)+1);
+                    }
+                read(i);
+                break;
+            }
+    
+        }
+       
+        int helper() bool exit; {}
+    }

@@ -1,0 +1,34 @@
+program P
+
+   const int x = 2,xx = 3;
+   const bool boolijan= true , baki = false;
+   const char aa= 'a';
+
+   
+   int yy;
+   int var1;
+   bool bool_arr[];
+   int arr[];
+
+   
+   
+{
+       
+        int fja(int arg){
+         return yy;
+        } 
+        
+		void main()int x; char ch; int loc; 
+		{
+		 for(yy = 0; yy < 10; yy++)
+		   break; 
+		   
+		 
+		return;
+		    
+		    
+		}	
+	
+		
+			
+}

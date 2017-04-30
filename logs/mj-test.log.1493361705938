@@ -1,0 +1,101 @@
+INFO   - Compiling source file: C:\Users\Lazar.Vasic\Documents\MEGA\PP1 Domaci\project workspace\ProjectRework\test\v2_test1.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'x' vrednosti = 2
+INFO   - #48 xx
+INFO   - #17 =
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'xx' vrednosti = 3
+INFO   - #48 int
+INFO   - #48 yy
+INFO   - #38 ;
+INFO   - (4) Ubacena: (globalna) sa imenom 'yy'
+INFO   - #48 int
+INFO   - #48 var1
+INFO   - #38 ;
+INFO   - (5) Ubacena: (globalna) sa imenom 'var1'
+INFO   - #3 class
+INFO   - #48 Table
+INFO   - #42 {
+INFO   - Obradjivanje nove klase 'Table' na liniji 8
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (9) Ubacen novi niz: polje klase: Table(globalna) sa imenom 'x'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 putp
+INFO   - #40 (
+INFO   - (11) Obradjuje se funcija 'putp'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (11) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'a'
+INFO   - #48 int
+INFO   - #48 idx
+INFO   - #41 )
+INFO   - (11) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'idx'
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #38 ;
+INFO   - (11) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'x'
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #48 Table
+INFO   - #48 val
+INFO   - #38 ;
+INFO   - (19) Ubacena: (globalna) sa imenom 'val'
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 fja
+INFO   - #40 (
+INFO   - (25) Obradjuje se funcija 'fja'
+INFO   - #48 int
+INFO   - #48 z
+INFO   - #41 )
+INFO   - (25) Ubacena: (lokalna) za funkciju  sa imenom 'z'
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #48 x
+INFO   - #38 ;
+INFO   - Koriscenje simbola 'x' na liniji 26
+INFO   - Operacija + uspesna! Linija: 26
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (29) Obradjuje se funcija 'main'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==================SINTAKSNA ANALIZA====================
+
+INFO   - Broj definicijea globalnih promenljivih = 3
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 0
+INFO   - Broj definicije globalnih konstanti = 2
+INFO   - Broj dekleracije globalnih nizova = 0
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
+INFO   - Broj blokovi naredbi = 0
+INFO   - Broj poziv funkicje u telu metode main = 0
+INFO   - Broj delaracija formalnih argumenata funkcije  = 3
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 1
+INFO   - Broj deklaracija polja unutrasnjih klasa = 1
+INFO   - Parsiranje uspesno zavrseno!
+INFO   - Succesfull!!!

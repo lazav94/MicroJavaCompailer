@@ -1,0 +1,39 @@
+program Program
+	class A{
+		
+		'a'
+		int test_method(int a) {
+			for(int i=0; i<5; i++)
+			{
+				x = new int[5];
+				a.x-- = 5;
+				if( i < 5){
+					continue;
+				}else
+					break;
+					print(Idemo);
+			}
+			return 0;
+		}
+	}
+	laza !!! dsfasf ^
+	
+	int x[],y[];
+		*  /  %  ==  !=  > >= < <= && || = += -= *= /= %= + -
+	const int pi = 3, e = 2;
+    ^^
+	^
+	*
+	static nesto = 565;
+	int ii = true;
+	ii = false;
+	ii , i;
+	// komentar
+	class B extends A
+	{
+		void main() A a; C c; int i; int x[];
+			{
+
+			}
+	}
+	

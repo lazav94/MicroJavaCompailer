@@ -1,0 +1,101 @@
+INFO   - Compiling source file: C:\Users\Lazar.Vasic\Documents\MEGA\PP1 Domaci\project workspace\ProjectRework\test\v2_test1.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'x' vrednosti = 2
+INFO   - #48 xx
+INFO   - #17 =
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'xx' vrednosti = 3
+INFO   - #48 int
+INFO   - #48 yy
+INFO   - #38 ;
+INFO   - (4) Ubacena: (globalna) sa imenom 'yy'
+INFO   - #3 class
+INFO   - #48 Table
+INFO   - #42 {
+INFO   - Obradjivanje nove klase 'Table' na liniji 9
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (10) Ubacen novi niz: polje klase: Table(globalna) sa imenom 'x'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 putp
+INFO   - #40 (
+INFO   - (12) Obradjuje se funcija 'putp'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (12) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'a'
+INFO   - #48 int
+INFO   - #48 idx
+INFO   - #41 )
+INFO   - (12) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'idx'
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #38 ;
+INFO   - (12) Ubacena: polje klase: Table(globalna) za funkciju klase sa imenom 'x'
+INFO   - #42 {
+INFO   - #48 x
+INFO   - #31 +=
+INFO   - Koriscenje simbola 'x' na liniji 13
+INFO   - #48 x
+INFO   - #18 +
+INFO   - Koriscenje simbola 'x' na liniji 13
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - Koriscenje simbola 'a' na liniji 13
+INFO   - Operacija + uspesna! Linija: 13
+INFO   - Izvrena operacija =
+INFO   - #48 x
+INFO   - #32 -=
+INFO   - Koriscenje simbola 'x' na liniji 14
+INFO   - #48 var1
+INFO   - #38 ;
+ERROR  - (14) Simbol 'var1' ne postoji u tabeli simbola!
+ERROR  - (14) Tipovi su nekombatibilni pri operaciji + - += -= , moraju biti int!
+ERROR  - (0) Pri operaciji = nisu kompatiblini tipovi
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #48 Table
+INFO   - #48 val
+INFO   - #38 ;
+INFO   - (22) Ubacena: (globalna) sa imenom 'val'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (28) Obradjuje se funcija 'main'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==================SINTAKSNA ANALIZA====================
+
+INFO   - Broj definicijea globalnih promenljivih = 2
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 0
+INFO   - Broj definicije globalnih konstanti = 2
+INFO   - Broj dekleracije globalnih nizova = 0
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
+INFO   - Broj blokovi naredbi = 0
+INFO   - Broj poziv funkicje u telu metode main = 0
+INFO   - Broj delaracija formalnih argumenata funkcije  = 2
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 1
+INFO   - Broj deklaracija polja unutrasnjih klasa = 1
+INFO   - Parsiranje NIJE uspesno zavrseno!
+INFO   - Succesfull!!!

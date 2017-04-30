@@ -1,0 +1,46 @@
+program Zmaj
+	// deklaracija konstanti , promeljnivih i klasa
+	int x, y[] ,c;
+	int z;
+	const int u = 2;
+	const boolean lax = true, flag = false;
+	int t[],g,h;
+	
+	class Osnovna {
+		int k1, k2[], k3;
+		{
+			static void func(int x, int y[]) 
+			int local;
+			{
+			break;
+			}
+			
+		}
+	}
+	
+	class Izvedena extends Osnovna {
+		int i1, i2[];
+		int i3[];
+		{
+			int func2() 
+			{
+				return;
+			}
+			
+		}
+		
+	}
+	
+	
+	//telo programa
+	{
+		void main()
+		int i , N;
+		int x;
+		
+		{	
+			read(x);
+				
+		}
+		
+	}

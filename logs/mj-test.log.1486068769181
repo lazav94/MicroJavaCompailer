@@ -1,0 +1,107 @@
+INFO   - Compiling source file: D:\MEGA\PP1 Domaci\project workspace\ProjectRework\test\semantic_test2.mj
+INFO   - #2 program
+INFO   - #48 P
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 size
+INFO   - #17 =
+INFO   - #47 10
+INFO   - #38 ;
+DEBUG  - (-1) Ubacena konsta: 'size' vrednosti = 10
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #17 =
+INFO   - #47 1
+INFO   - #39 ,
+DEBUG  - (-1) Ubacena konsta: 'x' vrednosti = 1
+INFO   - #48 y
+INFO   - #17 =
+INFO   - #47 2
+INFO   - #38 ;
+DEBUG  - (-1) Ubacena konsta: 'y' vrednosti = 2
+INFO   - #7 const
+INFO   - #48 bool
+INFO   - #48 a
+INFO   - #17 =
+INFO   - #49 true
+INFO   - #38 ;
+DEBUG  - LEKSICKA: (4) Konstanta: 'a' nije kompatibilna sa vrednost koja joj se dodeljuje
+INFO   - #47 4
+ERROR  - 
+Sintaksna greska na liniji 7
+INFO   - #48 int
+INFO   - #48 var1
+INFO   - #39 ,
+INFO   - #48 var2
+INFO   - #39 ,
+INFO   - #48 var3
+INFO   - #38 ;
+INFO   - #48 char
+INFO   - #48 c1
+INFO   - #39 ,
+INFO   - #48 c2
+INFO   - #38 ;
+INFO   - #3 class
+INFO   - #48 Table
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+DEBUG  - LEKSICKA: (15) Ubaceni simbol: 'x' vec postoji u ovom scope
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 putp
+INFO   - #40 (
+DEBUG  - (-1) Obradjuje se funcija 'putp' na liniji 17
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+DEBUG  - (-1) Ubacena nova promeljiva( globalna ) za funkciju 
+INFO   - #48 int
+INFO   - #48 idx
+INFO   - #41 )
+DEBUG  - (-1) Ubacena nova promeljiva( globalna ) za funkciju 
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #38 ;
+DEBUG  - (-1) Ubacena nova promeljiva( globalna ) za funkciju 
+INFO   - #42 {
+INFO   - #48 x
+INFO   - #31 +=
+DEBUG  - (-1) Koriscenje simbola 'x' na liniji 18
+INFO   - #48 x
+INFO   - #18 +
+DEBUG  - (-1) Koriscenje simbola 'x' na liniji 18
+INFO   - #48 a
+INFO   - #38 ;
+DEBUG  - (-1) Koriscenje simbola 'a' na liniji 18
+DEBUG  - (-1) Operacija + uspesna! Linija: 18
+DEBUG  - (-1) Izvrena operacija =
+INFO   - #48 x
+INFO   - #32 -=
+DEBUG  - (-1) Koriscenje simbola 'x' na liniji 19
+INFO   - #48 var1
+INFO   - #38 ;
+DEBUG  - LEKSICKA: (19) Simbol 'var1' ne postoji u tabeli simbola!
+DEBUG  - LEKSICKA: (19) Tipovi su nekombatibilni pri operaciji + - += -= , moraju biti int!
+DEBUG  - LEKSICKA: (0) Pri operaciji = nisu kompatiblini tipovi
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #44 [
+ERROR  - 
+Sintaksna greska na liniji 27
+INFO   - #45 ]
+INFO   - #48 Table
+INFO   - #48 val
+INFO   - #38 ;
+INFO   - #42 {
+INFO   - #43 }
+INFO   - #43 }
+ERROR  - Fatalna greska, parsiranje se ne moze nastaviti na liniji 34
+INFO   - 
+
+INFO   - Succesfull!!!
