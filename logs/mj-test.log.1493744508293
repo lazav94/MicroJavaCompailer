@@ -100,13 +100,13 @@ INFO   - (30) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'loc'
 INFO   - #42 {
 INFO   - #11 if
 INFO   - #40 (
-INFO   - #48 x
+INFO   - #48 lol
 INFO   - #26 >=
-INFO   - Koriscenje konstante 'x' na liniji: 34
+INFO   - Koriscenje (globalna) promenljive 'lol' na liniji: 34
 INFO   - #48 xx
 INFO   - #41 )
 INFO   - Koriscenje konstante 'xx' na liniji: 34
-ERROR  - (34) Uslov u if naredbi treba da bude bool tipa
+ERROR  - (34) Levi tip izraza (char) nije kopmatibilan sa desnim tipom izraza (int)
 INFO   - #42 {
 INFO   - #43 }
 INFO   - #43 }

@@ -101,12 +101,10 @@ INFO   - #42 {
 INFO   - #11 if
 INFO   - #40 (
 INFO   - #48 x
-INFO   - #26 >=
+INFO   - #23 ==
 INFO   - Koriscenje konstante 'x' na liniji: 34
-INFO   - #48 xx
+INFO   - #47 2
 INFO   - #41 )
-INFO   - Koriscenje konstante 'xx' na liniji: 34
-ERROR  - (34) Uslov u if naredbi treba da bude bool tipa
 INFO   - #42 {
 INFO   - #43 }
 INFO   - #43 }
@@ -128,5 +126,5 @@ INFO   - Broj delaracija formalnih argumenata funkcije  = 1
 INFO   - Broj definicjije unutrasnjih klasa = 0
 INFO   - Broj defiicije metoda unutrasnjih klasa = 0
 INFO   - Broj deklaracija polja unutrasnjih klasa = 1
-INFO   - Parsiranje NIJE uspesno zavrseno!
+INFO   - Parsiranje uspesno zavrseno!
 INFO   - Succesfull!!!

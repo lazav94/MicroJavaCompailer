@@ -35,80 +35,86 @@ INFO   - Ubacena nova konstanta: 'aa' vrednosti = 97
 INFO   - #48 int
 INFO   - #48 yy
 INFO   - #38 ;
-INFO   - (9) Ubacena: (globalna) promenljiva sa imenom 'yy'
-INFO   - #48 bool
+INFO   - (8) Ubacena: (globalna) promenljiva sa imenom 'yy'
+INFO   - #48 int
 INFO   - #48 var1
 INFO   - #38 ;
-INFO   - (10) Ubacena: (globalna) promenljiva sa imenom 'var1'
+INFO   - (9) Ubacena: (globalna) promenljiva sa imenom 'var1'
 INFO   - #48 bool
 INFO   - #48 bool_arr
 INFO   - #44 [
 INFO   - #45 ]
 INFO   - #38 ;
-INFO   - (11) Ubacen novi niz: (globalna) promenljiva sa imenom 'bool_arr'
+INFO   - (10) Ubacen novi niz: (globalna) promenljiva sa imenom 'bool_arr'
 INFO   - #48 int
 INFO   - #48 arr
 INFO   - #44 [
 INFO   - #45 ]
 INFO   - #38 ;
-INFO   - (12) Ubacen novi niz: (globalna) promenljiva sa imenom 'arr'
-INFO   - #48 char
-INFO   - #48 lol
-INFO   - #38 ;
-INFO   - (13) Ubacena: (globalna) promenljiva sa imenom 'lol'
-INFO   - #3 class
-INFO   - #48 Table
-INFO   - #42 {
-INFO   - Obradjivanje nove klase 'Table' na liniji 15
-INFO   - #48 int
-INFO   - #48 tf
-INFO   - #38 ;
-INFO   - (17) Ubacena: polje klase: Table(globalna) promenljiva sa imenom 'tf'
-INFO   - #43 }
-INFO   - #48 Table
-INFO   - #48 t_arr
-INFO   - #38 ;
-INFO   - (21) Ubacena: (globalna) promenljiva sa imenom 't_arr'
+INFO   - (11) Ubacen novi niz: (globalna) promenljiva sa imenom 'arr'
 INFO   - #42 {
 INFO   - #48 int
 INFO   - #48 fja
 INFO   - #40 (
-INFO   - (26) Obradjuje se funcija 'fja'
+INFO   - (17) Obradjuje se funcija 'fja'
 INFO   - #48 int
 INFO   - #48 arg
 INFO   - #41 )
-INFO   - (26) Ubacena: (lokalna) promenljiva za funkciju fja sa imenom 'arg'
+INFO   - (17) Ubacena: (lokalna) promenljiva za funkciju fja sa imenom 'arg'
 INFO   - #42 {
 INFO   - #16 return
 INFO   - #48 yy
 INFO   - #38 ;
-INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 27
+INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 18
 INFO   - #43 }
 INFO   - #6 void
 INFO   - #48 main
 INFO   - #40 (
-INFO   - (30) Obradjuje se funcija 'main'
+INFO   - (21) Obradjuje se funcija 'main'
 INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #38 ;
+INFO   - (21) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'x'
 INFO   - #48 char
 INFO   - #48 ch
 INFO   - #38 ;
-INFO   - (30) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'ch'
+INFO   - (21) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'ch'
 INFO   - #48 int
 INFO   - #48 loc
 INFO   - #38 ;
-INFO   - (30) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'loc'
+INFO   - (21) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'loc'
 INFO   - #42 {
-INFO   - #11 if
+INFO   - #8 for
 INFO   - #40 (
-INFO   - #48 x
-INFO   - #26 >=
-INFO   - Koriscenje konstante 'x' na liniji: 34
-INFO   - #48 xx
+DEBUG  - (23) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 yy
+INFO   - #17 =
+INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 23
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija =
+INFO   - #48 yy
+INFO   - #27 <
+INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 23
+INFO   - #47 10
+INFO   - #38 ;
+INFO   - #48 yy
+INFO   - #36 ++
+INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 23
 INFO   - #41 )
-INFO   - Koriscenje konstante 'xx' na liniji: 34
-ERROR  - (34) Uslov u if naredbi treba da bude bool tipa
-INFO   - #42 {
-INFO   - #43 }
+INFO   - #9 break
+INFO   - #38 ;
+INFO   - #48 yy
+DEBUG  - (24) Smanjena dubina for petlje, dubina = 0
+INFO   - #17 =
+INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 26
+INFO   - #48 fja
+INFO   - #38 ;
+INFO   - Koriscenje metode 'fja' na liniji: 26
+INFO   - Izvrena operacija =
+INFO   - #16 return
+INFO   - #38 ;
 INFO   - #43 }
 INFO   - #43 }
 INFO   - 
@@ -117,16 +123,16 @@ INFO   -
 
 ==================SINTAKSNA ANALIZA====================
 
-INFO   - Broj definicijea globalnih promenljivih = 4
-INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 2
+INFO   - Broj definicijea globalnih promenljivih = 2
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 3
 INFO   - Broj definicije globalnih konstanti = 5
 INFO   - Broj dekleracije globalnih nizova = 2
 INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
-INFO   - Broj blokovi naredbi = 1
+INFO   - Broj blokovi naredbi = 0
 INFO   - Broj poziv funkicje u telu metode main = 0
 INFO   - Broj delaracija formalnih argumenata funkcije  = 1
 INFO   - Broj definicjije unutrasnjih klasa = 0
 INFO   - Broj defiicije metoda unutrasnjih klasa = 0
-INFO   - Broj deklaracija polja unutrasnjih klasa = 1
-INFO   - Parsiranje NIJE uspesno zavrseno!
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
+INFO   - Parsiranje uspesno zavrseno!
 INFO   - Succesfull!!!

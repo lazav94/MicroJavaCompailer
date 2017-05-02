@@ -5,7 +5,7 @@ mjparser.cup
 	1) IF ELSE matched unmachted (SR conflict)
 	
 	
-	
+		 read(true);  // ne radi?
 	
 	
 	ActParse, Condition , CondFact can be EPSILON!!-

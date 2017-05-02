@@ -32,43 +32,42 @@ INFO   - #17 =
 INFO   - #50 'a'
 INFO   - #38 ;
 INFO   - Ubacena nova konstanta: 'aa' vrednosti = 97
+INFO   - #16 return
+ERROR  - Sintaksna greska na liniji 7
+INFO   - #38 ;
 INFO   - #48 int
 INFO   - #48 yy
 INFO   - #38 ;
-INFO   - (9) Ubacena: (globalna) promenljiva sa imenom 'yy'
 INFO   - #48 bool
 INFO   - #48 var1
 INFO   - #38 ;
-INFO   - (10) Ubacena: (globalna) promenljiva sa imenom 'var1'
 INFO   - #48 bool
 INFO   - #48 bool_arr
 INFO   - #44 [
 INFO   - #45 ]
 INFO   - #38 ;
-INFO   - (11) Ubacen novi niz: (globalna) promenljiva sa imenom 'bool_arr'
 INFO   - #48 int
 INFO   - #48 arr
 INFO   - #44 [
 INFO   - #45 ]
 INFO   - #38 ;
-INFO   - (12) Ubacen novi niz: (globalna) promenljiva sa imenom 'arr'
 INFO   - #48 char
 INFO   - #48 lol
 INFO   - #38 ;
-INFO   - (13) Ubacena: (globalna) promenljiva sa imenom 'lol'
 INFO   - #3 class
 INFO   - #48 Table
 INFO   - #42 {
-INFO   - Obradjivanje nove klase 'Table' na liniji 15
 INFO   - #48 int
 INFO   - #48 tf
 INFO   - #38 ;
-INFO   - (17) Ubacena: polje klase: Table(globalna) promenljiva sa imenom 'tf'
+INFO   - (17) Ubacena: (globalna) promenljiva sa imenom 'tf'
 INFO   - #43 }
 INFO   - #48 Table
+INFO   - GRESKA ({): Deklaracija prosirenja nadklase  (extends_).  
 INFO   - #48 t_arr
+ERROR  - (21)  Nije pronadjen tip : 'Table' u tabeli simbola 
 INFO   - #38 ;
-INFO   - (21) Ubacena: (globalna) promenljiva sa imenom 't_arr'
+ERROR  - (21) Ubaceni simbol: 't_arr' nema dobar tip (proveriti ovaj ispis)
 INFO   - #42 {
 INFO   - #48 int
 INFO   - #48 fja
@@ -77,13 +76,14 @@ INFO   - (26) Obradjuje se funcija 'fja'
 INFO   - #48 int
 INFO   - #48 arg
 INFO   - #41 )
-INFO   - (26) Ubacena: (lokalna) promenljiva za funkciju fja sa imenom 'arg'
+ERROR  - (26) Ubaceni simbol: 'arg' nema dobar tip (proveriti ovaj ispis)
 INFO   - #42 {
 INFO   - #16 return
 INFO   - #48 yy
 INFO   - #38 ;
-INFO   - Koriscenje (globalna) promenljive 'yy' na liniji: 27
+ERROR  - (27) Simbol 'yy' ne postoji u tabeli simbola!
 INFO   - #43 }
+ERROR  - (27) Funckija ocekuje povratnu vrednost int , a vracena vrednost je tipa void
 INFO   - #6 void
 INFO   - #48 main
 INFO   - #40 (
@@ -98,17 +98,60 @@ INFO   - #48 loc
 INFO   - #38 ;
 INFO   - (30) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'loc'
 INFO   - #42 {
-INFO   - #11 if
+INFO   - #13 print
 INFO   - #40 (
 INFO   - #48 x
-INFO   - #26 >=
-INFO   - Koriscenje konstante 'x' na liniji: 34
-INFO   - #48 xx
 INFO   - #41 )
-INFO   - Koriscenje konstante 'xx' na liniji: 34
-ERROR  - (34) Uslov u if naredbi treba da bude bool tipa
-INFO   - #42 {
-INFO   - #43 }
+INFO   - Koriscenje konstante 'x' na liniji: 35
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #47 2
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 yy
+INFO   - #41 )
+ERROR  - (37) Simbol 'yy' ne postoji u tabeli simbola!
+ERROR  - (37) Expr u print naredbi mora biti tipa int, char ili bool
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 aa
+INFO   - #41 )
+INFO   - Koriscenje konstante 'aa' na liniji: 39
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 lol
+INFO   - #41 )
+ERROR  - (40) Simbol 'lol' ne postoji u tabeli simbola!
+ERROR  - (40) Expr u print naredbi mora biti tipa int, char ili bool
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'a'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 baki
+INFO   - #41 )
+INFO   - Koriscenje konstante 'baki' na liniji: 43
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 var1
+INFO   - #41 )
+ERROR  - (44) Simbol 'var1' ne postoji u tabeli simbola!
+ERROR  - (44) Expr u print naredbi mora biti tipa int, char ili bool
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #49 true
+INFO   - #41 )
+INFO   - #38 ;
 INFO   - #43 }
 INFO   - #43 }
 INFO   - 
@@ -117,16 +160,16 @@ INFO   -
 
 ==================SINTAKSNA ANALIZA====================
 
-INFO   - Broj definicijea globalnih promenljivih = 4
+INFO   - Broj definicijea globalnih promenljivih = 2
 INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 2
 INFO   - Broj definicije globalnih konstanti = 5
-INFO   - Broj dekleracije globalnih nizova = 2
+INFO   - Broj dekleracije globalnih nizova = 0
 INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 0
-INFO   - Broj blokovi naredbi = 1
-INFO   - Broj poziv funkicje u telu metode main = 0
+INFO   - Broj blokovi naredbi = 0
+INFO   - Broj poziv funkicje u telu metode main = 9
 INFO   - Broj delaracija formalnih argumenata funkcije  = 1
 INFO   - Broj definicjije unutrasnjih klasa = 0
 INFO   - Broj defiicije metoda unutrasnjih klasa = 0
-INFO   - Broj deklaracija polja unutrasnjih klasa = 1
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
 INFO   - Parsiranje NIJE uspesno zavrseno!
 INFO   - Succesfull!!!

@@ -100,13 +100,15 @@ INFO   - (30) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'loc'
 INFO   - #42 {
 INFO   - #11 if
 INFO   - #40 (
-INFO   - #48 x
-INFO   - #26 >=
-INFO   - Koriscenje konstante 'x' na liniji: 34
+INFO   - #48 bool_arr
+INFO   - #44 [
+INFO   - Koriscenje (globalna) niza 'bool_arr' na liniji: 34
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #23 ==
 INFO   - #48 xx
 INFO   - #41 )
 INFO   - Koriscenje konstante 'xx' na liniji: 34
-ERROR  - (34) Uslov u if naredbi treba da bude bool tipa
 INFO   - #42 {
 INFO   - #43 }
 INFO   - #43 }
@@ -128,5 +130,5 @@ INFO   - Broj delaracija formalnih argumenata funkcije  = 1
 INFO   - Broj definicjije unutrasnjih klasa = 0
 INFO   - Broj defiicije metoda unutrasnjih klasa = 0
 INFO   - Broj deklaracija polja unutrasnjih klasa = 1
-INFO   - Parsiranje NIJE uspesno zavrseno!
+INFO   - Parsiranje uspesno zavrseno!
 INFO   - Succesfull!!!
