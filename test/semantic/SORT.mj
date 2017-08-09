@@ -1,0 +1,37 @@
+program Program
+
+		int N ;
+		bool asc;
+{
+
+	
+	void main() int i, j, temp; int array[];
+	{
+		
+		print('s');print('i');print('z');print('e');print('?'); print(eol);
+		read(N);
+		print('i');print('n');print('s');print('e');print('r');print('t'); print(' ');print('a');print('r');print('r');print('a');print('y'); print(eol);
+		array = new int[N];
+		
+		
+		
+		for(i = 0; i < len(array); i++)
+			read(array[i]);
+			
+		for(i = 0; i < len(array) - 1 ; i++){
+			for(j = i+1; j < len(array); j++){
+				if(array[i] > array[j]){
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+		}
+			
+		for(i = 0; i < len(array); i++)
+			print(array[i]);
+			
+				
+			
+	}
+}

@@ -1,0 +1,17 @@
+
+program Program
+
+	const int ia = 1;
+	const int ib = 2 , ic = 3;
+	
+	const char ca = 'A';
+	const char cb = 'a' , cc = 'k';
+	
+	const bool ba = true;
+	const bool bb = false , bc = true;
+	
+{
+	void main()
+	{
+	}
+}

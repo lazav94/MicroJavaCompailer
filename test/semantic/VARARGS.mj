@@ -1,0 +1,56 @@
+//file: SYNTAX_TEST_ALL_WITHOUT_ERROR.mj
+program Program
+
+	int a[];
+	int i;
+
+{
+	int k(int a, char c, bool b) {
+		print(a);
+		print(c);
+
+		print(b);
+		return a;
+	}
+	
+	int x(int a){
+		a++;
+		a += 3;
+		return a+3;
+	}
+	
+
+	int va(int a, int ... vva){
+		print(a);
+		//print(len(vva));
+		for(i=0; i < len(vva); i++)
+			print(vva[i]);	
+		print(eol);
+		
+		return len(vva);
+		
+	}
+
+		void main() int xx, i,j; bool bbb;  {
+	     
+		a = new int[6];
+		a[1] = 3;
+		a[2] = 25;
+		a[3] = 101;
+
+		
+		
+		print(va( x(k(x(x(2)), 'a', false)), x(x(5)),x(7),a[a[1]], va(2, 100,a[1],8,a[2]) ,a[2]));
+	
+	
+	
+		//x(va( x(k(x(x(2)), 'a', false)), x(x(5+2))  ,x(7),a[a[1]],8,a[2]));
+		
+		 va( x(k(x(x(2)), 'a', false)), 100, 2, a[1], 8, a[2]);
+				
+		//va(2,2,3,a[1]);
+	   //k(x(1),'a', true);
+	   
+			
+		}
+	}

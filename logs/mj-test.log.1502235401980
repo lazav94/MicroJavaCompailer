@@ -1,0 +1,32 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\semantic\TEST.mj
+INFO   - #2 program
+INFO   - #48 Program
+INFO   - #48 int
+INFO   - #48 N
+INFO   - #38 ;
+INFO   - (3) Ubacena: (globalna) promenljiva sa imenom 'N'
+INFO   - #48 bool
+INFO   - #48 asc
+INFO   - #38 ;
+INFO   - (4) Ubacena: (globalna) promenljiva sa imenom 'asc'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (8) Obradjuje se  lokalna funkcija 'main'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (8) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #41 )
+INFO   - (11) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (12) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;

@@ -1,19 +1,20 @@
-const int x = ;  -- ovo baca fatalnu gresku?
+1) VarArg rekurzija
+2) Var Arg call posle var arg call!!!
 
-// ime fje ne moze da bude isto kao i ime neke promenljive ili konstante u isti scope
-mjparser.cup
-	1) IF ELSE matched unmachted (SR conflict)
+
+	Condition
+	FOR
+	IF
+	BREAK
+	CONTINIUE
+	!
+	
+	Asocijativnost
 	
 	
-		 read(true);  // ne radi?
+	kod CONDITION kad se napise true ili false ne radi!
 	
 	
-	ActParse, Condition , CondFact can be EPSILON!!-
+	if(false) - if(true)
 	
-	
-	
-	isAssign boolean ? 
-	
-	
-	
-	OPORAVAK OD GRESKE : liste parametra u pozivu metode OBJEKSTA (nije uradjeo ovo za objekat vec generlani slucaj)
+		

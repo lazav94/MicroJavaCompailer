@@ -1,0 +1,69 @@
+//file: SYNTAX_TEST_ALL_WITHOUT_ERROR.mj
+program Program
+
+const int s = 5;
+int x;
+
+		int a, b,c;
+
+	
+	
+
+		
+
+{
+
+
+void printAll(){
+	
+		print(a);print(b);print(c);print(eol);
+		
+	}
+
+	int fac(int n){
+			print(n);
+			if(n == 0) return 0;
+			if(n == 1) return 1;
+			return n * fac(n-1);
+			
+		}
+	
+	int sum(int ... a) int s; int i;{
+		s = 0;
+		for(i = 0; i < len(a); i++)
+			s+=a[i];
+		print(s);
+		if(s > 100)
+			return -100;
+		else{
+			print(sum(s+1, s+2));
+			return s;
+		}
+	}
+	
+
+	void main() int N; {
+	    print(sum());
+	    read(N);
+		N = fac(N);
+		print('f');print('a');print('t'); print(eol);
+		print(N);
+		print(eol);
+		
+		a = 32; b = 3;c = 15;
+		
+		printAll();
+		print(sum(3,N,N));
+		print(eol); print(eol);
+
+		a = b += c * 2 + 2;
+		//a =   b  /= 2 +  c -=  (sum(3,N,N)  / 3 + 2 * 3);
+	
+	
+	print(eol);	
+	printAll();
+	
+		
+			
+	}
+}

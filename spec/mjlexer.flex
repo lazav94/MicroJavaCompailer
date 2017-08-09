@@ -1,7 +1,7 @@
 package pp1.vl130298;
 
 import java_cup.runtime.Symbol;
-import pp1.vl130298.util.Singleton;
+import pp1.vl130298.Singleton;
 
 %%
 
@@ -36,9 +36,14 @@ import pp1.vl130298.util.Singleton;
 "\r\n" { printColumn = true; }
 "\f"   { }
 
+// Komentar
+
 "//"             { yybegin(COMMENT);   } 
 <COMMENT> .      { yybegin(COMMENT);   }
 <COMMENT> "\r\n" { yybegin(YYINITIAL); }
+
+
+// Kljucne reci
 
 "program"  { return new_symbol(sym.PROGRAM , yytext()); }
 "break"    { return new_symbol(sym.BREAK   , yytext()); }
@@ -56,6 +61,8 @@ import pp1.vl130298.util.Singleton;
 "continue" { return new_symbol(sym.CONTINIUE, yytext());}
 "static"   { return new_symbol(sym.STATIC  , yytext()); }
 
+
+// Operatori
 "+" 	   { return new_symbol(sym.PLUS    , yytext()); }
 "-" 	   { return new_symbol(sym.MINUS   , yytext()); }
 "*" 	   { return new_symbol(sym.MUL     , yytext()); }
@@ -63,10 +70,10 @@ import pp1.vl130298.util.Singleton;
 "%" 	   { return new_symbol(sym.MOD     , yytext()); }
 "==" 	   { return new_symbol(sym.EQU     , yytext()); }
 "!=" 	   { return new_symbol(sym.NEQ     , yytext()); }
-">" 	   { return new_symbol(sym.LSS     , yytext()); }
-">=" 	   { return new_symbol(sym.LEQ     , yytext()); }
-"<" 	   { return new_symbol(sym.GTR     , yytext()); }
-"<=" 	   { return new_symbol(sym.GEQ     , yytext()); }
+">" 	   { return new_symbol(sym.GTR     , yytext()); }
+">=" 	   { return new_symbol(sym.GEQ     , yytext()); }
+"<" 	   { return new_symbol(sym.LSS     , yytext()); }
+"<=" 	   { return new_symbol(sym.LEQ     , yytext()); }
 "&&" 	   { return new_symbol(sym.AND     , yytext()); }
 "||" 	   { return new_symbol(sym.OR      , yytext()); }
 "=" 	   { return new_symbol(sym.EQUAL   , yytext()); }
@@ -88,11 +95,11 @@ import pp1.vl130298.util.Singleton;
 "]"		   { return new_symbol(sym.QRBRACE , yytext()); }
 
 
-
+// Identifikatori i konstante
 [0-9]+                          { return new_symbol (sym.NUMBER , new Integer(yytext())); }
 "true" | "false"                { return new_symbol (sym.BOOL   ,             yytext());  }
 ([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{ return new_symbol (sym.IDENT  ,             yytext());  }
-\'[\d32-\d126]\'                { return new_symbol (sym.ASCII  ,             yytext());  }  
+'[ -~]'                         { return new_symbol (sym.ASCII  ,             yytext());  }  
 
 
 . {	

@@ -1,0 +1,21 @@
+program Program
+		int a, b,c;
+{
+	void printAll(){
+	
+		print(a);print(b);print(c);print(eol);
+		
+	}
+	
+
+	void main() 
+	{
+		a = 32; b = 3;c = 15;
+		
+		printAll();
+
+		a =   b  /= 2 +  (c -= 15 / 3 + 2 * 3);
+		
+		printAll();	
+	}
+}

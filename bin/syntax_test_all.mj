@@ -40,6 +40,24 @@ program Zmaj
 		
 		{	
 			read(x);
+					 	if(x==x && x == aaaa || c == true){
+		 	}
+		 	if(x!=x){
+		 	}
+		 	
+		 	for(x =0 ; x <= 10; x++){
+		 	}
+		 	
+			x = x * x * x * x * x * aa[1] * g() + x;
+		
+			x=x;
+			x++;
+		
+			x--;
+			aa[1]++;
+			
+		
+			aa[1] = aa[2];
 				
 		}
 		

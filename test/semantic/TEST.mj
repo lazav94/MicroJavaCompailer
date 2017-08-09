@@ -1,0 +1,18 @@
+program Program
+
+		int N ;
+		bool asc;
+{
+
+	
+	void main() int i;
+	{
+		
+		print(i);
+		i++;
+		print(i);
+		
+				
+			
+	}
+}

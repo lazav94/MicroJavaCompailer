@@ -1,0 +1,155 @@
+
+program Program
+
+	const int cia = 1;
+	const int cib = 2 , cic = 3;
+	
+	const char cca = 'A';
+	const char ccb = 'a' , ccc = 'k';
+	
+	const bool cba = true;
+	const bool cbb = false , cbc = true;
+	
+	int via;
+	int vib, vic;
+	
+	char vca;
+	char vcb  , vcc;
+	
+	bool vba;
+	bool vbb , vbc;
+	
+	int avia[];
+	int avib[], avic[];
+	
+	char avca[];
+	char avcb[]  , avcc[];
+	
+	bool avba[];
+	bool avbb[] , avbc[];
+	
+	class CLASS1 
+	{
+	
+	}
+	class CLASS2 
+	{
+	
+		int cvia;
+		int cvib, cvic;
+		
+		int via;
+		int vib, vic;
+	
+		char vca;
+		char vcb  , vcc;
+		
+		bool vba;
+		bool vbb , vbc;
+		
+		int avia[];
+		int avib[], avic[];
+		
+		char avca[];
+		char avcb[]  , avcc[];
+		
+		bool avba[];
+		bool avbb[] , avbc[];
+		
+		static int svia;
+		static int svib, svic;
+	
+		static char svca;
+		static char svcb  , svcc;
+		
+		static bool svba;
+		static bool svbb , svbc;
+		
+		static int savia[];
+		static int savib[], savic[];
+		
+		static char savca[];
+		static char savcb[]  , savcc[];
+		
+		static bool savba[];
+		static bool savbb[] , savbc[];
+		
+		{
+			void voidMethod() {              }
+			int  intMethod()  { return 0;    }
+			char charMethod() { return '!';  }
+			bool boolMethod() { return true; }
+			
+			void voidMethodS() {              }
+			static int  intMethodS()  { return 0;    }
+			static char charMethodS() { return '!';  }
+			static bool boolMethodS() { return true; }
+		}
+	}
+	
+	CLASS2 c;
+	
+{
+	void voidMethod() {              }
+	int  intMethod()  { return 0;    }
+	char charMethod() { return '!';  }
+	bool boolMethod() { return true; }
+	
+	int  intMethodFP(int a, bool b)  { return 0;    }
+	char charMethodFP() { return '!';  }
+	bool boolMethodFP(char c) { return true; }
+	
+	
+
+	
+	void main() int maina, mainb; char maincc; bool bb; char array1[]; int array2[];
+	{
+		maina = 1;
+		voidMethod();
+		
+		intMethod();
+		charMethod();
+		boolMethod();
+		
+		intMethodFP(intMethod(), true);
+		
+		print(chr(65));
+		print(ord('B'));
+		
+		array1 = new char[32];
+		print(eol);
+		
+		print(len(array1));
+		array2 = new int[16];
+		print(len(array2));
+		
+		for(maina = 0; maina < 5; maina++)
+			break;
+
+		for(maina = 0; maina < 5; maina++)
+			continue;
+		
+	
+		
+		maina++;
+		maina--;
+		array2[1]++;
+		array2[1]--;
+		via++;via--;
+		
+		c.cvia++;
+		c.cvia--;
+		
+		
+		
+		print(via);
+		print(vca);
+		print(vba);
+		print(c.cvia);
+		
+	
+		
+		
+		
+	}
+}

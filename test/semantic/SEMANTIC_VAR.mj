@@ -1,0 +1,35 @@
+
+program Program
+
+	const int cia = 1;
+	const int cib = 2 , cic = 3;
+	
+	const char cca = 'A';
+	const char ccb = 'a' , ccc = 'k';
+	
+	const bool cba = true;
+	const bool cbb = false , cbc = true;
+	
+	int via;
+	int vib, vic;
+	
+	char vca;
+	char vcb  , vcc;
+	
+	bool vba;
+	bool vbb , vbc;
+	
+	int avia[];
+	int avib[], avic[];
+	
+	char avca[];
+	char avcb[]  , avcc[];
+	
+	bool avba[];
+	bool avbb[] , avbc[];
+	
+{
+	void main()
+	{
+	}
+}

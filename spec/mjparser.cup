@@ -4,7 +4,16 @@ import java_cup.runtime.*;
 import org.apache.log4j.*;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
+import java.util.UUID;
+import rs.etf.pp1.mj.runtime.Code;
 
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+import java.util.LinkedList;
 
 
 
@@ -21,8 +30,10 @@ scan with {:
 			  return symbol;
 		  :}
 
-parser  code {://vidljivo za parser
+parser  code {:
 
+				// Predefinisane metode za ispis poruke 
+				
 				public void report_fatal_error(String message, Object info) throws java.lang.Exception {
      			    done_parsing();
       			    report_error(message, info);
@@ -47,22 +58,20 @@ parser  code {://vidljivo za parser
 			    }
     
 				Singleton s = Singleton.getInstance();
-			    public static final Struct boolType = new Struct(Struct.Bool); // Struct for Bool type !
-				public static final Obj    boolObj  = new Obj(Obj.Type, "bool" , boolType); // Obj za boolType
-				public static final int constLevel  = 0;
+			   
 
 				Struct lastConstType = Tab.noType;
 				Struct lastVarType = Tab.noType;
-				Obj lastDesignator = null;
+				
+				Stack<Obj> lastDesignator = new Stack<Obj>();
+				Obj assignopDesignator;
 
 				int globalVariables     = 0; // definicija globalnih promenljivih  -> ako se nalazi u globalnom opsegu definicije promenljivih
 				int localMainVariables  = 0; // definicija lokalnih promeljivih (u main funkciji)
 				int globalConstants     = 0; // definicije globalnih konstanti
-				int globalArrays	    = 0; // deleracije globalnih nizova
-	
+				
 
-				int glAndStMethInClass  = 0; // definicija globalniih i statickih funkicja unutrasnjih klasa
-				int blocks              = 0; // blokovi naredbi
+				int methods             = 0; // definicija globalniih i statickih funkicja unutrasnjih klasa
 				int calledFuncMain      = 0; // poziv funkicje u telu metode main
 				int fomalArgMeth        = 0; // delaracija formalnih argumenata funkcije 
 		
@@ -70,72 +79,131 @@ parser  code {://vidljivo za parser
 				int defInnerClassMeth   = 0; // defiicije metoda unutrasnjih klasa
 				int dekFieldsInnerClass = 0; // deklaracija polja unutrasnjih klasa
 	
-				boolean isArray      = false,      // niz      ili skalar
-						isGlobal     = false,      // globalno ili lokalno 
-						isClass      = false,      // klasa    ili nesto drugo
-						isMain       = false,      // main fja ili nesto drugo
-						isStatic     = false,      // staticna ili nesto drugo
-						isFunct      = false,	   //  func    ili nesto drugo
-						isDot		 = false,      //  . se pojavila
-						isArrayElem  = false;      // [expr!] element niza 
+				boolean isArray      = false,      // Flag: da li se radi o nizu
+						isGlobal     = false,      // Flag: true - ako smo u globalnom opsegu programa
+						isClass      = false,      // Flag: true - ako smo unutar klase
+						isMain       = false,      // Flag: true - ako smo nekad naisli na main metodu (void main())
+						isStatic     = false,      // Flag: true - ako je trenutna metoda static (samo za klase)
+						isStaticFld  = false,      // Flag: true - ako je trenutno polje static  (samo za klase)
+						isMethod      = false,	   // Flag: true - ako smo unutar metode
+						isDot		 = false,      // Flag: true - pojavila se tacka (unused)
+						isArrayElem  = false;      // Flag: true - ako obradjuemo element niza
 			
 			
 				boolean isAssign     = false;      // da li se radi dodela vrednosti
 				boolean actParsList  = false;
-				int forLoop      = 0;              // da li je for petlja? // ako je nula nije for petlja ako je veci broj to znaci da je for ili ugnezdeni for
+				int forLoopLevel      = 0;              // Nivo ugnezdenosti for petlje (0 - ako se ne nalazimo u for petlji)
 	
 				
 	
-				boolean errorDectected = false;
+				boolean errorDectected = false;   // Flag: true - u slucaju bilo kakve greske
 				
 				Struct returnType = null;
-			 
+				
+				
 			 :} 
 action code {: 
 				Singleton s = Singleton.getInstance();
+				
+				// Method variables
+				
 				Obj currentMethod        = null;    // ima informaciju o funkciji koja se trenutno obradjuje
 				int currMethodFormParams = 0;       // broj formalnih parametra funckije
-				int currMethodActParams  = 0;       // broj stvarnih parametra funckije
-
-				boolean methodErrorDetected = false; // da li se desila greska kod parsiranja metoode
-				Obj currentClass    = null;    // ima informaciju o klasi koja se trenutno obradjuje
+				
+				List<Obj> FormalParamStack = new ArrayList<Obj>();
+						
+						
+				List<Obj> MehtodWithVarArgs = new ArrayList<>();
+				Stack<Obj> currentMethodStack = new Stack<Obj>();
+				
+				Stack<List<Obj>> varArgsStack  = new Stack<List<Obj>>();
+				
+				
+				boolean haveVarArgs = false;
+				Struct varArgsType = Tab.noType;
+				
+				boolean haveMain = false;    // da li imamo main fju u programu
 				boolean returnFound = false; // koristi se kada fja treba da vrati vredonost !
+				
+				
+				
+				
+				
+  				// Class varialbes
+				Obj currentClass    = null;    // ima informaciju o klasi koja se trenutno obradjuje
+				HashMap<Struct, List<Obj>> staticFldMap = new HashMap<>();
+				Struct parentClass = null;
 			
 				
-				boolean haveMain = false; // da li imamo main fju u programu
+				boolean isActPar = false;
 				
 				Obj prevCondFact = null;
 				Obj prevCondTerm = null;
+				boolean methodErrorDetected = false; // da li se desila greska kod parsiranja metoode
+				
+				
+				
+
+			
+				
+				
+				/* CONDITION */
+				LinkedList<Integer> condFactJumps 			= new LinkedList<Integer>();
+				LinkedList<Integer> condTermJumps 			= new LinkedList<Integer>();
+				LinkedList<LinkedList<Integer>> elseAdr 	= new LinkedList<LinkedList<Integer>>();
+				LinkedList<Integer> afterElseAdr 			= new LinkedList<Integer>();
+				LinkedList<LinkedList<Integer>> breakJump	= new LinkedList<LinkedList<Integer>>();
+				LinkedList<Integer> currBreakJump 		    = new LinkedList<Integer>();
+				LinkedList<Integer> continueJump 			= new LinkedList<Integer>();
+				
+				int forConditionStartAdr;
+				int currentRelop;
+				int forStepAdr;
 	
-	 :} //vidljivo za sve akcije
+				
+				LinkedList<LinkedList<Obj>>    waitForLeftAddOp_Obj = new LinkedList<LinkedList<Obj>>();
+				LinkedList<LinkedList<Integer>> waitForLeftAddOp_Op = new LinkedList<LinkedList<Integer>>();
+				LinkedList<LinkedList<Obj>>    waitForLeftMulOp_Obj = new LinkedList<LinkedList<Obj>>();
+				LinkedList<LinkedList<Integer>> waitForLeftMulOp_Op = new LinkedList<LinkedList<Integer>>();
+				
+				boolean onStack = false;
+				boolean isComplex = false;
+				boolean isComplexExpr = false;
+							
+				
+				
+	 :}
 
 // Terminals
 terminal PROGRAM, CLASS, EXTENDS, STATIC, VOID, CONST;
-terminal FOR, BREAK, CONTINIUE, IF, ELSE, PRINT, READ,NEW, RETURN;
+terminal FOR, BREAK, CONTINIUE, IF, ELSE, PRINT, READ, NEW, RETURN;
 terminal EQUAL, PLUS, MINUS, MUL, DIV, MOD, EQU, NEQ, LSS, LEQ, GTR, GEQ, AND, OR, PEQ , MEQ, MUEQ, DEQ, MOEQ, INC, DEC;
 terminal SEMI, COMMA , LPAREN, RPAREN, LBRACE, RBRACE, QLBRACE, QRBRACE, DOT;
 
 terminal Integer NUMBER;
-terminal String  IDENT, BOOL, ASCII;
+terminal String  IDENT ,BOOL ,ASCII;
 
 
 // Non terminals
 non terminal Program, ProgramDeclList,ProgramElem ;
-non terminal ClassDecl, ClassMethod,  ClassBody;
+non terminal ClassDecl, ClassMethod,  ClassBody, ClassStatic, ClassVarDecl, ClassVarDeclList;
 non terminal ConstDeclList, ConstDecl, ConstDef;
-non terminal VarDeclList, VarDecl , VarDef,VarDeclListE  ;
-non terminal MethodDeclList, MethodDecl, MethodStatic, MethodDeclPreVar, MethodDeclPreFor;
-non terminal FormPars,FormalParamList, FormalParamDecl;
+non terminal VarDeclList, VarDecl , VarDeclListE  ;
+non terminal MethodDeclList, MethodDecl, MethodStatic, MethodDeclPreVar, MethodDeclPreFor, VarArgs;
+non terminal FormPars, FormalParamList, FormalParamDecl;
 non terminal Statement, StatementList, ForStatement ,ElseStatement ;
-non terminal ActPars, ActParsList, DesignatorList, DesignatorElem, MulopFactorList ;
-non terminal Assignop, Relop, Addop, AddopLeft, AddopRight, Mulop, MulopLeft, MulopRight ;
+non terminal ActPars, ActParsList ;
 
+
+non terminal Integer Addop, Mulop, Assignop, Relop, AddopLeft, AddopRight,  MulopLeft, MulopRight;
+non terminal Obj VarDef;
 non terminal String ClassDeclPreExt;
 non terminal Obj ProgramName, Value;
 non terminal Struct Type, VarType, MethodType ;
-non terminal Obj  Designator, Expr, Factor, Term,DesignatorIdent, ExprMinusTerm, AddopTermList;
+non terminal Obj  Designator, Expr, Factor, Term,DesignatorIdent, ExprMinusTerm, AddopTermList, DesignatorList, DesignatorElem;
 non terminal Obj  DesignatorStatement,DesignatorLParen;
-non terminal Obj  Condition, CondTermList, CondFactList, CondTerm, ContFact;
+non terminal Obj  Condition, CondTerm, CondFact, ConditionEps;
+non terminal Obj MulopFactorList;
 
 precedence left ELSE;
 
@@ -149,16 +217,22 @@ precedence left ELSE;
 
 //-----------------------------------------------PROGRAM-----------------------------------------------//
 
-Program 		::= PROGRAM {: parser.isGlobal = true; :} ProgramName:programObj ProgramDeclList LBRACE {: parser.isGlobal = false; :} MethodDeclList RBRACE
+Program 		::= PROGRAM 
+					{: parser.isGlobal = true; :}
+					ProgramName:programObj ProgramDeclList LBRACE  
+					{: parser.isGlobal = false; :} 
+					MethodDeclList 
+					RBRACE
 					{: 
+
 						s.checkMain();
-						s.program_action(programObj);
+						s.programEnd(programObj);
+						
 					:} ;
 
 ProgramName     ::= IDENT:programName 
 					{:
-						RESULT = Tab.insert(Obj.Prog, programName, Tab.noType); // Dodaj objektni cvor u Tablu simbola za Program
-						Tab.openScope();					                    // Otvori program scope  
+						RESULT = s.programStart(programName);
 					:};
 
 ProgramDeclList ::= ProgramDeclList ProgramElem
@@ -173,16 +247,16 @@ ProgramElem     ::= ConstDeclList // can't be epsilon
                     ClassDecl     // can't be epsilon
                     ;
  
+ 
 //-----------------------------------------------CONTANTS-----------------------------------------------//               
 ConstDeclList   ::= CONST Type:constType
 					{:
 						s.checkContantType(constTypeleft);
 						parser.lastConstType = constType;
-						
-						
 					:}
-					 ConstDecl SEMI {: parser.lastConstType = Tab.noType; :} 
-					 ;
+					ConstDecl SEMI 
+					{: parser.lastConstType = Tab.noType; :} 
+					;
 					
 				    
 ConstDecl       ::= ConstDecl COMMA ConstDef
@@ -193,28 +267,27 @@ ConstDecl       ::= ConstDecl COMMA ConstDef
 ConstDef        ::= IDENT:constName EQUAL Value:constValue
 					{: 
 						s.constantCount();
-					    s.insertConstant(constNameleft, constName, constValue);						 
+					    s.insertConstant(constNameleft, constName, constValue );						 
 					:} ;
 
 Value           ::= NUMBER:n
 					{: 
-						Obj o = new Obj(Obj.Con, "CONSTANT", Tab.intType);
+						Obj o = new Obj(Obj.Con, "Constant number", Tab.intType);
 						o.setAdr(n);
 						RESULT = o;
 					:}
 			        |
 			        BOOL:b
 			        {:
-			          
-			        	Obj o = new Obj(Obj.Con, "CONSTANT", s.boolType);
-						o.setAdr("true".equals(b) ?  1 : 0);
+			         	Obj o = new Obj(Obj.Con, "Constant boolean" , s.boolType);
+			          	o.setAdr((b.equals("false"))? 0 : 1);
 						RESULT = o;
 
 			         :}
 			        |
 			        ASCII:c
 			        {: 
-			        	Obj o = new Obj(Obj.Con, "CONSTANT", Tab.charType);
+			        	Obj o = new Obj(Obj.Con, "Constant char", Tab.charType);
 						o.setAdr(c.charAt(1));
 						RESULT = o;
 			        :}
@@ -230,7 +303,7 @@ VarDeclListE    ::= VarDeclListE VarDeclList
 
 VarType         ::= Type:varType          {: parser.lastVarType = varType; :} ;	
 				
-VarDeclList     ::= VarType VarDecl SEMI
+VarDeclList     ::= VarType VarDecl SEMI  
 					|
 					VarType:v error SEMI  {: s.variableError(vleft, ';', true); :}
 					|
@@ -248,15 +321,17 @@ VarDef          ::= IDENT:varName QLBRACE {: parser.isArray = true; :}
 					QRBRACE
 					{: 
 						s.variableCount();
+						RESULT = s.insertVariable(varNameleft, varName);
 						parser.isArray = false;
-						s.insertVariable(varNameleft, varName, true);
+						
 					:}
 			        |
 			        IDENT:varName
 			        {: 	
 			        	parser.isArray = false;
 			        	s.variableCount();
-						s.insertVariable(varNameleft, varName, false);				  
+						RESULT = s.insertVariable(varNameleft, varName);		
+								  
 					:}
 			        ;
 		
@@ -278,31 +353,53 @@ MethodDeclList  ::= MethodDeclList MethodDecl
 MethodDeclPreFor::=  MethodStatic MethodType:returnType IDENT:methodName 
 					 {: 					  
 					 	s.insertMethodAndCount(methodNameleft, methodName, returnType);
+					 	
 					 :}
-					LPAREN  {: currMethodFormParams = 0; :}
+					LPAREN  
+					{: 
+						// TODO notused?
+						currMethodFormParams = 0; 
+					:}
 				    ; 
 
 
-MethodDeclPreVar::= MethodDeclPreFor FormPars RPAREN {: currentMethod.setLevel(currMethodFormParams); :}
+MethodDeclPreVar::= MethodDeclPreFor FormPars RPAREN
+					{:
+						
+					 	if(haveVarArgs){
+					 		MehtodWithVarArgs.add(currentMethod);	
+					 		currentMethod.setLevel(currMethodFormParams + 1);
+					 	}
+					 	else
+					 		currentMethod.setLevel(currMethodFormParams);
+					 	
+					:}
 					|
 					MethodDeclPreFor:m error RPAREN 
 					{:
 						methodErrorDetected = true;
 						s.methodError(mleft, ')' , "Formalni parametar funkcije.");
 					
-					 :}
+					:}
 					;
 				   									 
-MethodDecl      ::= MethodDeclPreVar:line VarDeclListE LBRACE StatementList RBRACE:methodEnd 
+MethodDecl      ::= MethodDeclPreVar:line VarDeclListE LBRACE
+					{:
+						s.methodEnter();	
+					:}
+					StatementList RBRACE:methodEnd 
 					{: 
-						s.methodReturn(methodEndleft);
+					
+						s.methodExit();
+						s.methodReturnCheck(methodEndleft);
 						s.methodEnd();
 					:} 
 					; 
 
-MethodStatic    ::= STATIC:st {: s.methodStaticClassCheck(stleft); :}
+MethodStatic    ::= STATIC:st {: s.staticCheck(stleft); :}
 				    |
 				    /* epsilon */
+				    {: parser.isStatic = false; :}
 				    ;
 				    
 
@@ -312,12 +409,24 @@ MethodType      ::= Type:returnType {: RESULT = returnType; :}
 				    VOID  {: RESULT = Tab.noType; :} 
 				    ;
 				    
-				    
-				    
+
+
 //---------------------------------- Formal Paramethers ----------------------------------// can be epsilon                  				  
+
+
 FormPars        ::= FormalParamList 
+					{: haveVarArgs = false; :}
 					| 
+					VarArgs
+					{:
+						haveVarArgs = true;
+					:}
+					|
+					FormalParamList COMMA VarArgs
+					{: haveVarArgs = true; :}
+					|
 					/* epsilon */ 
+					{: haveVarArgs = false; :}
 					;
 					
 FormalParamList ::= FormalParamList COMMA FormalParamDecl
@@ -327,7 +436,19 @@ FormalParamList ::= FormalParamList COMMA FormalParamDecl
 				    FormalParamDecl
 				    ;
 				    
-FormalParamDecl ::= Type:formalParamType VarDef {: s.formalParams(formalParamType); :};
+FormalParamDecl ::= Type:type 
+					{: parser.lastVarType = type; :} 
+					VarDef:formParm  
+					{: s.formalParams(formParm); :};
+				    
+				    
+VarArgs 		::= Type:type {: varArgsType = type; :} 
+					DOT DOT DOT 
+					IDENT:varArgsName
+					{: 	Tab.insert(Obj.Var, varArgsName , new Struct(Struct.Array, varArgsType)); :} 
+					;
+				    
+
 				    
 				   
 
@@ -341,103 +462,61 @@ FormalParamDecl ::= Type:formalParamType VarDef {: s.formalParams(formalParamTyp
 
 //----------------------------------- Class	----------------------------------// can't be epsilon	    
 
-ClassDeclPreExt ::= CLASS 
-					{: parser.isClass = true; :} 
-					IDENT:className
+ClassDeclPreExt ::= CLASS IDENT:className
 					{:
-						RESULT = className;
-						s.sintaxInfo("Obradjivanje nove klase '" + className + "' na liniji "  + classNameleft);
+						RESULT = s.classStart(className, classNameleft);
 					:};
 					
-ClassBody       ::=  VarDeclListE ClassMethod ;
+ClassBody       ::= ClassVarDeclList  ClassMethod 
+					|
+					ClassVarDeclList 
+					|
+					ClassMethod
+					|
+					/* epsilon */
+					;
 					
-ClassDecl       ::= ClassDeclPreExt:className 
-					EXTENDS 
-					{:
-					 parser.defInnerClass++;
-					:}
+ClassDecl       ::= ClassDeclPreExt:className EXTENDS 
 					Type:extendClass
 					{:
-						Obj temp = Tab.currentScope.findSymbol(className);
-						
-					  	
-	
-						if(temp == null){
-							if(extendClass.getKind() == Struct.Class){
-								Struct s = new Struct(Struct.Class, extendClass);
-								currentClass = Tab.insert(Obj.Type, className, s);
-								Tab.openScope();
-								Tab.insert(Obj.Fld, "$super" , extendClass);
-							}else{
-								s.sintaxError(extendClassleft, "Tip iz koje se izvodi klasa" + className +" nije klasnog tipa.");
-								currentClass = Tab.noObj;
-							}
-						}else{	
-							s.sintaxError(classNameleft, "Ne moze da se ubaci klasa: '" + className + "' vec postoji u ovom scope");
-						}
-						
+						s.classExtendCheck(className, extendClass, extendClassleft);
 					:}
-					LBRACE ClassBody RBRACE
-					{:
-					
-						Tab.chainLocalSymbols(currentClass.getType());
-						Tab.closeScope();
-						parser.isClass = false;
-						currentClass = Tab.noObj;
-						
-					:}
+					LBRACE ClassBody RBRACE {: s.endClass(); :}
 					
 					|
-					
-					ClassDeclPreExt:className
-					{:	
-					
-						Obj temp = Tab.currentScope.findSymbol(className);
-						currentClass = Tab.insert(Obj.Type, className, new Struct(Struct.Class)); 
-						Tab.openScope();
-					  	if(temp != null)
-					  		s.sintaxError(classNameleft, "Ne moze da se ubaci klasa: '" + className + "' vec postoji u ovom scope" );
-	
-					:}
-					 LBRACE ClassBody RBRACE 
-					{:
-				
-						Tab.chainLocalSymbols(currentClass.getType());
-						Tab.closeScope();
-						
-						parser.isClass = false;
-						currentClass = Tab.noObj;
-						
-					:}
-					
+					ClassDeclPreExt:className {: s.addClass(className, classNameleft); :}
+					LBRACE ClassBody RBRACE   {: s.endClass(); :}
 				    |
-				    
-				    ClassDeclPreExt EXTENDS  error   LBRACE ClassBody RBRACE
-				    {:
-				    	
-						parser.isClass = false;
-						currentClass = Tab.noObj;
-						s.sintaxInfo("GRESKA ({): Deklaracija prosirenja nadklase (extends).  ");
-				    :}
-				    |
-				     
-				    
-				     error   LBRACE ClassBody RBRACE
-				    {:
-				    	
-						parser.isClass = false;
-						currentClass = Tab.noObj;
-						s.sintaxInfo("GRESKA ({): Deklaracija prosirenja nadklase  (extends_).  ");
-				    :}
+				    ClassDeclPreExt EXTENDS  error LBRACE ClassBody RBRACE {: s.classError(); :}
+				    |			
+				    error   LBRACE ClassBody RBRACE {: s.classError();  :}
 				    
 					;
 					
 
-
 ClassMethod     ::= LBRACE MethodDeclList RBRACE
-					|
-				    /* epsilon */
 				    ;
+				    
+
+				    
+ClassStatic     ::= STATIC 
+					{: parser.isStaticFld = true; :}
+				    |
+				    /* epsilon */
+				    {: parser.isStaticFld = false; :}
+				    ;
+				    
+ClassVarDecl	::= ClassStatic VarDeclList 
+					{: parser.isStaticFld = false; :}
+					;
+					
+ClassVarDeclList::= ClassVarDeclList ClassVarDecl 
+					|
+					ClassVarDecl 
+					;
+				    
+				    
+
                   
 
 //=====================================================================================================//
@@ -446,45 +525,35 @@ ClassMethod     ::= LBRACE MethodDeclList RBRACE
 // @Type
 // @Statement
 // @Designator Statement { Designator }
-// @Actual Paramehters
+// @Actual Parameters
 // @Condition { Condition Term, Condition Factor}
 
 
+Type          ::=  	IDENT:typeName {: RESULT = s.insertType(typeName, typeNameleft); :}
+				 	; 
 
-
-
-//-------------------------- Types --------------------------// can't be epsilon  
-Type            ::= IDENT:typeName
-					{:
-						Obj typeNode = Tab.find(typeName);
-						if(typeNode == Tab.noObj){
-							s.semanticError(typeNameleft, " Nije pronadjen tip : '" + typeName + "' u tabeli simbola ");
-							RESULT = Tab.noType;
-						}
-						else {
-							if(Obj.Type == typeNode.getKind()){
-								RESULT = typeNode.getType();
-							}
-							else{
-									s.semanticError(typeNameleft, " Ime: '" + typeName + "' ne predstavlja tip");
-								RESULT = Tab.noType;
-							}
-						}
-					:}
-					; 
-
-
-
-//------------------------ Statements ------------------------// can be epsilon
                   
 StatementList   ::= StatementList Statement 
 				    |
 				    /* epsilon */ 
 				    ;
 
-ForStatement    ::=  FOR:forloop  {: parser.forLoop++; s.semanticDebug(forloopleft,"Uvecana dubina for petlje, dubina = " + parser.forLoop); :}	LPAREN;	     
+ForStatement    ::=  FOR:forloop  
+					 {: 
+					 	parser.forLoopLevel++; 
+					 	s.semanticDebug(forloopleft,"Uvecana dubina for petlje, dubina = " + parser.forLoopLevel); 
+					 :}	
+					 LPAREN
+					;	     
 				
-Statement       ::=  DesignatorStatement SEMI
+Statement       ::=   READ LPAREN Designator:designator
+					  {:
+					     RESULT = s.statementRead(designator, designatorleft);
+					     s.read(designator);
+					 :}
+					  RPAREN SEMI
+					 |
+					 DesignatorStatement SEMI
 					 |
 					 error SEMI
 					 {:
@@ -493,135 +562,193 @@ Statement       ::=  DesignatorStatement SEMI
 					 			s.sintaxInfo("GRESKA (;): Lista parametra funkcije. ");
 					 		else
 					 			s.sintaxInfo("GRESKA (;): Dekleracija designator statement, najverovatnije pri dodeli vrednosti. ");
-					 		
-					 		
+					 			
 					 :}
 				     |
 			    	 IF LPAREN Condition:cond
 			    	 {:
-	
-					    /*if(cond.getType().getKind() != Struct.Bool)
-					        s.semanticError(condleft, "Uslov u if naredbi treba da bude bool tipa");
-					    prevCondFact = null;
-					    prevCondTerm = null;*/
-
+					  	s.ifCondition();
 			    	 :}
-			    	 RPAREN Statement ElseStatement 
+			    	 RPAREN Statement 
+			    	 {:  
+					 	s.ifAfterStatement();
+					 :}
+			    	 ElseStatement 
+			    	 {:
+						s.ifAfterElseStatement();			
+			    	 :}
 			    	 |
 			    	 IF LPAREN error RPAREN Statement ElseStatement
 			    	 {:
 			    	 	s.sintaxInfo("GRESKA ()): Dekleracija designator statement, najverovatnije u if uslovu. ");	
 			    	 :}
 					 |
-					 ForStatement DesignatorStatement SEMI Condition SEMI DesignatorStatement RPAREN Statement:stmt {: parser.forLoop--; s.semanticDebug(stmtleft,"Smanjena dubina for petlje, dubina = " + parser.forLoop); :}
+					 ForStatement DesignatorStatement SEMI
+					 {: forConditionStartAdr = Code.pc; :}
+					 ConditionEps SEMI
+					 {: 
+					 	s.forAfterCondition();
+					 :} 
+					 DesignatorStatement
+					 {:
+						 s.forAfterStep();
+			  			
+					 :} 
+					 RPAREN Statement:stmt 
+					 {: 
+					 
+					 	parser.forLoopLevel--;
+						s.semanticDebug(stmtleft,"Smanjena dubina for petlje, dubina = " + parser.forLoopLevel); 
+					 	s.forBodyEnd();
+					 	
+					 	
+					 :}
 					 |
 					 ForStatement error RPAREN Statement 
 					 {:
-					 	parser.forLoop--;
-					 	System.out.println("Smanjena dubina fora " + parser.forLoop);
+					 	parser.forLoopLevel--;
+					 	s.semanticDebug("Smanjena dubina fora " + parser.forLoopLevel);
 			    	 	s.sintaxInfo("GRESKA () ;): Dekleracija designator statement, najverovatnije u for . ");	
 			    	 :}
 			    	
 			    	 
 					 |
-					 BREAK:b SEMI {: if(parser.forLoop <= 0) s.sintaxError(bleft , "Break ne moze biti van for petlje" ); :}
+					 BREAK:b
+					  {: 
+						 if(parser.forLoopLevel <= 0) s.sintaxError(bleft , "Break ne moze biti van for petlje" );
+						 else{
+				  		 	Code.putJump(0);
+				  			if(breakJump == null || breakJump.isEmpty()){
+				  				s.semanticError(bleft, "Break ne moze da skoci, ne zna gde");
+				  				return null;
+				  			}
+							breakJump.peekFirst().add(new Integer(Code.pc - 2));
+
+						} 
+						
+					:}
+					SEMI 
+					
 					 |
-					 CONTINIUE:c SEMI  {: if(parser.forLoop <= 0) s.sintaxError(cleft , "Continue ne moze biti van for petlje" ); :}
+					 CONTINIUE:c
+					  {: 
+					 	if(parser.forLoopLevel <= 0) s.sintaxError(cleft , "Continue ne moze biti van for petlje" ); 
+					 	else {
+					 		if (continueJump == null || continueJump.isEmpty()) {
+								if (continueJump == null || continueJump.isEmpty()) {
+									s.semanticError(cleft, "Continuiue ne moze da skoci, ne zna gde");
+									return null;
+								}
+				}
+				Code.putJump(continueJump.peek());
+					 	}
+					 :}
+					 SEMI  
+					
 					 |
 					 RETURN SEMI:retSemi {: 
+					 
 					       if(currentMethod == null)
-					    	s.semanticError(retSemileft, "Return ne sme postojati izvan tela metode");
+					           s.semanticError(retSemileft, "Return ne sme postojati izvan tela metode");
+					       if(!currentMethod.getType().equals(Tab.noType))
+					           s.semanticError(retSemileft, "Funkcija: " + currentMethod.getName() + " ocekuje return [expr] , ne moze samo return!");
 						 returnFound = true; 
 						 parser.returnType = Tab.noType; 
+						 s.methodExit();
+						 
 					 :} 
 					 |
 					 RETURN Expr:exprObj SEMI {:
+					 	/**
+					 	* (18) Tip neterminala <i> exprObj </i> mora biti ekvialentan <u>povratnom tipu</u> tekuce metode/glavne funkcije.
+					 	*/
 					      if(currentMethod == null)
-					    	s.semanticError(exprObjleft, "Return ne sme postojati izvan tela metode (return type)");
+					    	s.semanticError(exprObjleft, "Return ne sme postojati izvan tela metode (return[expr])");
 					 	returnFound = true; /* add return type */ 
 					 	parser.returnType = exprObj.getType();
 					 	if(!parser.returnType.equals(currentMethod.getType()))
-			            s.semanticError(exprObjleft, "Funckija ocekuje povratnu vrednost " + s.getTypeName(currentMethod.getType().getKind()) + " , a vracena vrednost je tipa " + s.getTypeName(parser.returnType.getKind()));
-					 	//System.out.println(s.getTypeName(parser.returnType.getKind()));
+			            	s.semanticError(exprObjleft, "Funckija ocekuje povratnu vrednost " + s.getTypeName(currentMethod.getType().getKind()) + " , a vracena vrednost je tipa " + s.getTypeName(parser.returnType.getKind()));
+						
+						
+						//Code.load(exprObj);
+						 s.methodExit();
 					 :} 
 					 |
-					 READ LPAREN  Designator:designator
-					 {:
-					 
-					 
-					     // TODO Check za polje klase (ne radi)
-					     if(!(designator.getKind() == Obj.Var || designator.getKind() == Obj.Fld || designator.getType().equals(Struct.Array)))
-					         s.semanticError(designatorleft, "Designator mora biti promeljiva, polje klase ili element niza");
-					     else {
-					     	if(designator.getType().getKind() == Struct.Array && !(designator.getType().getElemType().equals(Tab.intType) || designator.getType().getElemType().equals(Tab.charType) || designator.getType().getElemType().equals(s.boolType)))
-					             s.semanticError(designatorleft, "Designator (niz) mora biti int, char ili bool tipa");
-					         else if(!(designator.getType().getKind() == Struct.Array) && (designator.getKind() == Obj.Var || designator.getKind() == Obj.Fld) && !(designator.getType().equals(Tab.intType) || designator.getType().equals(Tab.charType) || designator.getType().equals(s.boolType)))
-					             s.semanticError(designatorleft, "Designtator mora biti int, char ili bool tipa");
-					          
-					        
-					     }
-					 
-					 :}
-					  RPAREN SEMI
-					 |
-					 PRINT LPAREN Expr:expr
-					 {:
-					      if(!(expr.getType().equals(Tab.intType) || expr.getType().equals(Tab.charType) || expr.getType().equals(s.boolType)))
-					         s.semanticError(exprleft, "Expr u print naredbi mora biti tipa int, char ili bool");
-					 
-					 :}
+					
+					 PRINT LPAREN Expr:expr 
 					 RPAREN SEMI 
 					 {: 
-					 	
+					 
+					     RESULT = s.statementPrint(expr, exprleft);
+					     s.print(expr, -1);
+
 					 	
 					 	if(parser.isMain == true)
 					 		parser.calledFuncMain++; 
 					 :}
 					 |
-					 PRINT LPAREN Expr COMMA NUMBER RPAREN SEMI 
+					 PRINT LPAREN Expr:expr
 					 {:
+					 RESULT = s.statementPrint(expr, exprleft);
+					 :} 
+					 COMMA NUMBER:num RPAREN SEMI 
+					 {:
+					 	 
+					 	 s.print(expr, num);
 					 	 if(parser.isMain == true)
 					 		parser.calledFuncMain++;
 					 :}
 					 |
-					 LBRACE StatementList RBRACE
-					 {: parser.blocks++; :}				  
+					 LBRACE StatementList RBRACE			  
 					 ; 
 					  
-ElseStatement   ::= ELSE Statement 
+ElseStatement   ::= ELSE {: 
+						s.ifElse();
+					:} Statement
 				    |
 				    /* epsilon */ 
 				    ;
-DesignatorLParen    ::= Designator LPAREN ;					  
-DesignatorStatement ::= Designator:designator  Assignop Expr:expr
+				    
+DesignatorLParen    ::= Designator:designator {:  RESULT = designator; :}  LPAREN ;		
+			  
+DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = designator; :} Assignop:op
+						{: 
+							
+							// Na stek nam treba ako se radi o kombinovanom operatoru :(
+							if (op.intValue() != 101) {
+								if (s.isArrayElem(designator))
+									Code.put(Code.dup2);
+								Code.load(designator);
+			
+							}
+
+						:}
+						Expr:expr
 						{:
-						 
-						if(!designator.getType().equals(expr.getType()))
-							s.semanticError(designatorleft, "Leva (" + s.getTypeName(designator.getType().getKind())+ ") i desna (" + s.getTypeName(expr.getType().getKind()) + ") strana kod dodele vrednosti nisu istog tipa");
-						
-						if((designator.getType().getKind() == Struct.Array && designator.getType().getElemType().equals(expr.getType())) ||
-							((designator.getKind() == Obj.Var || designator.getKind() == Obj.Fld))){
-								RESULT = designator;
-								s.sintaxInfo("Izvrena operacija =");
-							}
-							else{
-							    
-								s.semanticError(0,"Pri operaciji dodele vrednosti designator nije promeljiva,element niza ili polje klase");
-								RESULT = new Obj(Obj.Con, "", Tab.noType);
-							}
+							
+							RESULT = s.designatorAssignop(designator, expr, designatorleft);
+							
+							//s.assignop(op, parser.assignopDesignator);
+							
+							if(op.intValue() > 101)
+								s.calculateOp(op.intValue() - 100, null, null);
+								
+							Code.store(designator);
 							
 						:}
 					    |
 					    DesignatorLParen:designator 
 					    {: 
 				
-					    	if(!(designator.getKind() == Obj.Meth))
-					    	    s.semanticError(designatorleft, "Designator mora da bude staticka ili nestaticka metoda unutrasnje klase ili funciju");
-					
-							if(parser.isMain == true)
-					 			parser.calledFuncMain++; 	
+							RESULT = s.checkMethodCallDesignator(designator, false, designatorleft);
+					    	
+					 		
 					 	:}
 					 	ActPars RPAREN
+					 	{:
+					 		RESULT = s.afterActParsMethod(designator,false, designatorleft);
+							
+					 	:}
 					 	|
 					 	DesignatorLParen error RPAREN
 					 	{:	s.sintaxInfo("GRESKA (]): Lista parametra funkcije . ");	 :} 
@@ -629,255 +756,333 @@ DesignatorStatement ::= Designator:designator  Assignop Expr:expr
 					    |
 					    Designator:designator INC
 					    {:
-					        // TODO
-					      /*   if(
-					         	((designator.getKind() == Obj.Var || designator.getKind() == Obj.Fld) && designator.getType().equals(Tab.intType)) || 
-					         	(designator.getType().getKind() == Struct.Array && designator.getType().equals(Tab.intType))
-					         	)
-					         	
-					         else
-					        	s.semanticError(designatorleft, "Kod operacije inkremetiranja designator mora biti tipa int, a ne " + s.getTypeName(designator.getType().getKind()));
-					    	*/
+					    	RESULT = s.designatorInc(designator,designatorleft);
+					    	s.calculateOp(Code.inc, RESULT, false);
+					    
+					    
 					    :}
 					    |
-					    Designator DEC
-					    // TODO
-					    // isto kao za INC 
+					    Designator:designator DEC
+					    {:
+					   		RESULT = s.designatorDec(designator,designatorleft);
+					   		s.calculateOp(Code.inc, RESULT, true);
+					   		
+					   	:}
 					    |
 					    /* epsilon */ 
+					   
 					    ;
 
 					    
-ActPars 		::= ActParsList
+ActPars 		::= ActParsList {: isActPar = false; :} 
 				    |
 					/* epsilon */
+
 					;
 					    
-ActParsList     ::= ActParsList COMMA Expr
+ActParsList     ::= ActParsList COMMA Expr:expr 
+					{: 
+					
+					if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
+						s.checkParam(expr,exprleft); 
+						
+					else if(!parser.isMethod || parser.isMain){
+						
+							s.checkParam(expr,exprleft); 
+						}
+					:}
 					|
-					Expr
+					Expr:expr  
+					{:
+						if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
+							s.checkParam(expr,exprleft); 
+						
+						else
+						if(!parser.isMethod || parser.isMain){
+							
+							s.checkParam(expr,exprleft); 	
+						}
+					:} 
 					;
 						
-Condition		::= CondTermList:ctl             {: RESULT = ctl; :} ;
+
+
+ConditionEps::=		Condition | /* epsilon */; 
+				    // Treba za for petlju
 						
-CondTermList	::= CondTermList OR CondTerm:ct  {: RESULT = ct;  :}
+Condition	::= 	CondTerm:ct  OR
+					{:
+						RESULT = s.condTerm(ct, false);	
+					:}
+					Condition
 					|
-					CondTerm:ct                  {: RESULT = ct;  :}
+					CondTerm:ct                  
+					{: 
+						RESULT = s.condTerm(ct, true);
+					:}
 					;
 
 	
-CondTerm		::= CondFactList:cfl             {: RESULT = cfl; :} ;
+
+// TODO Ako su condfact kompatibilni da li ima potrebe proveravati da je lista cond factova BOOL
 					    
-CondFactList	::= CondFactList AND ContFact:cf {: RESULT = cf;  :}
+CondTerm	::= 	CondFact:condFact
+					{:
+						
+						s.condFact();
+					:}
+					AND  CondTerm
+					{:  RESULT = new Obj(Obj.Var, UUID.randomUUID().toString(), s.boolType); :}
 					|
-					ContFact:cf                  {: RESULT = cf;  :}
+					CondFact:condFact                  
+					{: RESULT = condFact;  :}
 					;
 						
-ContFact		::= Expr:expr1 Relop:relop Expr:expr2
+CondFact		::= Expr:expr1 Relop:relop Expr:expr2
 					{:
-						Struct e1 = expr1.getType(),
-						       e2 = expr2.getType();
-						 
-					    if(e1.getKind() == Struct.Array)
-					        e1 = expr1.getType().getElemType();
-					    if(e2.getKind() == Struct.Array)
-					       e2 = expr2.getType().getElemType();
-					        
-
-						if(!e1.compatibleWith(e2)){
-							s.semanticError(expr2left, "Levi tip izraza (" + s.getTypeName(e1.getKind()) + ") nije kopmatibilan sa desnim tipom izraza (" + s.getTypeName(e2.getKind()) +")"); 
-					    	RESULT = null;
-					    }
-					    if((e1.getKind() == Obj.Var  || e2.getKind() == Obj.Var) && 
-					       (e1.getKind() == Obj.Fld || e2.getKind() == Obj.Fld ||
-					        expr1.getType().getKind() == Struct.Array || expr2.getType().getKind() == Struct.Array) && ((int)relop == 0)){
-					    	s.semanticError(relopleft, "Uz promenljive tipa klase ili nizaa, od relacionih operatora, mogu se koristiti samo != ili ==");
-					        RESULT = null;
-					    }
-					    RESULT = expr1;
+						RESULT = s.conditionFact(expr1, expr2, relop, expr1left);
 					:}
 					|
 					Expr:expr
 					{:
-					    if(expr.getType().getKind() != Struct.Bool)
-					    	s.semanticError(exprleft, "Expression mora da bude tipa bool");
+						RESULT = s.conditionFact(expr, null, -1, exprleft);
+					   	
+					   	// TODO pogledaj da li ovde treba da se gleda boolean (true false a ne int);
+					    Obj o = new Obj(Obj.Con, "expr", Tab.intType);
+						o.setAdr(0);
+					    Code.load(o);
 					:}
-					
 					;
 					
 					
-ExprMinusTerm   ::= MINUS Term:term
-					{: RESULT = term; :}
+Expr   			::= MINUS AddopTermList:addopTerm
+					{: 
+						s.exprMinus(addopTerm,addopTermleft); 
+						RESULT = s.calculateOp(Code.neg,addopTerm, null );
+						//s.calculateExpr();
+						
+					:}
 					|
-					Term:term
-					{: RESULT = term; :}
+					AddopTermList:addopTerm
+					{: 
+					
+						
+						s.exprEnd(addopTerm);
+						
+						if (isComplexExpr == true){
+							RESULT = new Obj(Obj.Con, "complex expr", Tab.intType);
+							
+						}else{
+							
+							RESULT =  addopTerm;// za slucaj usamljenog Faktora
+						}
+						
+						waitForLeftAddOp_Obj.pop();
+						waitForLeftAddOp_Op.pop();
+					
+					 :}
 					;
 											
-Expr			::= ExprMinusTerm:term AddopTermList:addopTerm
+
+
+
+// FIXME asocijativnost
+AddopTermList   ::= AddopTermList:atl   Addop:op
 					{:
+						s.addop(op, atl);
+					:}
+					Term:term
+					{: 
 						
-						if(term == null){
-							s.sintaxError(termleft, "Tip je null!" );
-						}/*else{
-							if(term.getType().equals(addopTerm.getType()) && term.getType().equals(Tab.intType) &&  addopTerm.getType().equals(Tab.intType)){
-								RESULT = term; // term = term + addopTerm
-								s.sintaxInfo("Operacija + uspesna! Linija: " + termleft );
-							 }else if(false){
-								s.sintaxError(termleft, "Tipovi su nekombatibilni pri operaciji + - += -= , moraju biti int!" );
-								RESULT = new Obj(Obj.Con, "", Tab.noType);
-							}
-						}*/
+						s.expr(atl, term, op, atlleft);
+						isComplexExpr = true;
 						RESULT = term;
+						
+						
+					:}
+					|	
+					Term:term
+					{: 
+						waitForLeftAddOp_Obj.push(new LinkedList<Obj>());
+						waitForLeftAddOp_Op.push(new LinkedList<Integer>());
+						isComplexExpr = false;
+						RESULT = term; 
 					:}
 					;
-
-
-
-AddopTermList   ::= AddopTermList Addop
-					{: :}
-					Term:term
-					{: RESULT = term; :}
-					|	
+						
+						
+Term			::= MulopFactorList:mfl 
+					{: 
+						
+						s.termEnd(mfl);
+						if (isComplex == true)
+							RESULT = new Obj(Obj.Con, "complex term", Tab.intType);
+						else
+							RESULT = mfl;// za slucaj usamljenog Faktora
+							
+						waitForLeftMulOp_Obj.pop();
+						waitForLeftMulOp_Op.pop();
 				
-					/* epsilon */
-					{: RESULT = new Obj(Obj.Con, "", Tab.intType); :}
-					;
-						
+					:} ; 
 
+MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
+					{:
 						
-Term			::= Factor:factor {: RESULT = factor; :} MulopFactorList ; // factor return Obj , Result return Factor
-
-MulopFactorList ::= MulopFactorList Mulop Factor
+						s.mulop(op, mfl);
+							
+					:}
+					 Factor:factor
+					{:
+							
+						s.factor(factor, mfl, op, mflleft);
+						
+						//s.calculateOp(op ,null,null);
+						
+						isComplex = true;
+						RESULT = factor;
+						
+				
+					:}
 					|
-					/* epsilon */
+					Factor:factor
+					{: 
+					
+						waitForLeftMulOp_Obj.push(new LinkedList<Obj>());
+						waitForLeftMulOp_Op.push(new LinkedList<Integer>());
+						isComplex = false;
+						RESULT = factor; 
+						
+					:}
 					;
 			
-Factor      	::= Designator:designator // Factor return Obj 
+Factor      	::= Designator:designator 
 					{:
 						RESULT = designator;
+						
+						//Code.load(designator);
+						onStack=false;
+						
 					:}
 					|
 					Designator:func LPAREN
 					{:
-					 	if(parser.isMain == true)
-				 			parser.calledFuncMain++; 	
+						RESULT = s.checkMethodCallDesignator(func, true,  funcleft);
 					:}
-					ActPars
-					{: currMethodActParams++; :}
-					RPAREN
+					ActPars RPAREN
 					{:
-						// TODO proveriti da li je  currMethodActParams == currMethodFormParams
-						
-						if(Obj.Meth == func.getKind()){
-							s.sintaxInfo("Pronadjen poziv funkcije: '"  + func.getName() + "' na liniji " + funcleft);
-							RESULT = func;
-						} else {
-							s.sintaxError(funcleft, "Ime :" + func.getName() + " nije funkcija");
-							RESULT = new Obj(Obj.Con, "", Tab.noType);
-						}
-						
-						currMethodActParams = 0; // TODO pogledaj da li ovde moze ovo 
-						
+						RESULT = s.afterActParsMethod(func, true, funcleft);
 					:}	
 					|
-					NUMBER
-					{: RESULT = new Obj(Obj.Con, "", Tab.intType);     :}
+					NUMBER:i
+					{: 
+  	
+						Obj c = new Obj(Obj.Con, "Constant factor nubmer", Tab.intType);
+						c.setAdr(i.intValue());
+						Code.load(c);
+						RESULT = c;
+						onStack  = true;
+						
+					:}
 					|
-					ASCII
-					{: RESULT = new Obj(Obj.Con, "", Tab.charType);    :}
+					ASCII:i
+					{: 
+						
+						Obj c = new Obj(Obj.Con, "Constant factor char", Tab.charType);
+						c.setAdr(i.charAt(1));
+						Code.load(c);
+						RESULT = c;
+						onStack  = true;
+					:}
 					|
-				    BOOL
-				    {: RESULT = new Obj(Obj.Con, "", s.boolType); :}
+				    BOOL:i
+				    {:
+				    		     
+				    	Obj c = new Obj(Obj.Con, "Constant factor bool" , s.boolType);
+						c.setAdr((i.equals("true"))? 1 : 0);
+						Code.load(c);
+						RESULT = c;
+						onStack  = true;
+				     
+				    :}
 					|
-					NEW Type
-					{: RESULT = new Obj(Obj.Con, "", Tab.nullType);    :}
+					NEW Type:type
+					{: 
+						RESULT = s.factorNew(type,typeleft);
+						onStack  = true;
+					:}
 				    |
-					NEW Type QLBRACE Expr QRBRACE
-					|
-					NEW Type QLBRACE error QRBRACE
+					NEW Type QLBRACE Expr:expr QRBRACE
 					{:
-						s.sintaxInfo("GRESKA (]): Izraz za indeksiranje. ");	
+					    RESULT = s.factorArray(expr, exprleft);
 					:}
 					|
 					LPAREN Expr:expr RPAREN
 					{: 
-						// Expr treba da bude tipa Obj
 						RESULT = expr; 
+						onStack  = true;
 					:}
 					;
 						 
 Designator  	::= DesignatorIdent:designator
 					{: 
-						parser.lastDesignator = designator;
-						RESULT = designator; 
+					   parser.lastDesignator.push(designator);						
 					:}
-					DesignatorList ;
+					DesignatorList:designatorList 
+					{: 
+						if(designatorList.equals(Tab.noObj)) RESULT = designator;
+						else RESULT = designatorList; 
+						
+					:}
+					;
 
-DesignatorList  ::= DesignatorList DesignatorElem
+DesignatorList  ::= DesignatorList DesignatorElem:designator {: RESULT = designator;  :}
 					|
 					/* epsilon */
+					{: RESULT = Tab.noObj; :}
 					;
 					
 // TODO pogledaj trebaju li ovi flagovi	
 DesignatorElem   ::=DesignatorIdent:designatorIden
 					{:
-		
+						RESULT = designatorIden;
 					:}
 					|
-					DOT {: parser.isDot = true; :} 
+					DOT 
+					{: s.changeToGlobalScope(parser.lastDesignator.peek()); :} 
 					DesignatorIdent:designatorIden 
 					{: 
-				
-					/*	if(parser.lastDesignator.getType().getKind() == Struct.Class){
-							System.out.println("radi!");
-							RESULT = designatorIden;
-						} else {
-							s.sintaxError(designatorIdenleft, "Posle . designator mora da bude klasnog tipa ");
-							RESULT = new Obj(Obj.Con, "", Tab.noType);
-						}
-						parser.lastDesignator = designatorIden;
-					*/
-						RESULT = designatorIden;
-						parser.isDot = false; 
-					 :}
+						
+						RESULT = s.designatorDot(parser.lastDesignator.peek(), designatorIden, designatorIdenleft);
+						s.resetScope();
+						parser.lastDesignator.pop();
+					:}
 					|
-					QLBRACE 
-					{: parser.isArrayElem = true; :}
+					QLBRACE:q
+					{:
+						if(s.designatorArray(parser.lastDesignator.peek(), qleft)){
+						
+							 parser.isArrayElem = true;
+							 RESULT = s.arrayAcces(parser.lastDesignator.peek());
+						}
+						else
+							RESULT = Tab.noObj;
+					:}
 					Expr:expr
-					{: RESULT = expr; :}
+					{: 
+						
+						if(!s.exprArray( expr, exprleft))
+							RESULT = Tab.noObj;
+						parser.lastDesignator.pop();
+
+					 :}
 					QRBRACE 
 					{: parser.isArrayElem = false; :}
 					;
 					
 DesignatorIdent  ::= IDENT:symbolName
 					 {:
-					 	Obj symbol = Tab.find(symbolName);
-					 	StringBuilder msg = new StringBuilder("Koriscenje ");
-					 	if(symbol != Tab.noObj){
-					 	     
-					 	     switch(symbol.getKind()){
-					 	        case Obj.Con:  msg.append("konstante '");     break;
-					 	        case Obj.Var:
-					 	            msg.append((symbol.getLevel() == 0) ? "(globalna) ":"(lokalna) " );
-					 	            if(symbol.getType().getKind() == Struct.Array) 
-					 	            	msg.append("niza '");
-					 	        	else
-					 	        	msg.append("promenljive '");
-					 	        	break;
-					 	        case Obj.Type: msg.append("tipa!!! '");       break;
-					 	        case Obj.Meth: msg.append("metode '");        break;
-					 	        case Obj.Fld:  msg.append("polja klasa '");   break;
-					 	        case Obj.Elem: msg.append("elementa niza '"); break;
-					 	        case Obj.Prog: msg.append("programa!!! '");   break;
-					 	    }
-					 	    msg.append(symbolName);
-					 	    msg.append("' na liniji: ");
-					 	    msg.append(symbolNameleft);
-					 	    s.sintaxInfo(msg.toString());
-					 	}
-					 	else
-					 		s.sintaxError(symbolNameleft, "Simbol '" + symbolName + "' ne postoji u tabeli simbola!");
-					 	RESULT = symbol;
+					 	RESULT = s.designatorName(symbolName, symbolNameleft);
+					 	s.staticAccess(RESULT, symbolNameleft);
 					 :};
 					 
 
@@ -886,32 +1091,37 @@ DesignatorIdent  ::= IDENT:symbolName
 //=====================================================================================================//
 // @Assign, Relation, Add, Sub, Multiplication, Div, Mod...					 
                        
-Assignop         ::= EQUAL | AddopRight | MulopRight ; 
+Assignop         ::= EQUAL:e {: RESULT = new Integer(101); :}  
+				     | 
+				     AddopRight:ar {: RESULT = ar; :} 
+				     | 
+				     MulopRight:mr {: RESULT = mr; :} 
+				     ; 
 
-Relop            ::= EQU {: RESULT = 0; :} //
+Relop            ::= EQU {: RESULT = Code.eq; :} 
 					 | 
-					 NEQ {: RESULT = 0; :} //
+					 NEQ {: RESULT = Code.ne; :} 
 					 | 
-					 LSS {: RESULT = 1; :} 
+					 LSS {: RESULT = Code.lt; :} 
 					 | 
-					 LEQ {: RESULT = 1; :} 
+					 LEQ {: RESULT = Code.le; :} 
 					 | 
-					 GTR {: RESULT = 1; :} 
+					 GTR {: RESULT = Code.gt; :} 
 					 | 
-					 GEQ {: RESULT = 1; :} 
+					 GEQ {: RESULT = Code.ge; :} 
 					 ; 
             
-Addop            ::= AddopLeft {: RESULT = 0; :}  | AddopRight {: RESULT = 1; :} ;   
+Addop            ::= AddopLeft:al {: RESULT = al; :}  | AddopRight:ar {: RESULT = ar; :} ;   
 
-AddopLeft        ::= PLUS | MINUS ;
+AddopLeft        ::= PLUS {: RESULT = Code.add; :}    | MINUS {: RESULT = Code.sub;   :} ;
 
-AddopRight       ::= PEQ  | MEQ   ;          
+AddopRight       ::= PEQ  {: RESULT = Code.add+100; :}    | MEQ {: RESULT = Code.sub+100;     :} ;          
         
-Mulop            ::= MulopLeft {: RESULT = 0; :} | MulopRight {: RESULT = 1; :} ;   
+Mulop            ::= MulopLeft:ml {: RESULT = ml; :}  | MulopRight:mr {: RESULT = mr; :} ;   
 
-MulopLeft  		 ::= MUL  | DIV | MOD  ;
+MulopLeft  		 ::= MUL {: RESULT = Code.mul; :}  | DIV {: RESULT = Code.div; :} | MOD  {: RESULT = Code.rem; :} ;
 
-MulopRight		 ::= MUEQ | DEQ | MOEQ ;   
+MulopRight		 ::= MUEQ {: RESULT = Code.mul+100; :} | DEQ {: RESULT = Code.div+100; :} | MOEQ {: RESULT = Code.rem+100; :} ;   
                   
     
      

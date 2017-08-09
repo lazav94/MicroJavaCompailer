@@ -5,7 +5,6 @@ program P
    const char aa= 'a';
 
 
-   
    int yy;
    bool var1;
    bool bool_arr[];
@@ -18,31 +17,29 @@ program P
    
   }
   
-  Table t_arr;
-   
+  class VarArgsStaticClass extends Table {
+  
+  	char ccccccccc;
+  	static int aaa, bbb[];
+  	
+  	char ccccccc;
+  	static char kfjsakljfklasjdf;
+  	static bool dsakfj;
+  
+  
+  	{
+  		static void f1() { return; }
+  		static void f2(int p) { return; }
+  		static void f3(int ... q) { return; }
+  		static void f4(int pp, int ... q) { return; }
+  		
+  	}
+  }
+
    
 {
-       
-        int fja(int arg){
-         return yy;
-        } 
-        
-		void main() char ch; int loc; 
-		{
-		
-		  
-		if(x >= xx){
-		
-		}
-		
-		
-		
-		
-
-		    
-		    
-		}	
-	
-		
-			
+   
+      void main(){
+      }
+				
 }
