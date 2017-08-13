@@ -1,18 +1,92 @@
-program Program
+// Test301_*=
 
-		int N ;
-		bool asc;
-{
+program test301
+	const int jedan = 1;
+	const int pet = 5;
 
+	int niz[];
 	
-	void main() int i;
+	char nizch[];
+	
+{
+	void main()	int bodovi,a,b,c,d,e,f;
 	{
 		
-		print(i);
-		i++;
-		print(i);
 		
-				
-			
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		f=0;
+		bodovi = a*(b*=c*d*(e*=f));
+		print(bodovi);
+		print(b);
+		print(e); 
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a*=b*=c*d*(e*=f);
+		print(bodovi); 
+		print(b);
+		print(e);
+		print(a);
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a*(b*=c*(d*=(e*=f)));
+		print(bodovi); 
+		print(b);
+		print(d);
+		print(f);
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a*(b*=c*d*e*f);
+		print(b);
+		print( (5-2-3));
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a+=b+=c+d*(e*=f);
+		print(bodovi); 
+		print(b);
+		print(e);
+		print(a);
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;		
+		bodovi = a*(b*=c*d+e*f);
+		niz = new int[2];
+		niz[0] = pet;
+		niz[1] = 10;
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a*=b*=niz[0]*d*(niz[1]*=f);
+		niz[0] = pet;
+		niz[1] = 10;
+		a=2;
+		b=3;
+		c=4;
+		d=5;
+		e=6;
+		bodovi = a*=b*=niz[1+0]*d*(niz[0+1]*=f);
+	
+	
 	}
 }
+
+

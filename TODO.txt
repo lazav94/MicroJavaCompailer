@@ -1,20 +1,3 @@
-1) VarArg rekurzija
-2) Var Arg call posle var arg call!!!
-
-
-	Condition
-	FOR
-	IF
-	BREAK
-	CONTINIUE
-	!
-	
-	Asocijativnost
-	
-	
-	kod CONDITION kad se napise true ili false ne radi!
-	
-	
-	if(false) - if(true)
-	
-		
+1) Array 
+2) Minus
+3) This i vidljivost klase

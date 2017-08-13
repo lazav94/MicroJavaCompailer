@@ -59,7 +59,7 @@ public class MJParserTest {
 		Reader br = null;
 		try {
 			//File sourceCode = new File(inputFilePath);
-			File sourceCode = new File("test/semantic/TEST.mj");
+			File sourceCode = new File("test/semantic/test302.mj");
 			s.log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));
@@ -88,14 +88,24 @@ public class MJParserTest {
 	        }
 	        
 	        /* Asocijativnos test*/
-        	int a, b, c;
+        	int a, b, c,d ;
         	
         	a = 32;
-        	b = 3;
+        	b = 4;
         	c = 15;
+        	d = 2;
         	System.out.println("a: " + a + '\t' + "b: "+ b + '\t' + "c: "+ c);
-        	a =   b  /= 2 +  (c  -= 15 / 3 + 2 * 3);
-	        System.out.println("a: " + a + '\t' + "b: "+ b + '\t' + "c: "+ c);
+        	a = 2;
+//    		a += a *= 5;
+        	
+        	a += ((5 * 1 - 1) * 2 - (3 % 2 + 3 * 2 - 3) - 1 * 0); 
+        	
+      
+    		
+        	//  a +=   b  /= 2 *  (c -= 15 / 3 + 2 * 3 );
+        	// a +=   b  /= 2 *  c -= 15 / 3 + 2 * 3 ;
+        	 
+	        System.out.println("a: " + a + '\t' + "b: "+ b + '\t' + "c: "+ c + '\t' + "d: "+ d);
         /**/
 	      
 	        

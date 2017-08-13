@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -244,6 +245,12 @@ public class Singleton {
 	// ------------------------------------------------ Util
 	// -----------------------------------------------//
 	// =====================================================================================================//
+
+	public boolean isConst(Obj o) {
+		if (o != null)
+			return o.getKind() == Obj.Con;
+		return false;
+	}
 
 	public boolean isInt(Obj o) {
 		if (o != null)
@@ -1357,7 +1364,7 @@ public class Singleton {
 		if (addop.intValue() > 101) {
 			if (!isVariablClassFieldArrayElem(addopTerm)) {
 				semanticError(line,
-						"Ako je Addop kombinovani aritmeticki operator (+=,-=), ddopTerm mora oznacavati promeljivu, element niza ili polje unutar objeka. A ne "
+						"Ako je Addop kombinovani aritmeticki operator (+=,-=), addopTerm mora oznacavati promeljivu, element niza ili polje unutar objeka. A ne "
 								+ getObjName(addopTerm) + " " + addopTerm.getName());
 				return Tab.noObj;
 			}
@@ -1397,198 +1404,106 @@ public class Singleton {
 		return Tab.noObj;
 	}
 
-	public void mulop(Integer op, Obj mfl) {
+	public void addToStack(Integer op, Obj obj) {
 		if (op != null) {
-			if (op >= 101) {
-				if (isArrayElem(mfl)) {
+			if (op.intValue() > 101) {// guranje na stek za slucaj *= i slicno
+				if (isArrayElem(obj)) {
 					Code.put(Code.dup2);
-					Code.load(mfl);
-
+					Code.load(obj);
+					action.onStack = true;
+					semanticInfo("ARRAY LOAD IN MULOP/ADDOP MFL/ATL " + obj.getName());
 				}
-				if (isVariable(mfl)) {
-					Code.load(mfl);
+				if (obj.getKind() == Obj.Var) {
+					semanticInfo("LOAD " + obj.getName());
 				}
 
-			} else if (isMethod(mfl) == false && action.onStack == false)
-				Code.load(mfl);
-			action.onStack = true;
+				if (action.opStack.isEmpty())
+					action.opStack.push(new Stack<>());
 
+				action.opStack.peek().add(op);
+				semanticInfo("DODATA OPERACIJA :  " + op.intValue());
+
+				action.objStack.push(obj);
+				semanticInfo("DODAO OPERAND :  " + obj.getName());
+
+			} 
+		} else {
+			if(isArrayElem(obj) && action.onStack == false){
+				semanticInfo("ARRAY LOAD IN MULOP/ADDOP FACTOR " + obj.getName());
+			//	if(action.isLonlyFactor == true)
+			//		Code.load(obj);
+			//	action.onStack = true;
+			}
 		}
-		racunFactor(op, mfl);
 	}
 
-	public void racunFactor(Integer op, Obj mfl) {
-		// racunanje prethodnog para,radimo na osnovu levog faktora iz
-		// prethodnog para
+	public void calculateExpr() {
+		semanticInfo("CALCULATE EXPr");
+		if (action.opStack.isEmpty()) {
+			semanticInfo("Op stack je prazan");
+			return;
+		} else
+			semanticInfo("Op stack size: " + action.opStack.size());
 
-		// System.out.println("TESTIRANJE" );
-		// for(int i = 0; i < action.waitForLeftMulOp_Op.size(); i++){
-		// System.out.println("fI: " + i);
-		// for(int j = 0; j < action.waitForLeftMulOp_Op.get(i).size(); j++){
-		// System.out.print(action.waitForLeftMulOp_Op.get(i).get(j) + " ");
-		// }
-		// System.out.println();
-		// }
-
-		if (op != null) {// preskace se ovo nekon poslednjeg elementa u nizu
-							// faktora
-			if (action.waitForLeftMulOp_Op.peekFirst().isEmpty()) { // ako on
-																	// postoji(ako
-																	// je ovo
-																	// prvi par,
-				action.waitForLeftMulOp_Op.peekFirst().push(op);
-				if (op.intValue() >= 101)
-					action.waitForLeftMulOp_Obj.peekFirst().push(mfl);
-				return; // prvi par preskacemo,priprema za naredni
-			} // lista je prazna iskljucivo tada
-				// null ovde stize samo kad se radi nakon
-				// poslednjeg elementa
-				// a tada je vec sve na steku al nije sracunato
-			if (op.intValue() >= 101) {
-				action.waitForLeftMulOp_Op.peekFirst().push(op);
-				action.waitForLeftMulOp_Obj.peekFirst().push(mfl);
-				return;
-			} // u listu obj nikad ne ide poslednji pred kraj ili pred *
+		if (action.objStack.isEmpty()) {
+			semanticInfo("Obj stack je prazan");
+			return;
+		} else {
+			semanticInfo("Obj stack size: " + action.objStack.size());
+			semanticInfo("STEK OBJ:");
+			for (Obj o : action.objStack)
+				semanticInfo(o.getName());
 		}
-		// dosli smo do prvog operatora koji ne sadrzi '=', uradi sve prethodne
-		// koji ga sadrze, a i onog pre toga(koji jedini u toj listi ne sadrzi
-		// '='
 
-		while (!action.waitForLeftMulOp_Op.peekFirst().isEmpty()) {
-			Integer operator = action.waitForLeftMulOp_Op.peekFirst().pop();
-			Obj operand;
-			if (action.waitForLeftMulOp_Obj.peekFirst().isEmpty())
-				operand = null;// desi se u trenutku kada dodje do posl
-								// operatora, i tada se ni ne rade dupovi, nego
-								// samo calc
-			else
-				operand = action.waitForLeftMulOp_Obj.peekFirst().pop();
-			if (operator.intValue() >= 101) {
-				calculateOp(operator, null, null);
-				if (operand.getKind() == Obj.Elem)
-					Code.put(Code.dup_x2);
-				else
-					Code.put(Code.dup);
-				Code.store(operand);
-			} else
-				calculateOp(operator, null, null);
-		}
-		if (op == null)
-			return;// jer je vec sracunato u petlji, ovo je slucaj kad smo dosli
-					// do kraja
+		if (!action.opStack.isEmpty()) {
+			while (!action.opStack.peek().isEmpty()) {
 
-		action.waitForLeftMulOp_Op.peekFirst().push(op);
+				Obj obj = null;
+				Integer op = action.opStack.peek().pop();
+				if (!action.objStack.isEmpty()) {
+					obj = action.objStack.pop();
+				} else {
+					semanticInfo("ZASTO MI OVO RADIS?");
+				}
 
-	}
-
-	public void termEnd(Obj mfl) {
-		if (action.waitForLeftMulOp_Op.peekFirst().isEmpty())// radi se za
-																// poslednji u
-			return; // nizu faktora, ako nije usamljen faktor
-
-		if (!isMethod(mfl) && action.onStack == false)
-			Code.load(mfl);
-		action.onStack = true;
-
-		racunFactor(null, mfl);
-
-		// nakon ovoga ide popovanje listi obj,op
-	}
-
-	public void addop(Integer op, Obj atl) {
-		if (op != null) {// za poslednji element liste se preskace
-			if (op.intValue() >= 101) {// guranje na stek za slucaj *= i slicno
-				if (isArrayElem(atl)) {
+				
+				calculateOp(op, null, null);
+				
+				if (obj != null && op.intValue() > 101 && isArrayElem(obj)) {
+					Obj o = new Obj(Obj.Var, "temp calc op", obj.getType());
+					o.setAdr(Code.pc % 128);
+					Code.store(o);
 					Code.put(Code.dup2);
-					Code.load(atl);
+					Code.load(o);
+
 				}
-				if (atl.getKind() == Obj.Var) {
-					Code.load(atl);
+				boolean stored = false;
+				if (obj != null) {
+					Code.store(obj);
+					if (op.intValue() > 101) {
+						Code.load(obj);
+						action.onStack = true;
+
+					}
 				}
-			} else if (!isMethod(atl) && action.onStack == false)
-				Code.load(atl);
-			action.onStack = true;
-			// levi faktor je sada potpuno spreman
+
+			}
+			action.opStack.pop();
 		}
-		racunTerm(op, atl);
 	}
 
-	public void racunTerm(Integer op, Obj atl) {
-		// racunanje prethodnog para,radimo na osnovu levog faktora iz
-		// prethodnog para
-
-		// System.out.println("TESTIRANJE" );
-		// for(int i = 0; i < action.waitForLeftAddOp_Op.size(); i++){
-		// System.out.println("tI: " + i);
-		// for(int j = 0; j < action.waitForLeftAddOp_Op.get(i).size(); j++){
-		// System.out.print(action.waitForLeftAddOp_Op.get(i).get(j) + " ");
-		// }
-		// System.out.println();
-		// }
-
-		if (op != null) {// preskace se ovo nekon poslednjeg elementa u nizu
-							// faktora
-			if (action.waitForLeftAddOp_Op.peekFirst().isEmpty()) { // ako on
-																	// postoji(ako
-																	// je ovo
-																	// prvi par,
-				action.waitForLeftAddOp_Op.peekFirst().push(op);
-				if (op.intValue() >= 101)
-					action.waitForLeftAddOp_Obj.peekFirst().push(atl);
-				return; // prvi par preskacemo,priprema za naredni
-			} // lista je prazna iskljucivo tada
-
-			// null ovde stize samo kad se radi nakon
-			// poslednjeg elementa
-			// a tada je vec sve na steku al nije sracunato
-			if (op.intValue() >= 101) {
-				action.waitForLeftAddOp_Op.peekFirst().push(op);
-				action.waitForLeftAddOp_Obj.peekFirst().push(atl);
-				return;
-			} // u listu obj nikad ne ide poslednji pred kraj ili pred *
-		}
-		// dosli smo do prvog operatora koji ne sadrzi '=', uradi sve prethodne
-		// koji ga sadrze, a i onog pre toga(koji jedini u toj listi ne sadrzi
-		// '='
-
-		while (!action.waitForLeftAddOp_Op.peekFirst().isEmpty()) {
-			Integer operator = action.waitForLeftAddOp_Op.peekFirst().pop();
-			Obj operand;
-			if (action.waitForLeftAddOp_Obj.peekFirst().isEmpty())
-				operand = null;// desi se u trenutku kada dodje do posl
-								// operatora, i tada se ni ne rade dupovi, nego
-								// samo calc
-			else
-				operand = action.waitForLeftAddOp_Obj.peekFirst().pop();
-			if (operator.intValue() >= 101) {
-				calculateOp(operator, null, null);
-				if (operand.getKind() == Obj.Elem)
-					Code.put(Code.dup_x2);
-				else
-					Code.put(Code.dup);
-				Code.store(operand);
-			} else
-				calculateOp(operator, null, null);
-		}
-		if (op == null)
-			return;// jer je vec sracunato u petlji, ovo je slucaj kad smo dosli
-					// do kraja
-
-		action.waitForLeftAddOp_Op.peekFirst().push(op);
-
-	}
-
-	public void exprEnd(Obj addopTerm) {
-		// radi se za poslednji u nizu termova,BIO ON USAMLJEN ILI NE
-		if (!isMethod(addopTerm) && action.onStack == false)
-			Code.load(addopTerm);
-		action.onStack = true;
-
-		if (action.waitForLeftAddOp_Op.peekFirst().isEmpty())
-			return;// izracunavanje se ne radi za usamljeni term
-		racunTerm(null, addopTerm);// nije usamljeni term
-		// za usamljeni term ne treba izracunavanje
-	}
+	/*
+	 * public void termEnd(Obj mfl) { // if
+	 * (action.waitForLeftMulOp_Op.peekFirst().isEmpty())// radi se za // //
+	 * poslednji u // return; // nizu faktora, ako nije usamljen faktor
+	 * 
+	 * if (!isMethod(mfl) && action.onStack == false) Code.load(mfl);
+	 * action.onStack = true;
+	 * 
+	 * // racunFactor(null, mfl);
+	 * 
+	 * // nakon ovoga ide popovanje listi obj,op }
+	 */
 
 	/**
 	 * (24) Tipovi oba izraza moraju biti <u>kompatibilini</u>.<br>
@@ -1701,8 +1616,12 @@ public class Singleton {
 	public static boolean LEFT = false;
 	public static boolean RIGHT = true;
 
-	public Obj calculateOp(int OP, Obj object, Boolean inc) {
+	public void calculateOp(Integer OP, Obj object, Boolean inc) {
 
+		if (OP.intValue() == 101)
+			System.out.println("ZASTO BRATE HERBERTE");
+		
+		
 		if (OP > 101)
 			OP -= 100;
 		switch (OP) {
@@ -1731,8 +1650,7 @@ public class Singleton {
 			Code.put(Code.shr);
 			break;
 		case Code.inc:
-		
-	
+
 			if (isArrayElem(object))
 				Code.put(Code.dup2);
 
@@ -1752,8 +1670,8 @@ public class Singleton {
 			break;
 		}
 
-		Obj returnObj = new Obj(Obj.Var, "OP var", Tab.intType);
-		return returnObj;
+		// Obj returnObj = new Obj(Obj.Var, "calculate op result", Tab.intType);
+		// return returnObj;
 
 	}
 
@@ -1902,10 +1820,11 @@ public class Singleton {
 	 * adresa niza, indeks kojem se pristupa i nova vrednost
 	 */
 	public Obj arrayAcces(Obj designator) {
+
 		Code.load(designator);
 		Obj o;
 
-		o = new Obj(Obj.Elem, UUID.randomUUID().toString(), designator.getType().getElemType());
+		o = new Obj(Obj.Elem, designator.getName() + "[]", designator.getType().getElemType());
 
 		return o;
 

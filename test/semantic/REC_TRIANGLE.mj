@@ -1,0 +1,23 @@
+//file: REC_TRIANGLE.mj
+program Program
+	const char STAR = '*';
+{
+
+
+	void star(int n)int i;{
+		
+		if(n == 0) return;
+		for(i = 0; i < n; i++)
+			print(STAR);
+		print(eol);
+		star(n - 1);
+	}
+	
+
+	void main() int n; {
+	   
+	    read(n);
+		star(n);
+			
+	}
+}

@@ -126,9 +126,6 @@ action code {:
 				boolean returnFound = false; // koristi se kada fja treba da vrati vredonost !
 				
 				
-				
-				
-				
   				// Class varialbes
 				Obj currentClass    = null;    // ima informaciju o klasi koja se trenutno obradjuje
 				HashMap<Struct, List<Obj>> staticFldMap = new HashMap<>();
@@ -141,10 +138,6 @@ action code {:
 				Obj prevCondTerm = null;
 				boolean methodErrorDetected = false; // da li se desila greska kod parsiranja metoode
 				
-				
-				
-
-			
 				
 				
 				/* CONDITION */
@@ -161,14 +154,18 @@ action code {:
 				int forStepAdr;
 	
 				
-				LinkedList<LinkedList<Obj>>    waitForLeftAddOp_Obj = new LinkedList<LinkedList<Obj>>();
-				LinkedList<LinkedList<Integer>> waitForLeftAddOp_Op = new LinkedList<LinkedList<Integer>>();
-				LinkedList<LinkedList<Obj>>    waitForLeftMulOp_Obj = new LinkedList<LinkedList<Obj>>();
-				LinkedList<LinkedList<Integer>> waitForLeftMulOp_Op = new LinkedList<LinkedList<Integer>>();
+				
+				/* associativity*/
+				Stack<Stack<Integer>>    opStack = new Stack<Stack<Integer>>();
+				Stack<Obj> objStack = new Stack<Obj>();
+				
+				LinkedList<Obj> arrayStack = new LinkedList<Obj>();
+				boolean isLonlyFactor = false;
+				boolean isLonlyTerm = false;
+				
+				int isExpr = 0;
 				
 				boolean onStack = false;
-				boolean isComplex = false;
-				boolean isComplexExpr = false;
 							
 				
 				
@@ -200,7 +197,7 @@ non terminal Obj VarDef;
 non terminal String ClassDeclPreExt;
 non terminal Obj ProgramName, Value;
 non terminal Struct Type, VarType, MethodType ;
-non terminal Obj  Designator, Expr, Factor, Term,DesignatorIdent, ExprMinusTerm, AddopTermList, DesignatorList, DesignatorElem;
+non terminal Obj  Designator, Expr, Factor, Term,DesignatorIdent, AddopTermList, DesignatorList, DesignatorElem;
 non terminal Obj  DesignatorStatement,DesignatorLParen;
 non terminal Obj  Condition, CondTerm, CondFact, ConditionEps;
 non terminal Obj MulopFactorList;
@@ -389,7 +386,6 @@ MethodDecl      ::= MethodDeclPreVar:line VarDeclListE LBRACE
 					:}
 					StatementList RBRACE:methodEnd 
 					{: 
-					
 						s.methodExit();
 						s.methodReturnCheck(methodEndleft);
 						s.methodEnd();
@@ -402,14 +398,12 @@ MethodStatic    ::= STATIC:st {: s.staticCheck(stleft); :}
 				    {: parser.isStatic = false; :}
 				    ;
 				    
-
 			   
 MethodType      ::= Type:returnType {: RESULT = returnType; :} 
 				    |
 				    VOID  {: RESULT = Tab.noType; :} 
 				    ;
 				    
-
 
 //---------------------------------- Formal Paramethers ----------------------------------// can be epsilon                  				  
 
@@ -497,7 +491,6 @@ ClassDecl       ::= ClassDeclPreExt:className EXTENDS
 ClassMethod     ::= LBRACE MethodDeclList RBRACE
 				    ;
 				    
-
 				    
 ClassStatic     ::= STATIC 
 					{: parser.isStaticFld = true; :}
@@ -515,9 +508,6 @@ ClassVarDeclList::= ClassVarDeclList ClassVarDecl
 					ClassVarDecl 
 					;
 				    
-				    
-
-                  
 
 //=====================================================================================================//
 //-----------------------------------------------GENERAL-----------------------------------------------//
@@ -531,7 +521,6 @@ ClassVarDeclList::= ClassVarDeclList ClassVarDecl
 
 Type          ::=  	IDENT:typeName {: RESULT = s.insertType(typeName, typeNameleft); :}
 				 	; 
-
                   
 StatementList   ::= StatementList Statement 
 				    |
@@ -601,7 +590,6 @@ Statement       ::=   READ LPAREN Designator:designator
 						s.semanticDebug(stmtleft,"Smanjena dubina for petlje, dubina = " + parser.forLoopLevel); 
 					 	s.forBodyEnd();
 					 	
-					 	
 					 :}
 					 |
 					 ForStatement error RPAREN Statement 
@@ -610,8 +598,6 @@ Statement       ::=   READ LPAREN Designator:designator
 					 	s.semanticDebug("Smanjena dubina fora " + parser.forLoopLevel);
 			    	 	s.sintaxInfo("GRESKA () ;): Dekleracija designator statement, najverovatnije u for . ");	
 			    	 :}
-			    	
-			    	 
 					 |
 					 BREAK:b
 					  {: 
@@ -623,9 +609,7 @@ Statement       ::=   READ LPAREN Designator:designator
 				  				return null;
 				  			}
 							breakJump.peekFirst().add(new Integer(Code.pc - 2));
-
 						} 
-						
 					:}
 					SEMI 
 					
@@ -639,12 +623,11 @@ Statement       ::=   READ LPAREN Designator:designator
 									s.semanticError(cleft, "Continuiue ne moze da skoci, ne zna gde");
 									return null;
 								}
-				}
-				Code.putJump(continueJump.peek());
-					 	}
+							}
+							Code.putJump(continueJump.peek());
+					 		}
 					 :}
 					 SEMI  
-					
 					 |
 					 RETURN SEMI:retSemi {: 
 					 
@@ -714,24 +697,27 @@ DesignatorLParen    ::= Designator:designator {:  RESULT = designator; :}  LPARE
 DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = designator; :} Assignop:op
 						{: 
 							
+							s.semanticInfo("DESIGNATOR STATEMENT : "  + designator.getName());
 							// Na stek nam treba ako se radi o kombinovanom operatoru :(
-							if (op.intValue() != 101) {
+							
+							if (op.intValue() > 101) {
 								if (s.isArrayElem(designator))
 									Code.put(Code.dup2);
+									
 								Code.load(designator);
+								System.out.println("LOAD2 "+ designator.getName());
 			
 							}
+							
+							System.out.println("DESIGNATOR STATEMEN OP: -> " + op.intValue());
 
 						:}
 						Expr:expr
 						{:
-							
 							RESULT = s.designatorAssignop(designator, expr, designatorleft);
 							
-							//s.assignop(op, parser.assignopDesignator);
-							
 							if(op.intValue() > 101)
-								s.calculateOp(op.intValue() - 100, null, null);
+								s.calculateOp(op.intValue(), null, null);
 								
 							Code.store(designator);
 							
@@ -739,55 +725,45 @@ DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = des
 					    |
 					    DesignatorLParen:designator 
 					    {: 
-				
 							RESULT = s.checkMethodCallDesignator(designator, false, designatorleft);
-					    	
-					 		
 					 	:}
 					 	ActPars RPAREN
 					 	{:
 					 		RESULT = s.afterActParsMethod(designator,false, designatorleft);
-							
 					 	:}
 					 	|
 					 	DesignatorLParen error RPAREN
-					 	{:	s.sintaxInfo("GRESKA (]): Lista parametra funkcije . ");	 :} 
-					 	 
+					 	{:	
+					 		s.sintaxInfo("GRESKA (]): Lista parametra funkcije . ");	 
+					 	:} 
 					    |
 					    Designator:designator INC
 					    {:
 					    	RESULT = s.designatorInc(designator,designatorleft);
 					    	s.calculateOp(Code.inc, RESULT, false);
-					    
-					    
 					    :}
 					    |
 					    Designator:designator DEC
 					    {:
 					   		RESULT = s.designatorDec(designator,designatorleft);
 					   		s.calculateOp(Code.inc, RESULT, true);
-					   		
 					   	:}
 					    |
 					    /* epsilon */ 
-					   
 					    ;
 
 					    
 ActPars 		::= ActParsList {: isActPar = false; :} 
 				    |
 					/* epsilon */
-
 					;
 					    
 ActParsList     ::= ActParsList COMMA Expr:expr 
 					{: 
-					
-					if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
-						s.checkParam(expr,exprleft); 
+						if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
+							s.checkParam(expr,exprleft); 
 						
-					else if(!parser.isMethod || parser.isMain){
-						
+						else if(!parser.isMethod || parser.isMain){
 							s.checkParam(expr,exprleft); 
 						}
 					:}
@@ -796,17 +772,12 @@ ActParsList     ::= ActParsList COMMA Expr:expr
 					{:
 						if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
 							s.checkParam(expr,exprleft); 
-						
 						else
-						if(!parser.isMethod || parser.isMain){
-							
+						if(!parser.isMethod || parser.isMain)
 							s.checkParam(expr,exprleft); 	
-						}
 					:} 
 					;
 						
-
-
 ConditionEps::=		Condition | /* epsilon */; 
 				    // Treba za for petlju
 						
@@ -822,13 +793,11 @@ Condition	::= 	CondTerm:ct  OR
 					:}
 					;
 
-	
 
 // TODO Ako su condfact kompatibilni da li ima potrebe proveravati da je lista cond factova BOOL
 					    
 CondTerm	::= 	CondFact:condFact
 					{:
-						
 						s.condFact();
 					:}
 					AND  CondTerm
@@ -855,57 +824,81 @@ CondFact		::= Expr:expr1 Relop:relop Expr:expr2
 					;
 					
 					
-Expr   			::= MINUS AddopTermList:addopTerm
+Expr   			::= /* MINUS AddopTermList:addopTerm
 					{: 
+						System.out.println("OVO NE TREBA DOK NE UBACIM MINUS");
 						s.exprMinus(addopTerm,addopTermleft); 
-						RESULT = s.calculateOp(Code.neg,addopTerm, null );
+						s.calculateOp(Code.neg,addopTerm, null );
 						//s.calculateExpr();
 						
 					:}
-					|
+					|*/
+					
+					{: 
+						isExpr++;
+						opStack.push(new Stack<>());
+					:}
 					AddopTermList:addopTerm
 					{: 
-					
-						
-						s.exprEnd(addopTerm);
-						
-						if (isComplexExpr == true){
-							RESULT = new Obj(Obj.Con, "complex expr", Tab.intType);
 							
-						}else{
+						isExpr--;
+						if (isLonlyTerm){
+							s.semanticInfo("LONLY EXPR: " + addopTerm.getName());
 							
 							RESULT =  addopTerm;// za slucaj usamljenog Faktora
+							if(s.isArrayElem(addopTerm) && onStack == false){
+								Code.load(addopTerm);
+								s.semanticInfo("ARRAY LOAD IN EXPRESSION " + addopTerm.getName());
+								onStack = true;
+							}
+						}else{
+							s.semanticInfo("LEva strana expr = " + addopTerm.getName());
+							RESULT = new Obj(Obj.Con, "complex expr", Tab.intType);
+							
 						}
 						
-						waitForLeftAddOp_Obj.pop();
-						waitForLeftAddOp_Op.pop();
-					
+						s.calculateExpr();
+						
 					 :}
 					;
 											
 
-
-
-// FIXME asocijativnost
-AddopTermList   ::= AddopTermList:atl   Addop:op
+AddopTermList   ::= AddopTermList:atl Addop:op
 					{:
-						s.addop(op, atl);
+					
+						s.addToStack(op, atl);
+						if(op.intValue() < 101){
+							if(s.isArrayElem(atl) && onStack == false){
+								Code.load(atl);	
+								onStack = true;
+							}
+						}	
 					:}
 					Term:term
 					{: 
-						
+					
+						s.addToStack(null, term);
+						// not gen code
 						s.expr(atl, term, op, atlleft);
-						isComplexExpr = true;
-						RESULT = term;
 						
+						if(op.intValue() < 101)	{	
+							if(s.isArrayElem(term) && onStack == false){
+								Code.load(term);	
+								onStack = true;
+							}	
+						
+							s.calculateOp(op ,null,null);
+						}
+						RESULT = term;
+						isLonlyTerm = false;
 						
 					:}
 					|	
 					Term:term
 					{: 
-						waitForLeftAddOp_Obj.push(new LinkedList<Obj>());
-						waitForLeftAddOp_Op.push(new LinkedList<Integer>());
-						isComplexExpr = false;
+					
+						s.semanticInfo("TERM LONLY: " + term.getName() + " "   +  term.getAdr()) ;
+						isLonlyTerm = true;
 						RESULT = term; 
 					:}
 					;
@@ -914,43 +907,56 @@ AddopTermList   ::= AddopTermList:atl   Addop:op
 Term			::= MulopFactorList:mfl 
 					{: 
 						
-						s.termEnd(mfl);
-						if (isComplex == true)
-							RESULT = new Obj(Obj.Con, "complex term", Tab.intType);
+						// s.termEnd(mfl);
+						 RESULT = mfl;
+						
+								
+						/*if (isLonlyFactor)
+							  RESULT = mfl;    // za slucaj usamljenog Faktora
 						else
-							RESULT = mfl;// za slucaj usamljenog Faktora
-							
-						waitForLeftMulOp_Obj.pop();
-						waitForLeftMulOp_Op.pop();
+							RESULT = new Obj(Obj.Var, "complex term", Tab.intType);
+						*/
 				
 					:} ; 
 
 MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 					{:
-						
-						s.mulop(op, mfl);
+				
+						s.addToStack(op, mfl);
+						if(op.intValue() < 101){
+							if(s.isArrayElem(mfl) && onStack == false){
+								Code.load(mfl);	
+								onStack = true;
+							}
+						}	
 							
 					:}
 					 Factor:factor
 					{:
+						
+						s.addToStack(null, mfl);
 							
+						// not gen code
 						s.factor(factor, mfl, op, mflleft);
 						
-						//s.calculateOp(op ,null,null);
+						if(op.intValue() < 101){
+							if(s.isArrayElem(factor) && onStack == false){
+								Code.load(factor);	
+								onStack = true;
+							}
+							
+							s.calculateOp(op ,null,null);
+						}
+						isLonlyFactor = false;
+						RESULT = mfl;
 						
-						isComplex = true;
-						RESULT = factor;
-						
-				
 					:}
 					|
 					Factor:factor
 					{: 
-					
-						waitForLeftMulOp_Obj.push(new LinkedList<Obj>());
-						waitForLeftMulOp_Op.push(new LinkedList<Integer>());
-						isComplex = false;
-						RESULT = factor; 
+						s.semanticInfo("FACTOR LONLY: " + factor.getName() + " " + factor.toString() + " "+factor.getAdr()) ;
+						isLonlyFactor = true;
+						RESULT = factor;
 						
 					:}
 					;
@@ -958,10 +964,11 @@ MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 Factor      	::= Designator:designator 
 					{:
 						RESULT = designator;
-						
-						//Code.load(designator);
-						onStack=false;
-						
+						if(!s.isArrayElem(designator)){
+							Code.load(designator);
+							onStack = true;
+						} else
+							onStack = false;
 					:}
 					|
 					Designator:func LPAREN
@@ -975,40 +982,32 @@ Factor      	::= Designator:designator
 					|
 					NUMBER:i
 					{: 
-  	
 						Obj c = new Obj(Obj.Con, "Constant factor nubmer", Tab.intType);
 						c.setAdr(i.intValue());
 						Code.load(c);
 						RESULT = c;
-						onStack  = true;
 						
 					:}
 					|
 					ASCII:i
 					{: 
-						
 						Obj c = new Obj(Obj.Con, "Constant factor char", Tab.charType);
 						c.setAdr(i.charAt(1));
 						Code.load(c);
 						RESULT = c;
-						onStack  = true;
 					:}
 					|
 				    BOOL:i
 				    {:
-				    		     
 				    	Obj c = new Obj(Obj.Con, "Constant factor bool" , s.boolType);
 						c.setAdr((i.equals("true"))? 1 : 0);
 						Code.load(c);
 						RESULT = c;
-						onStack  = true;
-				     
 				    :}
 					|
 					NEW Type:type
 					{: 
 						RESULT = s.factorNew(type,typeleft);
-						onStack  = true;
 					:}
 				    |
 					NEW Type QLBRACE Expr:expr QRBRACE
@@ -1016,10 +1015,10 @@ Factor      	::= Designator:designator
 					    RESULT = s.factorArray(expr, exprleft);
 					:}
 					|
-					LPAREN Expr:expr RPAREN
+					LPAREN 
+					Expr:expr RPAREN
 					{: 
 						RESULT = expr; 
-						onStack  = true;
 					:}
 					;
 						 
@@ -1060,16 +1059,15 @@ DesignatorElem   ::=DesignatorIdent:designatorIden
 					QLBRACE:q
 					{:
 						if(s.designatorArray(parser.lastDesignator.peek(), qleft)){
-						
 							 parser.isArrayElem = true;
 							 RESULT = s.arrayAcces(parser.lastDesignator.peek());
 						}
 						else
 							RESULT = Tab.noObj;
+							
 					:}
 					Expr:expr
 					{: 
-						
 						if(!s.exprArray( expr, exprleft))
 							RESULT = Tab.noObj;
 						parser.lastDesignator.pop();
@@ -1098,7 +1096,7 @@ Assignop         ::= EQUAL:e {: RESULT = new Integer(101); :}
 				     MulopRight:mr {: RESULT = mr; :} 
 				     ; 
 
-Relop            ::= EQU {: RESULT = Code.eq; :} 
+Relop			 ::= EQU {: RESULT = Code.eq; :} 
 					 | 
 					 NEQ {: RESULT = Code.ne; :} 
 					 | 
@@ -1111,17 +1109,17 @@ Relop            ::= EQU {: RESULT = Code.eq; :}
 					 GEQ {: RESULT = Code.ge; :} 
 					 ; 
             
-Addop            ::= AddopLeft:al {: RESULT = al; :}  | AddopRight:ar {: RESULT = ar; :} ;   
+Addop			 ::= AddopLeft:al {: RESULT = al;	:}	| AddopRight:ar {: RESULT = ar; :} ;   
 
-AddopLeft        ::= PLUS {: RESULT = Code.add; :}    | MINUS {: RESULT = Code.sub;   :} ;
+AddopLeft		 ::= PLUS {: RESULT = Code.add;		:}	| MINUS {: RESULT = Code.sub;   :} ;
 
-AddopRight       ::= PEQ  {: RESULT = Code.add+100; :}    | MEQ {: RESULT = Code.sub+100;     :} ;          
+AddopRight		 ::= PEQ  {: RESULT = Code.add+100;	:}  | MEQ {: RESULT = Code.sub+100; :} ;          
         
-Mulop            ::= MulopLeft:ml {: RESULT = ml; :}  | MulopRight:mr {: RESULT = mr; :} ;   
+Mulop			 ::= MulopLeft:ml {: RESULT = ml;	:}	| MulopRight:mr {: RESULT = mr; :} ;   
 
-MulopLeft  		 ::= MUL {: RESULT = Code.mul; :}  | DIV {: RESULT = Code.div; :} | MOD  {: RESULT = Code.rem; :} ;
+MulopLeft  		 ::= MUL {: RESULT = Code.mul;		:}  | DIV {: RESULT = Code.div; 	:} 	| MOD  {: RESULT = Code.rem;     :} ;
 
-MulopRight		 ::= MUEQ {: RESULT = Code.mul+100; :} | DEQ {: RESULT = Code.div+100; :} | MOEQ {: RESULT = Code.rem+100; :} ;   
+MulopRight		 ::= MUEQ {: RESULT = Code.mul+100; :} 	| DEQ {: RESULT = Code.div+100;	:}	| MOEQ {: RESULT = Code.rem+100; :} ;   
                   
     
      

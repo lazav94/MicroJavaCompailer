@@ -1,4 +1,4 @@
-//file: SYNTAX_TEST_ALL_WITHOUT_ERROR.mj
+//file: VARARGS_SUM.mj
 program Program
 
 const int s = 5;
