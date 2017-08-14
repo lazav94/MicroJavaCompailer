@@ -59,7 +59,7 @@ public class MJParserTest {
 		Reader br = null;
 		try {
 			//File sourceCode = new File(inputFilePath);
-			File sourceCode = new File("test/semantic/test302.mj");
+			File sourceCode = new File("test/semantic/ARRAYS.mj");
 			s.log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));

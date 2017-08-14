@@ -1403,57 +1403,33 @@ public class Singleton {
 
 		return Tab.noObj;
 	}
+	
+	public void loadDelayedObj(Obj obj){
+		if(isArrayElem(obj) && action.onStack == false){
+			Code.load(obj);	
+			action.onStack = true;
+		}
+	}
 
 	public void addToStack(Integer op, Obj obj) {
-		if (op != null) {
-			if (op.intValue() > 101) {// guranje na stek za slucaj *= i slicno
+			if (op.intValue() > 101) {
 				if (isArrayElem(obj)) {
 					Code.put(Code.dup2);
 					Code.load(obj);
 					action.onStack = true;
-					semanticInfo("ARRAY LOAD IN MULOP/ADDOP MFL/ATL " + obj.getName());
-				}
-				if (obj.getKind() == Obj.Var) {
-					semanticInfo("LOAD " + obj.getName());
 				}
 
 				if (action.opStack.isEmpty())
 					action.opStack.push(new Stack<>());
 
 				action.opStack.peek().add(op);
-				semanticInfo("DODATA OPERACIJA :  " + op.intValue());
-
 				action.objStack.push(obj);
-				semanticInfo("DODAO OPERAND :  " + obj.getName());
 
-			} 
-		} else {
-			if(isArrayElem(obj) && action.onStack == false){
-				semanticInfo("ARRAY LOAD IN MULOP/ADDOP FACTOR " + obj.getName());
-			//	if(action.isLonlyFactor == true)
-			//		Code.load(obj);
-			//	action.onStack = true;
-			}
-		}
+			} else 
+				loadDelayedObj(obj);
 	}
 
 	public void calculateExpr() {
-		semanticInfo("CALCULATE EXPr");
-		if (action.opStack.isEmpty()) {
-			semanticInfo("Op stack je prazan");
-			return;
-		} else
-			semanticInfo("Op stack size: " + action.opStack.size());
-
-		if (action.objStack.isEmpty()) {
-			semanticInfo("Obj stack je prazan");
-			return;
-		} else {
-			semanticInfo("Obj stack size: " + action.objStack.size());
-			semanticInfo("STEK OBJ:");
-			for (Obj o : action.objStack)
-				semanticInfo(o.getName());
-		}
 
 		if (!action.opStack.isEmpty()) {
 			while (!action.opStack.peek().isEmpty()) {
@@ -1462,11 +1438,8 @@ public class Singleton {
 				Integer op = action.opStack.peek().pop();
 				if (!action.objStack.isEmpty()) {
 					obj = action.objStack.pop();
-				} else {
-					semanticInfo("ZASTO MI OVO RADIS?");
 				}
 
-				
 				calculateOp(op, null, null);
 				
 				if (obj != null && op.intValue() > 101 && isArrayElem(obj)) {
@@ -1477,7 +1450,6 @@ public class Singleton {
 					Code.load(o);
 
 				}
-				boolean stored = false;
 				if (obj != null) {
 					Code.store(obj);
 					if (op.intValue() > 101) {
@@ -1492,18 +1464,16 @@ public class Singleton {
 		}
 	}
 
-	/*
-	 * public void termEnd(Obj mfl) { // if
-	 * (action.waitForLeftMulOp_Op.peekFirst().isEmpty())// radi se za // //
-	 * poslednji u // return; // nizu faktora, ako nije usamljen faktor
-	 * 
-	 * if (!isMethod(mfl) && action.onStack == false) Code.load(mfl);
-	 * action.onStack = true;
-	 * 
-	 * // racunFactor(null, mfl);
-	 * 
-	 * // nakon ovoga ide popovanje listi obj,op }
-	 */
+	public Obj exprEnd(Obj addopTerm){
+		Obj result = addopTerm;
+		if (action.isLonlyTerm)
+			loadDelayedObj(addopTerm);
+		else
+			result = new Obj(Obj.Con, "complex expr", Tab.intType);
+			
+		calculateExpr();
+		return result;
+	}
 
 	/**
 	 * (24) Tipovi oba izraza moraju biti <u>kompatibilini</u>.<br>
@@ -1618,9 +1588,10 @@ public class Singleton {
 
 	public void calculateOp(Integer OP, Obj object, Boolean inc) {
 
-		if (OP.intValue() == 101)
-			System.out.println("ZASTO BRATE HERBERTE");
-		
+		if (OP.intValue() == 101){
+			semanticError("Fatal error, calculate op, check singleton");
+			return;
+		}
 		
 		if (OP > 101)
 			OP -= 100;
@@ -1653,9 +1624,6 @@ public class Singleton {
 
 			if (isArrayElem(object))
 				Code.put(Code.dup2);
-
-			// if (isClassField(object))
-			// Code.put(Code.dup);
 
 			Code.load(object);
 
@@ -1800,18 +1768,14 @@ public class Singleton {
 	public void assignop(Integer OP, Obj designator) {
 
 		if (OP.intValue() != 101) {
-			System.out.println("KJKLJFDKL");
-
 			if (isArrayElem(designator))
 				Code.put(Code.dup2);
 
 			Code.load(designator);
-			calculateOp(OP.intValue() - 100, null, null);
-
+			calculateOp(OP.intValue(), null, null);
 		}
 		Code.store(designator);
 
-		/** za asocijativnost */
 
 	}
 

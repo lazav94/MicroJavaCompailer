@@ -163,7 +163,6 @@ action code {:
 				boolean isLonlyFactor = false;
 				boolean isLonlyTerm = false;
 				
-				int isExpr = 0;
 				
 				boolean onStack = false;
 							
@@ -697,25 +696,17 @@ DesignatorLParen    ::= Designator:designator {:  RESULT = designator; :}  LPARE
 DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = designator; :} Assignop:op
 						{: 
 							
-							s.semanticInfo("DESIGNATOR STATEMENT : "  + designator.getName());
-							// Na stek nam treba ako se radi o kombinovanom operatoru :(
-							
 							if (op.intValue() > 101) {
 								if (s.isArrayElem(designator))
 									Code.put(Code.dup2);
-									
 								Code.load(designator);
-								System.out.println("LOAD2 "+ designator.getName());
-			
 							}
 							
-							System.out.println("DESIGNATOR STATEMEN OP: -> " + op.intValue());
-
 						:}
 						Expr:expr
 						{:
 							RESULT = s.designatorAssignop(designator, expr, designatorleft);
-							
+
 							if(op.intValue() > 101)
 								s.calculateOp(op.intValue(), null, null);
 								
@@ -823,43 +814,24 @@ CondFact		::= Expr:expr1 Relop:relop Expr:expr2
 					:}
 					;
 					
-					
-Expr   			::= /* MINUS AddopTermList:addopTerm
+
+			
+Expr   			::=  MINUS AddopTermList:addopTerm
 					{: 
-						System.out.println("OVO NE TREBA DOK NE UBACIM MINUS");
-						s.exprMinus(addopTerm,addopTermleft); 
-						s.calculateOp(Code.neg,addopTerm, null );
-						//s.calculateExpr();
-						
+						if(!s.isInt(addopTerm)){
+							s.semanticError(addopTermleft, "Kod - (MINUS) expr, term mora biti tipa int, a ne: " + s.getTypeName(addopTerm.getType().getKind()));
+							RESULT = Tab.noObj;
+						}else{
+							RESULT = s.exprEnd(addopTerm);
+							s.calculateOp(Code.neg, null, null);
+						}
 					:}
-					|*/
-					
-					{: 
-						isExpr++;
-						opStack.push(new Stack<>());
-					:}
+					|
+					{: opStack.push(new Stack<>()); :}
 					AddopTermList:addopTerm
 					{: 
-							
-						isExpr--;
-						if (isLonlyTerm){
-							s.semanticInfo("LONLY EXPR: " + addopTerm.getName());
-							
-							RESULT =  addopTerm;// za slucaj usamljenog Faktora
-							if(s.isArrayElem(addopTerm) && onStack == false){
-								Code.load(addopTerm);
-								s.semanticInfo("ARRAY LOAD IN EXPRESSION " + addopTerm.getName());
-								onStack = true;
-							}
-						}else{
-							s.semanticInfo("LEva strana expr = " + addopTerm.getName());
-							RESULT = new Obj(Obj.Con, "complex expr", Tab.intType);
-							
-						}
-						
-						s.calculateExpr();
-						
-					 :}
+						RESULT = s.exprEnd(addopTerm);
+					:}
 					;
 											
 
@@ -867,26 +839,13 @@ AddopTermList   ::= AddopTermList:atl Addop:op
 					{:
 					
 						s.addToStack(op, atl);
-						if(op.intValue() < 101){
-							if(s.isArrayElem(atl) && onStack == false){
-								Code.load(atl);	
-								onStack = true;
-							}
-						}	
 					:}
 					Term:term
 					{: 
-					
-						s.addToStack(null, term);
-						// not gen code
 						s.expr(atl, term, op, atlleft);
 						
 						if(op.intValue() < 101)	{	
-							if(s.isArrayElem(term) && onStack == false){
-								Code.load(term);	
-								onStack = true;
-							}	
-						
+							s.loadDelayedObj(term);
 							s.calculateOp(op ,null,null);
 						}
 						RESULT = term;
@@ -896,8 +855,6 @@ AddopTermList   ::= AddopTermList:atl Addop:op
 					|	
 					Term:term
 					{: 
-					
-						s.semanticInfo("TERM LONLY: " + term.getName() + " "   +  term.getAdr()) ;
 						isLonlyTerm = true;
 						RESULT = term; 
 					:}
@@ -906,13 +863,9 @@ AddopTermList   ::= AddopTermList:atl Addop:op
 						
 Term			::= MulopFactorList:mfl 
 					{: 
-						
-						// s.termEnd(mfl);
 						 RESULT = mfl;
-						
-								
 						/*if (isLonlyFactor)
-							  RESULT = mfl;    // za slucaj usamljenog Faktora
+							  RESULT = mfl; 
 						else
 							RESULT = new Obj(Obj.Var, "complex term", Tab.intType);
 						*/
@@ -923,38 +876,22 @@ MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 					{:
 				
 						s.addToStack(op, mfl);
-						if(op.intValue() < 101){
-							if(s.isArrayElem(mfl) && onStack == false){
-								Code.load(mfl);	
-								onStack = true;
-							}
-						}	
 							
 					:}
 					 Factor:factor
 					{:
-						
-						s.addToStack(null, mfl);
-							
-						// not gen code
 						s.factor(factor, mfl, op, mflleft);
 						
 						if(op.intValue() < 101){
-							if(s.isArrayElem(factor) && onStack == false){
-								Code.load(factor);	
-								onStack = true;
-							}
-							
+							s.loadDelayedObj(factor);
 							s.calculateOp(op ,null,null);
 						}
 						isLonlyFactor = false;
 						RESULT = mfl;
-						
 					:}
 					|
 					Factor:factor
 					{: 
-						s.semanticInfo("FACTOR LONLY: " + factor.getName() + " " + factor.toString() + " "+factor.getAdr()) ;
 						isLonlyFactor = true;
 						RESULT = factor;
 						

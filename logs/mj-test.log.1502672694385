@@ -48,6 +48,7 @@ INFO   - #48 niz
 INFO   - #17 =
 INFO   - (21) Koriscenje (globalna) niza 'niz'  tipa: array
 INFO   - #15 new
+INFO   - DESIGNATOR STATEMENT : niz
 INFO   - #48 int
 INFO   - #44 [
 INFO   - #47 3
@@ -61,6 +62,7 @@ INFO   - #47 0
 INFO   - #45 ]
 INFO   - #17 =
 INFO   - #47 7
+INFO   - DESIGNATOR STATEMENT : niz[]
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
 INFO   - #48 niz
@@ -70,6 +72,7 @@ INFO   - #47 1
 INFO   - #45 ]
 INFO   - #17 =
 INFO   - #47 13
+INFO   - DESIGNATOR STATEMENT : niz[]
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
 INFO   - #48 niz
@@ -79,12 +82,14 @@ INFO   - #47 2
 INFO   - #45 ]
 INFO   - #17 =
 INFO   - #47 25
+INFO   - DESIGNATOR STATEMENT : niz[]
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
 INFO   - #48 bodovi
 INFO   - #17 =
 INFO   - (25) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
 INFO   - #40 (
+INFO   - DESIGNATOR STATEMENT : bodovi
 INFO   - #48 niz
 INFO   - #44 [
 INFO   - (25) Koriscenje (globalna) niza 'niz'  tipa: array
@@ -127,6 +132,7 @@ INFO   - #48 bodovi
 INFO   - #17 =
 INFO   - (30) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
 INFO   - #47 3
+INFO   - DESIGNATOR STATEMENT : bodovi
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
 INFO   - #48 niz
@@ -136,6 +142,7 @@ INFO   - #47 2
 INFO   - #45 ]
 INFO   - #34 /=
 INFO   - #48 niz
+INFO   - DESIGNATOR STATEMENT : niz[]
 INFO   - #44 [
 INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
 INFO   - #47 0

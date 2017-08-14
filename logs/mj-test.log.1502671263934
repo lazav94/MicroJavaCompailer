@@ -1,0 +1,243 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\semantic\test303.mj
+INFO   - #2 program
+INFO   - #48 test_303
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 cinilac
+INFO   - #17 =
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'cinilac' vrednosti = 4
+INFO   - #48 delilac
+INFO   - #17 =
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'delilac' vrednosti = 3
+INFO   - #3 class
+INFO   - #48 Predmet
+INFO   - #42 {
+INFO   - Obradjivanje nove klase 'Predmet' na liniji 6
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (8) Ubacena: polje klase: Predmet(globalna) promenljiva sa imenom 'tezina'
+INFO   - #48 char
+INFO   - #48 vrsta
+INFO   - #38 ;
+INFO   - (9) Ubacena: polje klase: Predmet(globalna) promenljiva sa imenom 'vrsta'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 postaviTezinu
+INFO   - #40 (
+INFO   - (12) Obradjuje se  funkcija unutar klase 'postaviTezinu'
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (12) Ubacena: polje klase: Predmet(globalna) promenljiva za funkciju postaviTezinuklase sa imenom 'tezina'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (12) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 tezina
+INFO   - #17 =
+INFO   - (12) Koriscenje polja klasa 'tezina'  tipa: int
+ERROR  - (12) Kod . (DOT) nije pronadjeno ovo polje: tezina u klasi this
+INFO   - #48 tezina
+INFO   - DESIGNATOR STATEMENT : tezina
+INFO   - #38 ;
+INFO   - (12) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 ucitajTezinu
+INFO   - #40 (
+INFO   - (13) Obradjuje se  funkcija unutar klase 'ucitajTezinu'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #14 read
+INFO   - #40 (
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (13) Koriscenje polja klasa 'tezina'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #5 static
+INFO   - #6 void
+INFO   - #48 ispis
+INFO   - #40 (
+INFO   - (14) Obradjuje se  funkcija unutar klase 'ispis'
+INFO   - #48 Predmet
+INFO   - #48 p
+INFO   - #41 )
+INFO   - (14) Ubacena: polje klase: Predmet(globalna) promenljiva za funkciju ispisklase sa imenom 'p'
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 p
+INFO   - #46 .
+INFO   - (14) Koriscenje (lokalna) promenljive 'p'  tipa: class
+INFO   - #48 vrsta
+INFO   - #41 )
+INFO   - (14) Koriscenje polja klasa 'vrsta'  tipa: char
+ERROR  - (14) Static funkija ne moze da koristi nestaticka polja!
+ERROR  - (14) Kod . (DOT) nije pronadjeno ovo polje: vrsta u klasi p
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (14) Koriscenje konstante 'eol'  tipa: char
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 p
+INFO   - #46 .
+INFO   - (14) Koriscenje (lokalna) promenljive 'p'  tipa: class
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (14) Koriscenje polja klasa 'tezina'  tipa: int
+ERROR  - (14) Static funkija ne moze da koristi nestaticka polja!
+ERROR  - (14) Kod . (DOT) nije pronadjeno ovo polje: tezina u klasi p
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (15) Obradjuje se  funkcija unutar klase 'zapremina'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 Q
+INFO   - #40 (
+INFO   - (16) Obradjuje se  funkcija unutar klase 'Q'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (16) Koriscenje metode 'zapremina'  tipa: int
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'zapremina' na liniji 16
+INFO   - #20 *
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (16) Koriscenje polja klasa 'tezina'  tipa: int
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 postaviVrstu
+INFO   - #40 (
+INFO   - (17) Obradjuje se  funkcija unutar klase 'postaviVrstu'
+INFO   - #48 char
+INFO   - #48 vrsta
+INFO   - #41 )
+INFO   - (17) Ubacena: polje klase: Predmet(globalna) promenljiva za funkciju postaviVrstuklase sa imenom 'vrsta'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (17) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 vrsta
+INFO   - #17 =
+INFO   - (17) Koriscenje polja klasa 'vrsta'  tipa: char
+ERROR  - (17) Kod . (DOT) nije pronadjeno ovo polje: vrsta u klasi this
+INFO   - #48 vrsta
+INFO   - DESIGNATOR STATEMENT : vrsta
+INFO   - #38 ;
+INFO   - (17) Koriscenje (lokalna) promenljive 'vrsta'  tipa: char
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #3 class
+INFO   - #48 Sfera
+INFO   - #4 extends
+INFO   - Obradjivanje nove klase 'Sfera' na liniji 21
+INFO   - #48 Predmet
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 r
+INFO   - #38 ;
+INFO   - (23) Ubacena: polje klase: Sfera(globalna) promenljiva sa imenom 'r'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 postaviTezinu
+INFO   - #40 (
+INFO   - (25) Obradjuje se  funkcija unutar klase 'postaviTezinu'
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (25) Ubacena: polje klase: Sfera(globalna) promenljiva za funkciju postaviTezinuklase sa imenom 'tezina'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (25) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 tezina
+INFO   - #17 =
+ERROR  - (25) Simbol 'tezina' ne postoji u tabeli simbola!
+ERROR  - (25) Kod . (DOT) nije pronadjeno ovo polje: noObj u klasi this
+INFO   - #48 tezina
+INFO   - DESIGNATOR STATEMENT : this
+INFO   - #38 ;
+INFO   - (25) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+ERROR  - (25) Leva (class) i desna (int) strana kod dodele vrednosti nisu kopmatibilne (assignop)
+INFO   - #48 vrsta
+INFO   - #17 =
+ERROR  - (25) Simbol 'vrsta' ne postoji u tabeli simbola!
+INFO   - #50 's'
+INFO   - DESIGNATOR STATEMENT : noObj
+INFO   - #38 ;
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+ERROR  - (25) Leva (void) i desna (char) strana kod dodele vrednosti nisu kopmatibilne (assignop)
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 postaviPoluprecnik
+INFO   - #40 (
+INFO   - (26) Obradjuje se  funkcija unutar klase 'postaviPoluprecnik'
+INFO   - #48 int
+INFO   - #48 r
+INFO   - #41 )
+INFO   - (26) Ubacena: polje klase: Sfera(globalna) promenljiva za funkciju postaviPoluprecnikklase sa imenom 'r'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (26) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 r
+INFO   - #17 =
+ERROR  - (26) Simbol 'r' ne postoji u tabeli simbola!
+ERROR  - (26) Kod . (DOT) nije pronadjeno ovo polje: noObj u klasi this
+INFO   - #48 r
+INFO   - DESIGNATOR STATEMENT : this
+INFO   - #38 ;
+INFO   - (26) Koriscenje (lokalna) promenljive 'r'  tipa: int
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan
+ERROR  - (26) Leva (class) i desna (int) strana kod dodele vrednosti nisu kopmatibilne (assignop)
+INFO   - #48 postaviVrstu
+INFO   - #40 (
+ERROR  - (26) Simbol 'postaviVrstu' ne postoji u tabeli simbola!
+INFO   - #50 's'
+ERROR  - (26) Designator mora oznacavati staticku ili nestaticku metodu unutrasnje klase ili globalnu funkciju glavnog programa!
+ERROR  - (26) Ime :noObj nije funkcija
+INFO   - #41 )
+INFO   - CALCULATE EXPr
+INFO   - Op stack je prazan

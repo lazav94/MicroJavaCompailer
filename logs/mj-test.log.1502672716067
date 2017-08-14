@@ -1,0 +1,380 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\semantic\VARARGS.mj
+INFO   - #2 program
+INFO   - #48 Program
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (4) Ubacen novi niz: (globalna) promenljiva sa imenom 'a'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (5) Ubacena: (globalna) promenljiva sa imenom 'i'
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 k
+INFO   - #40 (
+INFO   - (8) Obradjuje se  lokalna funkcija 'k'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (8) Ubacena: (lokalna) promenljiva za funkciju k sa imenom 'a'
+INFO   - #48 char
+INFO   - #48 c
+INFO   - #39 ,
+INFO   - (8) Ubacena: (lokalna) promenljiva za funkciju k sa imenom 'c'
+INFO   - #48 bool
+INFO   - #48 b
+INFO   - #41 )
+INFO   - (8) Ubacena: (lokalna) promenljiva za funkciju k sa imenom 'b'
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #41 )
+INFO   - (9) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 c
+INFO   - #41 )
+INFO   - (10) Koriscenje (lokalna) promenljive 'c'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 b
+INFO   - #41 )
+INFO   - (12) Koriscenje (lokalna) promenljive 'b'  tipa: bool
+INFO   - #38 ;
+INFO   - #16 return
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - (13) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 x
+INFO   - #40 (
+INFO   - (16) Obradjuje se  lokalna funkcija 'x'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #41 )
+INFO   - (16) Ubacena: (lokalna) promenljiva za funkciju x sa imenom 'a'
+INFO   - #42 {
+INFO   - #48 a
+INFO   - #36 ++
+INFO   - (17) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #38 ;
+INFO   - #48 a
+INFO   - #31 +=
+INFO   - (18) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #47 3
+INFO   - DESIGNATOR STATEMENT : a
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #16 return
+INFO   - #48 a
+INFO   - #18 +
+INFO   - (19) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 va
+INFO   - #40 (
+INFO   - (23) Obradjuje se  lokalna funkcija 'va'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (23) Ubacena: (lokalna) promenljiva za funkciju va sa imenom 'a'
+INFO   - #48 int
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #48 vva
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #41 )
+INFO   - (24) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - #38 ;
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (26) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (26) Koriscenje (globalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - DESIGNATOR STATEMENT : i
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (26) Koriscenje (globalna) promenljive 'i'  tipa: int
+INFO   - #48 len
+INFO   - #40 (
+INFO   - (26) Koriscenje metode 'len'  tipa: int
+INFO   - #48 vva
+INFO   - Pronadjen poziv funkcije: 'len' na liniji 26
+INFO   - #41 )
+INFO   - (26) Koriscenje (lokalna) niza 'vva'  tipa: array
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (26) Koriscenje (globalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 vva
+INFO   - #44 [
+INFO   - (27) Koriscenje (lokalna) niza 'vva'  tipa: array
+INFO   - #48 i
+INFO   - #45 ]
+INFO   - (27) Koriscenje (globalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+DEBUG  - (27) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (28) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #16 return
+INFO   - #48 len
+INFO   - #40 (
+INFO   - (30) Koriscenje metode 'len'  tipa: int
+INFO   - #48 vva
+INFO   - Pronadjen poziv funkcije: 'len' na liniji 30
+INFO   - #41 )
+INFO   - (30) Koriscenje (lokalna) niza 'vva'  tipa: array
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (34) Obradjuje se  lokalna funkcija 'main'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 xx
+INFO   - #39 ,
+INFO   - (34) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'xx'
+INFO   - #48 i
+INFO   - #39 ,
+INFO   - (34) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
+INFO   - #48 j
+INFO   - #38 ;
+INFO   - (34) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'j'
+INFO   - #48 bool
+INFO   - #48 bbb
+INFO   - #38 ;
+INFO   - (34) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'bbb'
+INFO   - #42 {
+INFO   - #48 a
+INFO   - #17 =
+INFO   - (36) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #15 new
+INFO   - DESIGNATOR STATEMENT : a
+INFO   - #48 int
+INFO   - #44 [
+INFO   - #47 6
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (37) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #47 3
+INFO   - DESIGNATOR STATEMENT : a[]
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (38) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #47 25
+INFO   - DESIGNATOR STATEMENT : a[]
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (39) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 3
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #47 101
+INFO   - DESIGNATOR STATEMENT : a[]
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 va
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'va'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'va' na liniji 43
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #48 k
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'k'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'k' na liniji 43
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #47 2
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #50 'a'
+INFO   - #39 ,
+INFO   - #49 false
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #48 x
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #47 5
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #48 x
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'x'  tipa: int
+INFO   - #47 7
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 43
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (43) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (43) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #45 ]
+INFO   - #39 ,
+INFO   - #48 va
+INFO   - #40 (
+INFO   - (43) Koriscenje metode 'va'  tipa: int
+INFO   - #47 2
+INFO   - Pronadjen poziv funkcije: 'va' na liniji 43
+INFO   - #39 ,
+INFO   - #47 100
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (43) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #39 ,
+INFO   - #47 8
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (43) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (43) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 va
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'va'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'va' na liniji 49
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'x'  tipa: int
+INFO   - #48 k
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 49
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'k'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'k' na liniji 49
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'x'  tipa: int
+INFO   - #48 x
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 49
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'x'  tipa: int
+INFO   - #47 2
+INFO   - Pronadjen poziv funkcije: 'x' na liniji 49
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #50 'a'
+INFO   - #39 ,
+INFO   - #49 false
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #39 ,
+INFO   - #47 100
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (49) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #39 ,
+INFO   - #47 8
+INFO   - #39 ,
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (49) Koriscenje (globalna) niza 'a'  tipa: array
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==========================SINTAKSNA ANALIZA============================
+
+INFO   - 
+--------------------------------- A -----------------------------------
+INFO   - Broj definicija globalnih promenljivih = 2
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 4
+INFO   - Broj definicije globalnih konstanti = 0
+INFO   - 
+--------------------------------- B -----------------------------------
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 4
+INFO   - Broj poziv funkicje u telu metode main = 15
+INFO   - Broj delaracija formalnih argumenata funkcije  = 5
+INFO   - 
+--------------------------------- C -----------------------------------
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 0
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
+INFO   - Parsiranje uspesno zavrseno!
