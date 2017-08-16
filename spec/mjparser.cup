@@ -1,21 +1,16 @@
 package pp1.vl130298;
 
 import java_cup.runtime.*;
-import org.apache.log4j.*;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 import java.util.UUID;
 import rs.etf.pp1.mj.runtime.Code;
 
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
 import java.util.LinkedList;
-
-
 
 init with {:
 		     Singleton s = Singleton.getInstance();
@@ -31,9 +26,7 @@ scan with {:
 		  :}
 
 parser  code {:
-
 				// Predefinisane metode za ispis poruke 
-				
 				public void report_fatal_error(String message, Object info) throws java.lang.Exception {
      			    done_parsing();
       			    report_error(message, info);
@@ -92,11 +85,10 @@ parser  code {:
 			
 				boolean isAssign     = false;      // da li se radi dodela vrednosti
 				boolean actParsList  = false;
-				int forLoopLevel      = 0;              // Nivo ugnezdenosti for petlje (0 - ako se ne nalazimo u for petlji)
+				int forLoopLevel      = 0;         // Nivo ugnezdenosti for petlje (0 - ako se ne nalazimo u for petlji)
 	
-				
 	
-				boolean errorDectected = false;   // Flag: true - u slucaju bilo kakve greske
+				boolean errorDectected = false;	   // Flag: true - u slucaju bilo kakve greske
 				
 				Struct returnType = null;
 				
@@ -129,7 +121,10 @@ action code {:
   				// Class varialbes
 				Obj currentClass    = null;    // ima informaciju o klasi koja se trenutno obradjuje
 				HashMap<Struct, List<Obj>> staticFldMap = new HashMap<>();
+				HashMap<Struct, List<Obj>> nonStaticFldMap = new HashMap<>();
 				Struct parentClass = null;
+				
+				List<Obj> thisFld = new ArrayList<>();
 			
 				
 				boolean isActPar = false;
@@ -137,7 +132,6 @@ action code {:
 				Obj prevCondFact = null;
 				Obj prevCondTerm = null;
 				boolean methodErrorDetected = false; // da li se desila greska kod parsiranja metoode
-				
 				
 				
 				/* CONDITION */
@@ -154,7 +148,6 @@ action code {:
 				int forStepAdr;
 	
 				
-				
 				/* associativity*/
 				Stack<Stack<Integer>>    opStack = new Stack<Stack<Integer>>();
 				Stack<Obj> objStack = new Stack<Obj>();
@@ -166,8 +159,6 @@ action code {:
 				
 				boolean onStack = false;
 							
-				
-				
 	 :}
 
 // Terminals
@@ -310,7 +301,7 @@ VarDecl         ::= VarDecl COMMA VarDef
 				    |
 				    error COMMA:v VarDef  {: s.variableError(vleft, ',', false); :}
 				    |
-				    VarDef    
+				    VarDef     
 				    ;
 					   
 VarDef          ::= IDENT:varName QLBRACE {: parser.isArray = true; :}
@@ -330,7 +321,6 @@ VarDef          ::= IDENT:varName QLBRACE {: parser.isArray = true; :}
 								  
 					:}
 			        ;
-		
 
 //=====================================================================================================//
 //------------------------------------------------NIVO B-----------------------------------------------//
@@ -441,19 +431,12 @@ VarArgs 		::= Type:type {: varArgsType = type; :}
 					{: 	Tab.insert(Obj.Var, varArgsName , new Struct(Struct.Array, varArgsType)); :} 
 					;
 				    
-
-				    
-				   
-
 //=====================================================================================================//
 //------------------------------------------------NIVO C-----------------------------------------------//
 //=====================================================================================================//
 // #Definition, counting and error recovery @*
 // @Class
 
-
-
-//----------------------------------- Class	----------------------------------// can't be epsilon	    
 
 ClassDeclPreExt ::= CLASS IDENT:className
 					{:
@@ -483,7 +466,6 @@ ClassDecl       ::= ClassDeclPreExt:className EXTENDS
 				    ClassDeclPreExt EXTENDS  error LBRACE ClassBody RBRACE {: s.classError(); :}
 				    |			
 				    error   LBRACE ClassBody RBRACE {: s.classError();  :}
-				    
 					;
 					
 
@@ -507,7 +489,6 @@ ClassVarDeclList::= ClassVarDeclList ClassVarDecl
 					ClassVarDecl 
 					;
 				    
-
 //=====================================================================================================//
 //-----------------------------------------------GENERAL-----------------------------------------------//
 //=====================================================================================================//
@@ -545,12 +526,10 @@ Statement       ::=   READ LPAREN Designator:designator
 					 |
 					 error SEMI
 					 {:
-					 		
 					 		if(parser.actParsList == true) 
 					 			s.sintaxInfo("GRESKA (;): Lista parametra funkcije. ");
 					 		else
 					 			s.sintaxInfo("GRESKA (;): Dekleracija designator statement, najverovatnije pri dodeli vrednosti. ");
-					 			
 					 :}
 				     |
 			    	 IF LPAREN Condition:cond
@@ -572,7 +551,9 @@ Statement       ::=   READ LPAREN Designator:designator
 			    	 :}
 					 |
 					 ForStatement DesignatorStatement SEMI
-					 {: forConditionStartAdr = Code.pc; :}
+					 {: 
+					 	forConditionStartAdr = Code.pc;
+					 :}
 					 ConditionEps SEMI
 					 {: 
 					 	s.forAfterCondition();
@@ -580,15 +561,12 @@ Statement       ::=   READ LPAREN Designator:designator
 					 DesignatorStatement
 					 {:
 						 s.forAfterStep();
-			  			
 					 :} 
 					 RPAREN Statement:stmt 
 					 {: 
-					 
 					 	parser.forLoopLevel--;
 						s.semanticDebug(stmtleft,"Smanjena dubina for petlje, dubina = " + parser.forLoopLevel); 
 					 	s.forBodyEnd();
-					 	
 					 :}
 					 |
 					 ForStatement error RPAREN Statement 
@@ -651,8 +629,6 @@ Statement       ::=   READ LPAREN Designator:designator
 					 	if(!parser.returnType.equals(currentMethod.getType()))
 			            	s.semanticError(exprObjleft, "Funckija ocekuje povratnu vrednost " + s.getTypeName(currentMethod.getType().getKind()) + " , a vracena vrednost je tipa " + s.getTypeName(parser.returnType.getKind()));
 						
-						
-						//Code.load(exprObj);
 						 s.methodExit();
 					 :} 
 					 |
@@ -744,7 +720,7 @@ DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = des
 					    ;
 
 					    
-ActPars 		::= ActParsList {: isActPar = false; :} 
+ActPars 		::= {: isActPar = true; :}  ActParsList {: isActPar = false; :} 
 				    |
 					/* epsilon */
 					;
@@ -786,7 +762,6 @@ Condition	::= 	CondTerm:ct  OR
 
 
 // TODO Ako su condfact kompatibilni da li ima potrebe proveravati da je lista cond factova BOOL
-					    
 CondTerm	::= 	CondFact:condFact
 					{:
 						s.condFact();
@@ -813,7 +788,6 @@ CondFact		::= Expr:expr1 Relop:relop Expr:expr2
 					    Code.load(o);
 					:}
 					;
-					
 
 			
 Expr   			::=  MINUS AddopTermList:addopTerm
@@ -833,11 +807,9 @@ Expr   			::=  MINUS AddopTermList:addopTerm
 						RESULT = s.exprEnd(addopTerm);
 					:}
 					;
-											
 
 AddopTermList   ::= AddopTermList:atl Addop:op
 					{:
-					
 						s.addToStack(op, atl);
 					:}
 					Term:term
@@ -859,7 +831,6 @@ AddopTermList   ::= AddopTermList:atl Addop:op
 						RESULT = term; 
 					:}
 					;
-						
 						
 Term			::= MulopFactorList:mfl 
 					{: 
@@ -887,7 +858,7 @@ MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 							s.calculateOp(op ,null,null);
 						}
 						isLonlyFactor = false;
-						RESULT = mfl;
+						RESULT = factor;
 					:}
 					|
 					Factor:factor
@@ -984,12 +955,14 @@ DesignatorElem   ::=DesignatorIdent:designatorIden
 					:}
 					|
 					DOT 
-					{: s.changeToGlobalScope(parser.lastDesignator.peek()); :} 
+					{: 
+						s.changeToGlobalScope(parser.lastDesignator.peek()); 
+					:} 
 					DesignatorIdent:designatorIden 
 					{: 
-						
+						System.out.println(parser.lastDesignator.peek().getName() + "\t"+ designatorIden.getName());
 						RESULT = s.designatorDot(parser.lastDesignator.peek(), designatorIden, designatorIdenleft);
-						s.resetScope();
+						s.resetScope(parser.lastDesignator.peek());
 						parser.lastDesignator.pop();
 					:}
 					|
@@ -1020,7 +993,6 @@ DesignatorIdent  ::= IDENT:symbolName
 					 	s.staticAccess(RESULT, symbolNameleft);
 					 :};
 					 
-
 //=====================================================================================================//
 //----------------------------------------------Operators----------------------------------------------//
 //=====================================================================================================//
@@ -1046,25 +1018,14 @@ Relop			 ::= EQU {: RESULT = Code.eq; :}
 					 GEQ {: RESULT = Code.ge; :} 
 					 ; 
             
-Addop			 ::= AddopLeft:al {: RESULT = al;	:}	| AddopRight:ar {: RESULT = ar; :} ;   
+Addop			  ::= AddopLeft:al {: RESULT = al;	:}	| AddopRight:ar {: RESULT = ar; :} ;   
 
-AddopLeft		 ::= PLUS {: RESULT = Code.add;		:}	| MINUS {: RESULT = Code.sub;   :} ;
+AddopLeft		  ::= PLUS {: RESULT = Code.add;	:}	| MINUS {: RESULT = Code.sub;   :} ;
 
-AddopRight		 ::= PEQ  {: RESULT = Code.add+100;	:}  | MEQ {: RESULT = Code.sub+100; :} ;          
-        
-Mulop			 ::= MulopLeft:ml {: RESULT = ml;	:}	| MulopRight:mr {: RESULT = mr; :} ;   
+AddopRight		  ::= PEQ  {: RESULT = Code.add+100;:}  | MEQ {: RESULT = Code.sub+100; :} ;          
+         
+Mulop			  ::= MulopLeft:ml {: RESULT = ml;	:}	| MulopRight:mr {: RESULT = mr; :} ;   
 
-MulopLeft  		 ::= MUL {: RESULT = Code.mul;		:}  | DIV {: RESULT = Code.div; 	:} 	| MOD  {: RESULT = Code.rem;     :} ;
+MulopLeft  		  ::= MUL {: RESULT = Code.mul;		:}  | DIV {: RESULT = Code.div; 	:} 	| MOD  {: RESULT = Code.rem;     :} ;
 
-MulopRight		 ::= MUEQ {: RESULT = Code.mul+100; :} 	| DEQ {: RESULT = Code.div+100;	:}	| MOEQ {: RESULT = Code.rem+100; :} ;   
-                  
-    
-     
-                       
-
-				    
-
-
-
-
- 
+MulopRight		  ::= MUEQ {: RESULT = Code.mul+100;:} 	| DEQ {: RESULT = Code.div+100;	:}	| MOEQ {: RESULT = Code.rem+100; :} ;   

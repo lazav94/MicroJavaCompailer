@@ -59,7 +59,7 @@ public class MJParserTest {
 		Reader br = null;
 		try {
 			//File sourceCode = new File(inputFilePath);
-			File sourceCode = new File("test/semantic/ARRAYS.mj");
+			File sourceCode = new File("test/semantic/VARAGRS_ASOCIJATIVNOST.mj");
 			s.log.info("Compiling source file: " + sourceCode.getAbsolutePath());
 			
 			br = new BufferedReader(new FileReader(sourceCode));
@@ -88,7 +88,7 @@ public class MJParserTest {
 	        }
 	        
 	        /* Asocijativnos test*/
-        	int a, b, c,d ;
+        /*	int a, b, c,d ;
         	
         	a = 32;
         	b = 4;
@@ -105,7 +105,7 @@ public class MJParserTest {
         	//  a +=   b  /= 2 *  (c -= 15 / 3 + 2 * 3 );
         	// a +=   b  /= 2 *  c -= 15 / 3 + 2 * 3 ;
         	 
-	        System.out.println("a: " + a + '\t' + "b: "+ b + '\t' + "c: "+ c + '\t' + "d: "+ d);
+	        System.out.println("a: " + a + '\t' + "b: "+ b + '\t' + "c: "+ c + '\t' + "d: "+ d);*/
         /**/
 	      
 	        

@@ -511,13 +511,26 @@ public class Singleton {
 					s = parser.lastVarType;
 
 				if (parser.isClass) {
-					if (!parser.isMethod)
+					if (!parser.isMethod) {
 						temp = Tab.insert(Obj.Fld, name, s);
-					else
-						temp = Tab.insert(Obj.Var, name, s);
+						action.thisFld.add(temp);
 
-					if (parser.isStaticFld)
-						(action.staticFldMap.get(action.currentClass.getType())).add(temp);
+						if (!action.isActPar) {
+							if (parser.isStaticFld)
+								(action.staticFldMap.get(action.currentClass.getType())).add(temp);
+							else
+								(action.nonStaticFldMap.get(action.currentClass.getType())).add(temp);
+						}
+					} else {
+
+						temp = Tab.insert(Obj.Var, name, s);
+						if (!action.isActPar) {
+							if (parser.isStatic)
+								(action.staticFldMap.get(action.currentClass.getType())).add(temp);
+							else
+								(action.nonStaticFldMap.get(action.currentClass.getType())).add(temp);
+						}
+					}
 
 				} else
 					Tab.insert(Obj.Var, name, s);
@@ -547,9 +560,11 @@ public class Singleton {
 	 * metodu unutrasnje klase ili globalnu funkciju glavnog programa.
 	 */
 	public Obj checkMethodCallDesignator(Obj func, boolean factor, int line) {
+
 		if (func.getKind() != Obj.Meth)
 			semanticError(line,
-					"Designator mora oznacavati staticku ili nestaticku metodu unutrasnje klase ili globalnu funkciju glavnog programa!");
+					"Designator mora oznacavati staticku ili nestaticku metodu unutrasnje klase ili globalnu funkciju glavnog programa! ' "
+							+ func.getName());
 
 		if (parser.isMain == true)
 			parser.calledFuncMain++;
@@ -561,6 +576,7 @@ public class Singleton {
 		action.isActPar = true;
 
 		if (Obj.Meth == func.getKind()) {
+
 			sintaxInfo("Pronadjen poziv funkcije: '" + func.getName() + "' na liniji " + line);
 			return func;
 
@@ -638,7 +654,7 @@ public class Singleton {
 
 				if (action.parentClass != null) {
 					for (Obj staticFld : action.staticFldMap.get(action.parentClass)) {
-						if (staticFld.getKind() == Obj.Meth
+						if (staticFld != null && staticFld.getKind() == Obj.Meth
 								&& staticFld.getName().equals(action.currentMethod.getName()))
 							semanticError("Metoda sa imenom: " + staticFld.getName()
 									+ " se ne moze redefinisati jer je ona staticna u nadklasi date klase!");
@@ -658,8 +674,15 @@ public class Singleton {
 
 			// counting
 			parser.methods++;
-			if (parser.isClass == true)
+			if (parser.isClass == true) {
+				if (parser.isStatic) {
+
+					action.nonStaticFldMap.get(action.currentClass.getType()).add(temp);
+				} else {
+					action.staticFldMap.get(action.currentClass.getType()).add(temp);
+				}
 				parser.defInnerClassMeth++;
+			}
 
 		} else
 			sintaxError(line, "Simbol sa imenom: '" + name
@@ -729,16 +752,19 @@ public class Singleton {
 	public void methodEnd() {
 
 		if (!action.methodErrorDetected) {
-			if (parser.isStatic)
-				action.staticFldMap.get(action.currentClass.getType()).add(action.currentMethod);
-
+			if (parser.isClass) {
+				if (parser.isStatic)
+					action.staticFldMap.get(action.currentClass.getType()).add(action.currentMethod);
+				else
+					action.nonStaticFldMap.get(action.currentClass.getType()).add(action.currentMethod);
+			}
 			Tab.closeScope();
 
 		}
 		parser.returnType = Tab.noType;
 
-		if (action.currentMethod.getName().equals("main"))
-			;
+		// if (action.currentMethod.getName().equals("main"))
+		// ;
 		parser.isMain = false;
 		parser.isStatic = false;
 		parser.isMethod = false;
@@ -1005,15 +1031,17 @@ public class Singleton {
 		Obj temp = Tab.currentScope.findSymbol(className);
 
 		if (temp == null) {
-			action.currentClass = Tab.insert(Obj.Type, className, new Struct(Struct.Class));
-			action.staticFldMap.put(action.currentClass.getType(), new ArrayList<Obj>());
-			action.parentClass = extendClassType;
 
 			if (extendClassType.getKind() == Struct.Class) {
-				Struct s = new Struct(Struct.Class, extendClassType);
-				action.currentClass = Tab.insert(Obj.Type, className, s);
+				action.parentClass = extendClassType;
+
+				action.currentClass = Tab.insert(Obj.Type, className, new Struct(Struct.Class));
 				Tab.openScope();
-				Tab.insert(Obj.Fld, "SUPER:", extendClassType);
+				Tab.insert(Obj.Fld, "super", extendClassType);
+
+				action.staticFldMap.put(action.currentClass.getType(), new ArrayList<Obj>());
+				action.nonStaticFldMap.put(action.currentClass.getType(), new ArrayList<Obj>());
+
 			} else {
 				sintaxError(line, "Tip iz koje se izvodi klasa " + className + " nije klasnog tipa.");
 				action.currentClass = Tab.noObj;
@@ -1029,8 +1057,8 @@ public class Singleton {
 		Tab.closeScope();
 		parser.isClass = false;
 
-		printStaticField(action.currentClass.getType());
-
+		// printStaticField(action.currentClass.getType());
+		action.thisFld = new ArrayList<Obj>();
 		action.currentClass = Tab.noObj;
 		action.parentClass = null;
 
@@ -1051,10 +1079,10 @@ public class Singleton {
 		else {
 			action.currentClass = Tab.insert(Obj.Type, className, new Struct(Struct.Class));
 			Tab.openScope();
-
 			classScope.put(action.currentClass.getType(), Tab.currentScope());
 
 			action.staticFldMap.put(action.currentClass.getType(), new ArrayList<Obj>());
+			action.nonStaticFldMap.put(action.currentClass.getType(), new ArrayList<Obj>());
 		}
 
 	}
@@ -1077,15 +1105,19 @@ public class Singleton {
 	public static boolean first = false;
 
 	public void changeToGlobalScope(Obj classObj) {
-		System.out.println(classObj.getName());
-		temp = Tab.currentScope;
-		Tab.currentScope = classScope.get(classObj.getType());
-		System.out.println("Scope changed");
+		if (!"this".equals(classObj.getName())) {
+			System.out.println(classObj.getName());
+			temp = Tab.currentScope;
+			Tab.currentScope = classScope.get(classObj.getType());
+			System.out.println("Scope changed");
+		}
 	}
 
-	public void resetScope() {
-		Tab.currentScope = temp;
-		temp = null;
+	public void resetScope(Obj classObj) {
+		if (!"this".equals(classObj.getName())) {
+			Tab.currentScope = temp;
+			temp = null;
+		}
 	}
 
 	public boolean isMethodWithVarArgs(Obj method) {
@@ -1138,7 +1170,6 @@ public class Singleton {
 				if (isMethodWithVarArgs(symbol)) {
 
 					action.varArgsType = getVarArgsType(symbol);
-
 					action.varArgsStack.push(new ArrayList<Obj>());
 					// System.out.println("Var Args stack push " +
 					// action.varArgsStack.size());
@@ -1158,9 +1189,59 @@ public class Singleton {
 			msg.append(designatorName + "' " + " tipa: " + getTypeName(symbol.getType().getKind()));
 			sintaxInfo(line, msg.toString());
 
-		} else
-			sintaxError(line, "Simbol '" + designatorName + "' ne postoji u tabeli simbola!");
+		} else {
+			if (!parser.isClass) {
+				System.out.println("LAST" + parser.lastDesignator.peek().getName());
 
+				if (isClassType(parser.lastDesignator.peek())) {
+					List<Obj> list = getAllClassFld(parser.lastDesignator.peek());
+					symbol = Tab.noObj;
+					for (Obj o : list) {
+						if (o != null && o.getName().equals(designatorName)) {
+							symbol = o;
+							if (isMethod(o)) {
+								action.currentMethodStack.push(o);
+								addFormalParam(o);
+								if (isMethodWithVarArgs(o)) {
+									action.varArgsType = getVarArgsType(o);
+									action.varArgsStack.push(new ArrayList<Obj>());
+								}
+							}
+							return symbol;
+						}
+					}
+				}
+				sintaxError(line, "Simbol '" + designatorName + "' ne postoji u tabeli simbola!");
+			} else { // ako je u klasi
+
+				if ("this".equals(designatorName) || "super".equals(designatorName)) {
+					return new Obj(Obj.Fld, designatorName, Tab.nullType);
+				} else {
+
+					List<Obj> list = getAllClassFld(action.currentClass);
+
+					symbol = Tab.noObj;
+					for (Obj o : list) {
+						if (o != null && o.getName().equals(designatorName)) {
+							symbol = o;
+							if (isMethod(o)) {
+								action.currentMethodStack.push(o);
+								addFormalParam(o);
+								if (isMethodWithVarArgs(o)) {
+									action.varArgsType = getVarArgsType(o);
+									action.varArgsStack.push(new ArrayList<Obj>());
+								}
+							}
+							return symbol;
+						}
+					}
+					if (symbol == Tab.noObj)
+						semanticError(line, "Ne postoji simbol u tabeli simbola");
+				}
+
+			}
+			return symbol;
+		}
 		return symbol;
 	}
 
@@ -1171,17 +1252,24 @@ public class Singleton {
 			return Tab.noObj;
 		}
 
-		Struct designtatorType = ((isArray(designator)) ? designator.getType().getElemType() : designator.getType());
-		Struct exprType = ((isArray(expr)) ? expr.getType().getElemType() : expr.getType());
+		if (isClassType(designator) && isClassType(expr)) {
+			// TODO
+		} else {
+			Struct designtatorType = ((isArray(designator)) ? designator.getType().getElemType()
+					: designator.getType());
+			Struct exprType = ((isArray(expr)) ? expr.getType().getElemType() : expr.getType());
 
-		if (isArray(exprType)) {
-			exprType = exprType.getElemType();
-		}
+			if (isArray(exprType)) {
+				exprType = exprType.getElemType();
+			}
 
-		if (!designtatorType.equals(exprType)) {
-			semanticError(line, "Leva (" + getTypeName(designtatorType.getKind()) + ") i desna ("
-					+ getTypeName(exprType.getKind()) + ") strana kod dodele vrednosti nisu kopmatibilne (assignop)");
-			return Tab.noObj;
+			if (!designtatorType.equals(exprType)) {
+				semanticError(line,
+						"Leva (" + getTypeName(designtatorType.getKind()) + ") i desna ("
+								+ getTypeName(exprType.getKind())
+								+ ") strana kod dodele vrednosti nisu kopmatibilne (assignop)");
+				return Tab.noObj;
+			}
 		}
 
 		sintaxInfo("Izvrena operacija = (assignop)");
@@ -1258,6 +1346,62 @@ public class Singleton {
 		return true;
 	}
 
+	public List<Obj> getAllClassFld(Obj classObj) {
+
+		List<Obj> list = new ArrayList<Obj>();
+
+		if (parser.isClass) {
+			list = new ArrayList<Obj>(action.thisFld);
+			if (action.parentClass != null) {
+				list.addAll(action.nonStaticFldMap.get(action.parentClass));
+				list.addAll(action.staticFldMap.get(action.parentClass));
+			}
+		} else {
+
+			list.addAll(new ArrayList<Obj>(classObj.getType().getMembers()));
+
+			Obj superObj = Tab.noObj;
+			for (Obj o : list) {
+				if ("super".equals(o.getName())) {
+					superObj = o;
+					break;
+				}
+			}
+			if (superObj != Tab.noObj)
+				list.addAll(getAllClassFld(superObj));
+		}
+
+		// Obrisi sve null
+		for (int i = 0; i < list.size(); i++)
+			if (list.get(i) == null)
+				list.remove(i);
+
+		return list;
+	}
+
+	public List<Obj> getAllStaticField(Obj classObj) {
+
+		List<Obj> staticList = action.staticFldMap.get(classObj.getType());
+
+		Obj superObj = Tab.noObj;
+		for (Obj o : classObj.getType().getMembers()) {
+			if ("super".equals(o.getName())) {
+				superObj = o;
+				break;
+			}
+		}
+
+		if (superObj != Tab.noObj)
+			staticList.addAll(getAllStaticField(superObj));
+
+		// Obrisi sve null
+		for (int i = 0; i < staticList.size(); i++)
+			if (staticList.get(i) == null)
+				staticList.remove(i);
+
+		return staticList;
+	}
+
 	/**
 	 * (34) Tip nererminala <i> designator1 </i> mora biti unutrasnja klasa.
 	 * <br>
@@ -1266,53 +1410,52 @@ public class Singleton {
 	 */
 	public Obj designatorDot(Obj designator1, Obj designator2, int line) {
 
+		// Ako je designator Klasa polje mora da bude staticko
 		if (designator1.getKind() == Obj.Type && isClassType(designator1)) {
 			boolean found = false;
-			for (Obj o : action.staticFldMap.get(designator1.getType()))
-				if (designator2.equals(o))
+
+			for (Obj o : getAllStaticField(designator1)) {
+				if (o != null && designator2.getName().equals(o.getName())) {
 					found = true;
-			if (found == false) {
-				semanticError(line, "Kod tacke . (DOT) nije pronadjen staticki desingaor2: " + designator2.getName());
-
-			}
-
-		} else if (isClassType(designator1)) {
-			boolean found = false;
-
-			for (Obj o : new ArrayList<Obj>(designator1.getType().getMembers())) {
-				if (designator2.equals(o)) {
-
-					List<Obj> staticFldlist = action.staticFldMap.get(designator1.getType());
-					if (staticFldlist.contains(o))
-						semanticError(line, "Polje: " + o.getName()
-								+ " je staticko. Ne moze mu se pristupiti preko instance klase. Vec preko imena klase.");
-
-					found = true;
-					break;
+					return o;
 				}
 			}
-			if (found == false)
+			semanticError(line, "Kod tacke . (DOT) nije pronadjen staticki desingaor2: " + designator2.getName());
+			return Tab.noObj;
+
+		} else if (isClassType(designator1)) {
+
+			if (parser.isClass) {
+				List<Obj> list = getAllClassFld(action.currentClass);
+
+				if ("this".equals(designator1.getName()))
+					designator1 = action.currentClass;
+
+				for (Obj o : list) {
+					if (designator2.getName().equals(o.getName())) {
+
+						List<Obj> staticFldlist = action.staticFldMap.get(designator1.getType());
+						if (action.parentClass != null)
+							staticFldlist.addAll(action.staticFldMap.get(action.parentClass));
+
+						if (staticFldlist.contains(o)) {
+							semanticError(line, "Polje: " + o.getName()
+									+ " je staticko. Ne moze mu se pristupiti preko instance klase. Vec preko imena klase.");
+							return Tab.noObj;
+						}
+						return o;
+					}
+				}
 				semanticError(line, "Kod . (DOT) nije pronadjeno ovo polje: " + designator2.getName() + " u klasi "
 						+ designator1.getName());
-		}
-
-		else {
+				return Tab.noObj;
+			} else
+				return designator2;
+		} else {
 			semanticError(line, "Designator 1 kod . (DOT) mora da bude klasa ili klasnog tipa a ne "
 					+ getTypeName(designator1.getType().getKind()));
 			return Tab.noObj;
 		}
-
-		/*
-		 * if(parser.lastDesignator.getType().getKind() == Struct.Class){
-		 * System.out.println("radi!"); RESULT = designatorIden; } else {
-		 * s.sintaxError(designatorIdenleft,
-		 * "Posle . designator mora da bude klasnog tipa "); RESULT = new
-		 * Obj(Obj.Con, "", Tab.noType); } parser.lastDesignator =
-		 * designatorIden;
-		 * 
-		 * RESULT = designatorIden; parser.isDot = false;
-		 */
-		return designator2;
 	}
 
 	/**
@@ -1403,30 +1546,31 @@ public class Singleton {
 
 		return Tab.noObj;
 	}
-	
-	public void loadDelayedObj(Obj obj){
-		if(isArrayElem(obj) && action.onStack == false){
-			Code.load(obj);	
+
+	public void loadDelayedObj(Obj obj) {
+		if (isArrayElem(obj) && action.onStack == false) {
+			Code.load(obj);
 			action.onStack = true;
 		}
 	}
 
 	public void addToStack(Integer op, Obj obj) {
-			if (op.intValue() > 101) {
-				if (isArrayElem(obj)) {
-					Code.put(Code.dup2);
-					Code.load(obj);
-					action.onStack = true;
-				}
+		if (op.intValue() > 101) {
+			if (isArrayElem(obj)) {
+				Code.put(Code.dup2);
+				Code.load(obj);
+				action.onStack = true;
+			}
 
-				if (action.opStack.isEmpty())
-					action.opStack.push(new Stack<>());
+			if (action.opStack.isEmpty())
+				action.opStack.push(new Stack<>());
 
-				action.opStack.peek().add(op);
-				action.objStack.push(obj);
+			action.opStack.peek().add(op);
+			System.out.println("DOAO NA STEK: " + obj.getName());
+			action.objStack.push(obj);
 
-			} else 
-				loadDelayedObj(obj);
+		} else
+			loadDelayedObj(obj);
 	}
 
 	public void calculateExpr() {
@@ -1440,8 +1584,11 @@ public class Singleton {
 					obj = action.objStack.pop();
 				}
 
+				for (Obj o : action.objStack)
+					System.out.println(o.getName());
+
 				calculateOp(op, null, null);
-				
+
 				if (obj != null && op.intValue() > 101 && isArrayElem(obj)) {
 					Obj o = new Obj(Obj.Var, "temp calc op", obj.getType());
 					o.setAdr(Code.pc % 128);
@@ -1454,7 +1601,9 @@ public class Singleton {
 					Code.store(obj);
 					if (op.intValue() > 101) {
 						Code.load(obj);
-						action.onStack = true;
+
+						if (isArray(obj))
+							action.onStack = true;
 
 					}
 				}
@@ -1464,13 +1613,13 @@ public class Singleton {
 		}
 	}
 
-	public Obj exprEnd(Obj addopTerm){
+	public Obj exprEnd(Obj addopTerm) {
 		Obj result = addopTerm;
 		if (action.isLonlyTerm)
 			loadDelayedObj(addopTerm);
 		else
 			result = new Obj(Obj.Con, "complex expr", Tab.intType);
-			
+
 		calculateExpr();
 		return result;
 	}
@@ -1580,6 +1729,8 @@ public class Singleton {
 					&& action.currentMethod.getName().equals(designator.getName()) == false
 					&& (designator.getLevel() != 0 && !list.contains(designator)))
 				semanticError(line, "Static funkija ne moze da koristi nestaticke funkcije!");
+		} else {
+
 		}
 	}
 
@@ -1588,11 +1739,11 @@ public class Singleton {
 
 	public void calculateOp(Integer OP, Obj object, Boolean inc) {
 
-		if (OP.intValue() == 101){
+		if (OP.intValue() == 101) {
 			semanticError("Fatal error, calculate op, check singleton");
 			return;
 		}
-		
+
 		if (OP > 101)
 			OP -= 100;
 		switch (OP) {
@@ -1776,7 +1927,6 @@ public class Singleton {
 		}
 		Code.store(designator);
 
-
 	}
 
 	/**
@@ -1789,7 +1939,8 @@ public class Singleton {
 		Obj o;
 
 		o = new Obj(Obj.Elem, designator.getName() + "[]", designator.getType().getElemType());
-
+		parser.lastDesignator.pop();
+		parser.lastDesignator.push(o);
 		return o;
 
 	}

@@ -1,6 +1,19 @@
-INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\semantic\ARRAYS.mj
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\semantic\VARAGRS_ASOCIJATIVNOST.mj
 INFO   - #2 program
-INFO   - #48 test301
+INFO   - #48 Program
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (2) Ubacena: (globalna) promenljiva sa imenom 'a'
+INFO   - #48 b
+INFO   - #39 ,
+INFO   - (2) Ubacena: (globalna) promenljiva sa imenom 'b'
+INFO   - #48 c
+INFO   - #39 ,
+INFO   - (2) Ubacena: (globalna) promenljiva sa imenom 'c'
+INFO   - #48 d
+INFO   - #38 ;
+INFO   - (2) Ubacena: (globalna) promenljiva sa imenom 'd'
 INFO   - #7 const
 INFO   - #48 int
 INFO   - #48 jedan
@@ -15,204 +28,301 @@ INFO   - #17 =
 INFO   - #47 5
 INFO   - #38 ;
 INFO   - Ubacena nova konstanta: 'pet' vrednosti = 5
-INFO   - #48 int
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - #45 ]
-INFO   - #38 ;
-INFO   - (7) Ubacen novi niz: (globalna) promenljiva sa imenom 'niz'
-INFO   - #48 char
-INFO   - #48 nizch
-INFO   - #44 [
-INFO   - #45 ]
-INFO   - #38 ;
-INFO   - (9) Ubacen novi niz: (globalna) promenljiva sa imenom 'nizch'
-INFO   - #48 bool
-INFO   - #48 nizb
-INFO   - #44 [
-INFO   - #45 ]
-INFO   - #38 ;
-INFO   - (11) Ubacen novi niz: (globalna) promenljiva sa imenom 'nizb'
 INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 printAll
+INFO   - #40 (
+INFO   - (6) Obradjuje se  lokalna funkcija 'printAll'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #41 )
+INFO   - (8) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 b
+INFO   - #41 )
+INFO   - (8) Koriscenje (globalna) promenljive 'b'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 c
+INFO   - #41 )
+INFO   - (8) Koriscenje (globalna) promenljive 'c'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 d
+INFO   - #41 )
+INFO   - (8) Koriscenje (globalna) promenljive 'd'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (8) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #48 a
+INFO   - #17 =
+INFO   - (9) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 32
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 b
+INFO   - #17 =
+INFO   - (9) Koriscenje (globalna) promenljive 'b'  tipa: int
+INFO   - #47 4
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 c
+INFO   - #17 =
+INFO   - (9) Koriscenje (globalna) promenljive 'c'  tipa: int
+INFO   - #47 15
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 d
+INFO   - #17 =
+INFO   - (9) Koriscenje (globalna) promenljive 'd'  tipa: int
+INFO   - #47 2
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 sum
+INFO   - #40 (
+INFO   - (12) Obradjuje se  lokalna funkcija 'sum'
+INFO   - #48 int
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #48 a
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 s
+INFO   - #38 ;
+INFO   - (12) Ubacena: (lokalna) promenljiva za funkciju sum sa imenom 's'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (12) Ubacena: (lokalna) promenljiva za funkciju sum sa imenom 'i'
+INFO   - #42 {
+INFO   - #48 s
+INFO   - #17 =
+INFO   - (13) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (14) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (14) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (14) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #48 len
+INFO   - #40 (
+INFO   - (14) Koriscenje metode 'len'  tipa: int
+INFO   - #48 a
+INFO   - Pronadjen poziv funkcije: 'len' na liniji 14
+INFO   - #41 )
+INFO   - (14) Koriscenje (lokalna) niza 'a'  tipa: array
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (14) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #48 s
+INFO   - #31 +=
+INFO   - (15) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (15) Koriscenje (lokalna) niza 'a'  tipa: array
+INFO   - #48 i
+INFO   - #45 ]
+INFO   - (15) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #13 print
+DEBUG  - (15) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+INFO   - #48 s
+INFO   - #41 )
+INFO   - (16) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #38 ;
+INFO   - #16 return
+INFO   - #48 s
+INFO   - #38 ;
+INFO   - (17) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #43 }
 INFO   - #6 void
 INFO   - #48 main
 INFO   - #40 (
-INFO   - (17) Obradjuje se  lokalna funkcija 'main'
+INFO   - (21) Obradjuje se  lokalna funkcija 'main'
 INFO   - #41 )
 INFO   - #48 int
-INFO   - #48 bodovi
+INFO   - #48 niz
+INFO   - #44 [
+INFO   - #45 ]
 INFO   - #38 ;
-INFO   - (17) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'bodovi'
+INFO   - (21) Ubacen novi niz: (lokalna) promenljiva za funkciju main sa imenom 'niz'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (21) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
 INFO   - #42 {
 INFO   - #48 niz
 INFO   - #17 =
-INFO   - (21) Koriscenje (globalna) niza 'niz'  tipa: array
+INFO   - (24) Koriscenje (lokalna) niza 'niz'  tipa: array
 INFO   - #15 new
 INFO   - #48 int
 INFO   - #44 [
-INFO   - #47 3
+INFO   - #47 5
 INFO   - #45 ]
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (22) Koriscenje (globalna) niza 'niz'  tipa: array
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (27) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (27) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 4
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #28 >=
+INFO   - (27) Koriscenje (lokalna) promenljive 'i'  tipa: int
 INFO   - #47 0
-INFO   - #45 ]
-INFO   - #17 =
-INFO   - #47 7
 INFO   - #38 ;
-INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #37 --
+INFO   - (27) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
 INFO   - #48 niz
 INFO   - #44 [
-INFO   - (23) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 1
+INFO   - (28) Koriscenje (lokalna) niza 'niz'  tipa: array
+INFO   - #48 i
 INFO   - #45 ]
+INFO   - (28) Koriscenje (lokalna) promenljive 'i'  tipa: int
 INFO   - #17 =
-INFO   - #47 13
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (28) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 a
+DEBUG  - (28) Smanjena dubina for petlje, dubina = 0
+INFO   - #17 =
+INFO   - (31) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 32
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (24) Koriscenje (globalna) niza 'niz'  tipa: array
+INFO   - #48 b
+INFO   - #17 =
+INFO   - (32) Koriscenje (globalna) promenljive 'b'  tipa: int
+INFO   - #47 4
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 c
+INFO   - #17 =
+INFO   - (33) Koriscenje (globalna) promenljive 'c'  tipa: int
+INFO   - #47 15
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 d
+INFO   - #17 =
+INFO   - (34) Koriscenje (globalna) promenljive 'd'  tipa: int
 INFO   - #47 2
-INFO   - #45 ]
-INFO   - #17 =
-INFO   - #47 25
 INFO   - #38 ;
 INFO   - Izvrena operacija = (assignop)
-INFO   - #48 bodovi
-INFO   - #17 =
-INFO   - (25) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
+INFO   - #48 printAll
 INFO   - #40 (
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (25) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 1
-INFO   - #45 ]
-INFO   - #34 /=
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (25) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
+INFO   - (35) Koriscenje metode 'printAll'  tipa: void
 INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'printAll' na liniji 35
 INFO   - #38 ;
-INFO   - Izvrena operacija = (assignop)
-INFO   - #13 print
-INFO   - #40 (
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (26) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 1
-INFO   - #45 ]
-INFO   - #41 )
-INFO   - #38 ;
-INFO   - #13 print
-INFO   - #40 (
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (27) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
-INFO   - #41 )
-INFO   - #38 ;
-INFO   - #13 print
-INFO   - #40 (
-INFO   - #48 bodovi
-INFO   - #41 )
-INFO   - (28) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
-INFO   - #38 ;
-INFO   - #48 bodovi
-INFO   - #17 =
-INFO   - (30) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
-INFO   - #47 3
-INFO   - #38 ;
-INFO   - Izvrena operacija = (assignop)
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 2
-INFO   - #45 ]
-INFO   - #34 /=
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
-INFO   - #18 +
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 1
-INFO   - #45 ]
-INFO   - #18 +
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
-INFO   - #19 -
-INFO   - #48 bodovi
-INFO   - #18 +
-INFO   - (32) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
-INFO   - #47 2
-INFO   - #18 +
-INFO   - #40 (
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
+INFO   - #48 d
 INFO   - #31 +=
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 1
-INFO   - #45 ]
-INFO   - #32 -=
-INFO   - #47 20
+INFO   - (49) Koriscenje (globalna) promenljive 'd'  tipa: int
+INFO   - #48 a
+INFO   - #33 *=
+INFO   - (49) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #48 b
+INFO   - #31 +=
+INFO   - (49) Koriscenje (globalna) promenljive 'b'  tipa: int
+INFO   - #47 3
 INFO   - #18 +
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (32) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
-INFO   - #41 )
-INFO   - #38 ;
-INFO   - Izvrena operacija = (assignop)
-INFO   - #13 print
+INFO   - #48 c
+INFO   - #21 /
+INFO   - (49) Koriscenje (globalna) promenljive 'c'  tipa: int
+INFO   - #47 5
+INFO   - #18 +
+INFO   - #48 sum
 INFO   - #40 (
-INFO   - #48 niz
-INFO   - #44 [
-INFO   - (34) Koriscenje (globalna) niza 'niz'  tipa: array
-INFO   - #47 0
-INFO   - #45 ]
-INFO   - #41 )
-INFO   - #38 ;
-INFO   - #13 print
+INFO   - (49) Koriscenje metode 'sum'  tipa: int
+INFO   - #47 1
+INFO   - Pronadjen poziv funkcije: 'sum' na liniji 49
+INFO   - #39 ,
+INFO   - #48 sum
 INFO   - #40 (
+INFO   - (49) Koriscenje metode 'sum'  tipa: int
+INFO   - #47 3
+INFO   - Pronadjen poziv funkcije: 'sum' na liniji 49
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #41 )
+INFO   - #39 ,
 INFO   - #48 niz
 INFO   - #44 [
-INFO   - (35) Koriscenje (globalna) niza 'niz'  tipa: array
+INFO   - (49) Koriscenje (lokalna) niza 'niz'  tipa: array
+INFO   - #47 4
+INFO   - #45 ]
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - #47 5
+INFO   - #41 )
+INFO   - #22 %
+INFO   - #47 3
+INFO   - #18 +
+INFO   - #48 sum
+INFO   - #40 (
+INFO   - (49) Koriscenje metode 'sum'  tipa: int
+INFO   - #47 1
+INFO   - Pronadjen poziv funkcije: 'sum' na liniji 49
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #39 ,
+INFO   - #48 niz
+INFO   - #44 [
+INFO   - (49) Koriscenje (lokalna) niza 'niz'  tipa: array
 INFO   - #47 1
 INFO   - #45 ]
-INFO   - #41 )
-INFO   - #38 ;
-INFO   - #13 print
-INFO   - #40 (
+INFO   - #39 ,
 INFO   - #48 niz
 INFO   - #44 [
-INFO   - (36) Koriscenje (globalna) niza 'niz'  tipa: array
+INFO   - (49) Koriscenje (lokalna) niza 'niz'  tipa: array
 INFO   - #47 2
 INFO   - #45 ]
 INFO   - #41 )
+INFO   - #20 *
+INFO   - #47 5
 INFO   - #38 ;
-INFO   - #13 print
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 printAll
 INFO   - #40 (
-INFO   - #48 bodovi
+INFO   - (51) Koriscenje metode 'printAll'  tipa: void
 INFO   - #41 )
-INFO   - (37) Koriscenje (lokalna) promenljive 'bodovi'  tipa: int
+INFO   - Pronadjen poziv funkcije: 'printAll' na liniji 51
 INFO   - #38 ;
 INFO   - #43 }
 INFO   - #43 }
@@ -224,13 +334,13 @@ INFO   -
 
 INFO   - 
 --------------------------------- A -----------------------------------
-INFO   - Broj definicija globalnih promenljivih = 3
-INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 1
+INFO   - Broj definicija globalnih promenljivih = 4
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 2
 INFO   - Broj definicije globalnih konstanti = 2
 INFO   - 
 --------------------------------- B -----------------------------------
-INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 1
-INFO   - Broj poziv funkicje u telu metode main = 7
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 3
+INFO   - Broj poziv funkicje u telu metode main = 5
 INFO   - Broj delaracija formalnih argumenata funkcije  = 0
 INFO   - 
 --------------------------------- C -----------------------------------
