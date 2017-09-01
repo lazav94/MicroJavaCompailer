@@ -1,0 +1,46 @@
+program Program
+	
+	class O { int oo; }
+	class N { O o; }
+	class M { N n; }
+	class L { M m; }
+	class K { L l; }
+	class J { K k; }
+	class I { J j; }
+	class H { I i; }
+	class G { H h; }
+	class F { G g; }
+	class E { F f; }
+	class D { E e; }
+	class C { D d; }
+	class B { C c; }
+	class A { B b; }
+	
+	
+	
+{
+	void main() A a; B b;
+	{
+	
+		A a = new A;
+		a.b = new B;
+		a.b.c = new C;
+		a.b.c.d = new D;
+		a.b.c.d.e = new E;
+		a.b.c.d.e.f = new F;
+		a.b.c.d.e.f.g = new G;
+		a.b.c.d.e.f.g.h = new H;
+		a.b.c.d.e.f.g.h.i = new I;
+		a.b.c.d.e.f.g.h.i.j= new J;
+		a.b.c.d.e.f.g.h.i.j.k = new K;
+		a.b.c.d.e.f.g.h.i.j.k.l = new L;
+		a.b.c.d.e.f.g.h.i.j.k.l.m = new M;
+		a.b.c.d.e.f.g.h.i.j.k.l.m.n= new N;
+		a.b.c.d.e.f.g.h.i.j.k.l.m.n.o = new O;
+		
+		 a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.oo = -1;
+		
+		
+		
+	}
+}

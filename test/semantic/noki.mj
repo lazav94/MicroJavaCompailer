@@ -1,0 +1,129 @@
+program P
+	const int a = 1, b = 2;
+	const bool bb = false;
+	
+	int aa, bbb [], p, q, r;
+	int c;
+	char ddd;
+	bool e;
+	
+	int check;
+	
+	const char ch = 'c';
+	
+	char chh;
+	
+	char niz_ch[];
+{
+	char varArgs(int a, int b[], bool boo, int ... param) char cc[]; bool eee; char niz_ch; {
+		print(param[0]);
+		print(param[1]);
+		print(param[2]);
+		print(param[3]);
+		print(param[4]);
+		
+		niz_ch = 'd';
+		if(check == 0) {
+			check = 1; 
+			varArgs(a, b, boo, c, c, c, c, c);
+			if(true) {
+				ddd = 'b';
+			} else {
+				ddd = 'p';
+				print('B');
+			}
+				print('C');
+			eee = true;
+			return ddd;
+		} else {
+			print('A');
+			return niz_ch;
+		}
+	}
+	
+	void varArgs2(int a, int b) {}
+	int varArgs3() { return 18; }
+	int varArgs4(bool b) { if(b == true) return varArgs4(false); else return 64; }
+	int varArgs5(int a, int ... varg) { print(eol);print(eol); print(varg[0]); print(varg[1]); print(varg[2]); print(varg[3]); print(varg[4]); print(eol); return 32; }
+
+	void main() int i; bool prin; char citaj[]; int iii; int j; {
+		print(5);
+		print(eol);
+		c = 48;
+		bbb = new int[7];
+		niz_ch = new char[10];
+		bbb[0] = 1;
+		bbb[1] = 21;
+		bbb[4] = 5;
+		aa = len(bbb);
+		
+		varArgs2(1, 2);
+		
+		check = 0; j = 90;
+		iii = 5;
+		ddd = varArgs(aa, bbb, bb, varArgs4(true), c, varArgs4(false), iii -= iii += j /= j += 0, varArgs3());
+		niz_ch[2] = varArgs(aa, bbb, bb, c, varArgs5(3, 1, 2, 3, 4, 5), c, varArgs5(8, 555, 55, 5, 55,9), c);
+		
+	
+		prin = true;
+		if(ddd == 'b' && niz_ch[2] == 'd' || prin == true) {
+			print(eol);
+			print(eol);
+		}
+		print(ddd);
+		print(niz_ch[2]);
+		print(eol);print(eol);		
+		
+		
+		bbb[1]--;
+		aa++; c--;
+		aa *= c -= 3;
+		q = 40;
+		p = 5;
+		r = 2;
+		bbb[1] += bbb[4] -= bbb[0] -= 0;
+		
+		p *= q /= r *= 5;	
+		
+		print(p);
+		print(eol);
+		print(aa);
+		print(eol);
+		print(c);
+		print(eol);
+		print(bbb[1]);
+		print(bbb[bbb[(c+=aa-=aa) - c]]);	
+		print(eol);
+		print(len(bbb), 10);
+		print(eol);
+		print(p);
+		print(eol);
+		
+		read(p);
+		
+		if(bbb[1] > bbb[2*1])
+			print('O'); print(eol);
+		
+		for(i = 0; i < 5; i++) {
+			print('i');
+			for(; i < 2; i++) {
+				break;
+				print('j');
+			}
+		}
+		
+		
+		print(aa); print(p);print(q);print(r);
+		
+		read(prin);
+		print(prin);
+		print(chr(97));print(eol);
+		
+		citaj = new char[5];
+		print(eol);print('C');print('I');print('T');print('A');print('J');print(eol);
+		read(citaj[0]);read(citaj[1]);read(citaj[2]);read(citaj[3]);read(citaj[4]);
+		print(eol);print(citaj[0]);print(citaj[1]);print(citaj[2]);print(citaj[3]);print(citaj[4]);
+		
+		print(len(bbb));print(eol);
+	}
+}

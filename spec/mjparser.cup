@@ -86,6 +86,7 @@ parser  code {:
 				boolean isAssign     = false;      // da li se radi dodela vrednosti
 				boolean actParsList  = false;
 				int forLoopLevel      = 0;         // Nivo ugnezdenosti for petlje (0 - ako se ne nalazimo u for petlji)
+				int ifLevel      = 0;         // Nivo ugnezdenosti ifa petlje (0 - ako se ne nalazimo u for petlji)
 	
 	
 				boolean errorDectected = false;	   // Flag: true - u slucaju bilo kakve greske
@@ -155,11 +156,11 @@ action code {:
 				LinkedList<Obj> arrayStack = new LinkedList<Obj>();
 				boolean isLonlyFactor = false;
 				boolean isLonlyTerm = false;
-				
-				
+
 				boolean onStack = false;
 							
 	 :}
+	 
 
 // Terminals
 terminal PROGRAM, CLASS, EXTENDS, STATIC, VOID, CONST;
@@ -169,6 +170,7 @@ terminal SEMI, COMMA , LPAREN, RPAREN, LBRACE, RBRACE, QLBRACE, QRBRACE, DOT;
 
 terminal Integer NUMBER;
 terminal String  IDENT ,BOOL ,ASCII;
+
 
 
 // Non terminals
@@ -463,9 +465,9 @@ ClassDecl       ::= ClassDeclPreExt:className EXTENDS
 					ClassDeclPreExt:className {: s.addClass(className, classNameleft); :}
 					LBRACE ClassBody RBRACE   {: s.endClass(); :}
 				    |
-				    ClassDeclPreExt EXTENDS  error LBRACE ClassBody RBRACE {: s.classError(); :}
+				    ClassDeclPreExt EXTENDS  error LBRACE ClassBody RBRACE {: s.endClass(); s.classError(); :}
 				    |			
-				    error   LBRACE ClassBody RBRACE {: s.classError();  :}
+				    error   LBRACE ClassBody RBRACE {: s.endClass(); s.classError();  :}
 					;
 					
 
@@ -523,6 +525,9 @@ Statement       ::=   READ LPAREN Designator:designator
 					  RPAREN SEMI
 					 |
 					 DesignatorStatement SEMI
+					 {: 
+					 	parser.lastDesignator = new Stack<Obj>();
+					 :}
 					 |
 					 error SEMI
 					 {:
@@ -534,6 +539,7 @@ Statement       ::=   READ LPAREN Designator:designator
 				     |
 			    	 IF LPAREN Condition:cond
 			    	 {:
+			    	 	parser.ifLevel++;
 					  	s.ifCondition();
 			    	 :}
 			    	 RPAREN Statement 
@@ -542,7 +548,8 @@ Statement       ::=   READ LPAREN Designator:designator
 					 :}
 			    	 ElseStatement 
 			    	 {:
-						s.ifAfterElseStatement();			
+						s.ifAfterElseStatement();	
+						parser.ifLevel--;		
 			    	 :}
 			    	 |
 			    	 IF LPAREN error RPAREN Statement ElseStatement
@@ -681,12 +688,14 @@ DesignatorStatement ::= Designator:designator {: parser.assignopDesignator = des
 						:}
 						Expr:expr
 						{:
-							RESULT = s.designatorAssignop(designator, expr, designatorleft);
-
-							if(op.intValue() > 101)
-								s.calculateOp(op.intValue(), null, null);
 								
-							Code.store(designator);
+							
+								RESULT = s.designatorAssignop(designator, expr, designatorleft);
+								
+								if(op.intValue() > 101)
+									s.calculateOp(op.intValue(), null, null);
+								
+								Code.store(designator);
 							
 						:}
 					    |
@@ -727,21 +736,25 @@ ActPars 		::= {: isActPar = true; :}  ActParsList {: isActPar = false; :}
 					    
 ActParsList     ::= ActParsList COMMA Expr:expr 
 					{: 
-						if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
-							s.checkParam(expr,exprleft); 
-						
-						else if(!parser.isMethod || parser.isMain){
-							s.checkParam(expr,exprleft); 
-						}
+						if(!currentMethodStack.isEmpty()){
+							if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
+								s.checkParam(expr,exprleft); 
+							
+							else if(!parser.isMethod || parser.isMain){
+								s.checkParam(expr,exprleft); 
+							}
+						} 
 					:}
 					|
 					Expr:expr  
 					{:
-						if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
-							s.checkParam(expr,exprleft); 
-						else
-						if(!parser.isMethod || parser.isMain)
-							s.checkParam(expr,exprleft); 	
+						if(!currentMethodStack.isEmpty()){
+							if(!parser.isMain && s.isMethodWithVarArgs(currentMethodStack.peek()))
+								s.checkParam(expr,exprleft); 
+							else
+							if(!parser.isMethod || parser.isMain)
+								s.checkParam(expr,exprleft); 	
+						}
 					:} 
 					;
 						
@@ -790,7 +803,8 @@ CondFact		::= Expr:expr1 Relop:relop Expr:expr2
 					;
 
 			
-Expr   			::=  MINUS AddopTermList:addopTerm
+			
+Expr   			::= MINUS AddopTermList:addopTerm
 					{: 
 						if(!s.isInt(addopTerm)){
 							s.semanticError(addopTermleft, "Kod - (MINUS) expr, term mora biti tipa int, a ne: " + s.getTypeName(addopTerm.getType().getKind()));
@@ -802,7 +816,7 @@ Expr   			::=  MINUS AddopTermList:addopTerm
 					:}
 					|
 					{: opStack.push(new Stack<>()); :}
-					AddopTermList:addopTerm
+					AddopTermList:addopTerm 
 					{: 
 						RESULT = s.exprEnd(addopTerm);
 					:}
@@ -825,7 +839,7 @@ AddopTermList   ::= AddopTermList:atl Addop:op
 						
 					:}
 					|	
-					Term:term
+					Term:term 
 					{: 
 						isLonlyTerm = true;
 						RESULT = term; 
@@ -842,6 +856,8 @@ Term			::= MulopFactorList:mfl
 						*/
 				
 					:} ; 
+					
+
 
 MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 					{:
@@ -849,7 +865,7 @@ MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 						s.addToStack(op, mfl);
 							
 					:}
-					 Factor:factor
+					 Factor:factor 
 					{:
 						s.factor(factor, mfl, op, mflleft);
 						
@@ -861,15 +877,17 @@ MulopFactorList ::=  MulopFactorList:mfl  Mulop:op
 						RESULT = factor;
 					:}
 					|
-					Factor:factor
+					Factor:factor 
 					{: 
 						isLonlyFactor = true;
 						RESULT = factor;
 						
 					:}
 					;
+		
 			
-Factor      	::= Designator:designator 
+										
+Factor      	::= Designator:designator
 					{:
 						RESULT = designator;
 						if(!s.isArrayElem(designator)){
@@ -918,9 +936,9 @@ Factor      	::= Designator:designator
 						RESULT = s.factorNew(type,typeleft);
 					:}
 				    |
-					NEW Type QLBRACE Expr:expr QRBRACE
+					NEW Type:type QLBRACE Expr:expr QRBRACE
 					{:
-					    RESULT = s.factorArray(expr, exprleft);
+					    RESULT = s.factorArray(expr, type,  exprleft);
 					:}
 					|
 					LPAREN 
@@ -929,10 +947,12 @@ Factor      	::= Designator:designator
 						RESULT = expr; 
 					:}
 					;
-						 
+					
+					
 Designator  	::= DesignatorIdent:designator
 					{: 
-					   parser.lastDesignator.push(designator);						
+					   // parser.lastDesignator.push(designator);
+					  				
 					:}
 					DesignatorList:designatorList 
 					{: 
@@ -948,7 +968,6 @@ DesignatorList  ::= DesignatorList DesignatorElem:designator {: RESULT = designa
 					{: RESULT = Tab.noObj; :}
 					;
 					
-// TODO pogledaj trebaju li ovi flagovi	
 DesignatorElem   ::=DesignatorIdent:designatorIden
 					{:
 						RESULT = designatorIden;
@@ -960,14 +979,17 @@ DesignatorElem   ::=DesignatorIdent:designatorIden
 					:} 
 					DesignatorIdent:designatorIden 
 					{: 
-						System.out.println(parser.lastDesignator.peek().getName() + "\t"+ designatorIden.getName());
-						RESULT = s.designatorDot(parser.lastDesignator.peek(), designatorIden, designatorIdenleft);
+						
+						
+						//System.out.println(parser.lastDesignator.get(parser.lastDesignator.size()-2).getName() + "\t"+ designatorIden.getName());
+						RESULT = s.designatorDot(parser.lastDesignator.get(parser.lastDesignator.size()-2), designatorIden, designatorIdenleft);
 						s.resetScope(parser.lastDesignator.peek());
-						parser.lastDesignator.pop();
+						//parser.lastDesignator.pop();
 					:}
 					|
 					QLBRACE:q
 					{:
+						
 						if(s.designatorArray(parser.lastDesignator.peek(), qleft)){
 							 parser.isArrayElem = true;
 							 RESULT = s.arrayAcces(parser.lastDesignator.peek());
@@ -975,11 +997,14 @@ DesignatorElem   ::=DesignatorIdent:designatorIden
 						else
 							RESULT = Tab.noObj;
 							
+							
 					:}
 					Expr:expr
 					{: 
 						if(!s.exprArray( expr, exprleft))
 							RESULT = Tab.noObj;
+						//parser.lastDesignator.pop();
+						
 						parser.lastDesignator.pop();
 
 					 :}
@@ -990,6 +1015,7 @@ DesignatorElem   ::=DesignatorIdent:designatorIden
 DesignatorIdent  ::= IDENT:symbolName
 					 {:
 					 	RESULT = s.designatorName(symbolName, symbolNameleft);
+					 	parser.lastDesignator.push(RESULT);
 					 	s.staticAccess(RESULT, symbolNameleft);
 					 :};
 					 
@@ -1017,15 +1043,17 @@ Relop			 ::= EQU {: RESULT = Code.eq; :}
 					 | 
 					 GEQ {: RESULT = Code.ge; :} 
 					 ; 
+					 
+
             
-Addop			  ::= AddopLeft:al {: RESULT = al;	:}	| AddopRight:ar {: RESULT = ar; :} ;   
+Addop			  ::= AddopLeft:al {: RESULT = al;	:}	| AddopRight:ar {: RESULT = ar; :};   
 
 AddopLeft		  ::= PLUS {: RESULT = Code.add;	:}	| MINUS {: RESULT = Code.sub;   :} ;
 
 AddopRight		  ::= PEQ  {: RESULT = Code.add+100;:}  | MEQ {: RESULT = Code.sub+100; :} ;          
          
-Mulop			  ::= MulopLeft:ml {: RESULT = ml;	:}	| MulopRight:mr {: RESULT = mr; :} ;   
+Mulop			  ::= MulopLeft:ml {: RESULT = ml;	:}	| MulopRight:mr {: RESULT = mr; :};   
 
-MulopLeft  		  ::= MUL {: RESULT = Code.mul;		:}  | DIV {: RESULT = Code.div; 	:} 	| MOD  {: RESULT = Code.rem;     :} ;
+MulopLeft  		  ::= MUL {: RESULT = Code.mul;		:}  | DIV {: RESULT = Code.div; 	:} 	| MOD  {: RESULT = Code.rem;     :}   ;
 
 MulopRight		  ::= MUEQ {: RESULT = Code.mul+100;:} 	| DEQ {: RESULT = Code.div+100;	:}	| MOEQ {: RESULT = Code.rem+100; :} ;   

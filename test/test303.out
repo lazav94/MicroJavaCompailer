@@ -1,0 +1,1354 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\test303.mj
+INFO   - #2 program
+INFO   - #48 test_303
+INFO   - #7 const
+INFO   - #48 int
+INFO   - #48 cinilac
+INFO   - #17 =
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - Ubacena nova konstanta: 'cinilac' vrednosti = 4
+INFO   - #48 delilac
+INFO   - #17 =
+INFO   - #47 3
+INFO   - #38 ;
+INFO   - Ubacena nova konstanta: 'delilac' vrednosti = 3
+INFO   - #3 class
+INFO   - #48 Predmet
+INFO   - #42 {
+INFO   - Obradjivanje nove klase 'Predmet' na liniji 6
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (8) Ubacena: polje klase: Predmet(globalna) promenljiva sa imenom 'tezina'
+INFO   - #48 char
+INFO   - #48 vrsta
+INFO   - #38 ;
+INFO   - (9) Ubacena: polje klase: Predmet(globalna) promenljiva sa imenom 'vrsta'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 postaviTezinu
+INFO   - #40 (
+INFO   - (12) Obradjuje se  funkcija unutar klase 'postaviTezinu'
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (12) Ubacena: polje klase: Predmet(globalna) promenljiva za funkciju postaviTezinuklase sa imenom 'tezina'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (12) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 tezina
+INFO   - #17 =
+INFO   - (12) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+this	tezina
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (12) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 ucitajTezinu
+INFO   - #40 (
+INFO   - (13) Obradjuje se  funkcija unutar klase 'ucitajTezinu'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #14 read
+INFO   - #40 (
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (13) Koriscenje polja klasa 'tezina'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 ispis
+INFO   - #40 (
+INFO   - (14) Obradjuje se  funkcija unutar klase 'ispis'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 vrsta
+INFO   - #41 )
+INFO   - (14) Koriscenje polja klasa 'vrsta'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (14) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (14) Koriscenje polja klasa 'tezina'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (15) Obradjuje se  funkcija unutar klase 'zapremina'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 Q
+INFO   - #40 (
+INFO   - (16) Obradjuje se  funkcija unutar klase 'Q'
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (16) Koriscenje metode 'zapremina'  tipa: int
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'zapremina' na liniji 16
+INFO   - #20 *
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (16) Koriscenje polja klasa 'tezina'  tipa: int
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 postaviVrstu
+INFO   - #40 (
+INFO   - (17) Obradjuje se  funkcija unutar klase 'postaviVrstu'
+INFO   - #48 char
+INFO   - #48 vrsta
+INFO   - #41 )
+INFO   - (17) Ubacena: polje klase: Predmet(globalna) promenljiva za funkciju postaviVrstuklase sa imenom 'vrsta'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (17) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 vrsta
+INFO   - #17 =
+INFO   - (17) Koriscenje (lokalna) promenljive 'vrsta'  tipa: char
+this	vrsta
+INFO   - #48 vrsta
+INFO   - #38 ;
+INFO   - (17) Koriscenje (lokalna) promenljive 'vrsta'  tipa: char
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #3 class
+INFO   - #48 Sfera
+INFO   - #4 extends
+INFO   - Obradjivanje nove klase 'Sfera' na liniji 21
+INFO   - #48 Predmet
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 r
+INFO   - #38 ;
+INFO   - (23) Ubacena: polje klase: Sfera(globalna) promenljiva sa imenom 'r'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 postaviTezinu
+INFO   - #40 (
+INFO   - (25) Obradjuje se  funkcija unutar klase 'postaviTezinu'
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (25) Ubacena: polje klase: Sfera(globalna) promenljiva za funkciju postaviTezinuklase sa imenom 'tezina'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (25) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 tezina
+INFO   - #17 =
+INFO   - (25) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+this	tezina
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (25) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 vrsta
+INFO   - #17 =
+INFO   - #50 's'
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 postaviPoluprecnik
+INFO   - #40 (
+INFO   - (26) Obradjuje se  funkcija unutar klase 'postaviPoluprecnik'
+INFO   - #48 int
+INFO   - #48 r
+INFO   - #41 )
+INFO   - (26) Ubacena: polje klase: Sfera(globalna) promenljiva za funkciju postaviPoluprecnikklase sa imenom 'r'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (26) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 r
+INFO   - #17 =
+INFO   - (26) Koriscenje (lokalna) promenljive 'r'  tipa: int
+this	r
+INFO   - #48 r
+INFO   - #38 ;
+INFO   - (26) Koriscenje (lokalna) promenljive 'r'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 postaviVrstu
+INFO   - #40 (
+INFO   - #50 's'
+INFO   - Pronadjen poziv funkcije: 'postaviVrstu' na liniji 26
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (27) Obradjuje se  funkcija unutar klase 'zapremina'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 z
+INFO   - #38 ;
+INFO   - (28) Ubacena: polje klase: Sfera(globalna) promenljiva za funkciju zapreminaklase sa imenom 'z'
+INFO   - #42 {
+INFO   - #48 z
+INFO   - #17 =
+INFO   - (30) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #48 cinilac
+INFO   - #38 ;
+INFO   - (30) Koriscenje konstante 'cinilac'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 z
+INFO   - #33 *=
+INFO   - (31) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #40 (
+INFO   - #48 r
+INFO   - #34 /=
+INFO   - (31) Koriscenje polja klasa 'r'  tipa: int
+INFO   - #48 delilac
+DOAO NA STEK: r
+INFO   - #41 )
+INFO   - (31) Koriscenje konstante 'delilac'  tipa: int
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #16 return
+INFO   - #48 z
+INFO   - #38 ;
+INFO   - (32) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #3 class
+INFO   - #48 Kvadar
+INFO   - #4 extends
+INFO   - Obradjivanje nove klase 'Kvadar' na liniji 37
+INFO   - #48 Predmet
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (39) Ubacena: polje klase: Kvadar(globalna) promenljiva sa imenom 'a'
+INFO   - #48 b
+INFO   - #39 ,
+INFO   - (39) Ubacena: polje klase: Kvadar(globalna) promenljiva sa imenom 'b'
+INFO   - #48 c
+INFO   - #38 ;
+INFO   - (39) Ubacena: polje klase: Kvadar(globalna) promenljiva sa imenom 'c'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 postaviTezinu
+INFO   - #40 (
+INFO   - (41) Obradjuje se  funkcija unutar klase 'postaviTezinu'
+INFO   - #48 int
+INFO   - #48 tezina
+INFO   - #41 )
+INFO   - (41) Ubacena: polje klase: Kvadar(globalna) promenljiva za funkciju postaviTezinuklase sa imenom 'tezina'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (41) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 tezina
+INFO   - #17 =
+INFO   - (41) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+this	tezina
+INFO   - #48 tezina
+INFO   - #38 ;
+INFO   - (41) Koriscenje (lokalna) promenljive 'tezina'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 vrsta
+INFO   - #17 =
+INFO   - #50 'k'
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 postaviStranice
+INFO   - #40 (
+INFO   - (42) Obradjuje se  funkcija unutar klase 'postaviStranice'
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #39 ,
+INFO   - (42) Ubacena: polje klase: Kvadar(globalna) promenljiva za funkciju postaviStraniceklase sa imenom 'a'
+INFO   - #48 int
+INFO   - #48 b
+INFO   - #39 ,
+INFO   - (42) Ubacena: polje klase: Kvadar(globalna) promenljiva za funkciju postaviStraniceklase sa imenom 'b'
+INFO   - #48 int
+INFO   - #48 c
+INFO   - #41 )
+INFO   - (42) Ubacena: polje klase: Kvadar(globalna) promenljiva za funkciju postaviStraniceklase sa imenom 'c'
+INFO   - #42 {
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (42) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 a
+INFO   - #17 =
+INFO   - (42) Koriscenje (lokalna) promenljive 'a'  tipa: int
+this	a
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - (42) Koriscenje (lokalna) promenljive 'a'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (42) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 b
+INFO   - #17 =
+INFO   - (42) Koriscenje (lokalna) promenljive 'b'  tipa: int
+this	b
+INFO   - #48 b
+INFO   - #38 ;
+INFO   - (42) Koriscenje (lokalna) promenljive 'b'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 this
+INFO   - #46 .
+INFO   - (42) Koriscenje (lokalna) promenljive 'this'  tipa: class
+INFO   - #48 c
+INFO   - #17 =
+INFO   - (42) Koriscenje (lokalna) promenljive 'c'  tipa: int
+this	c
+INFO   - #48 c
+INFO   - #38 ;
+INFO   - (42) Koriscenje (lokalna) promenljive 'c'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 vrsta
+INFO   - #17 =
+INFO   - #50 'k'
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 zapremina
+INFO   - #40 (
+INFO   - (43) Obradjuje se  funkcija unutar klase 'zapremina'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 z
+INFO   - #38 ;
+INFO   - (44) Ubacena: polje klase: Kvadar(globalna) promenljiva za funkciju zapreminaklase sa imenom 'z'
+INFO   - #42 {
+INFO   - #48 z
+INFO   - #17 =
+INFO   - (46) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - (46) Koriscenje polja klasa 'a'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 z
+INFO   - #33 *=
+INFO   - (47) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #48 b
+INFO   - #33 *=
+INFO   - (47) Koriscenje polja klasa 'b'  tipa: int
+INFO   - #48 c
+DOAO NA STEK: b
+INFO   - #38 ;
+INFO   - (47) Koriscenje polja klasa 'c'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #16 return
+INFO   - #48 z
+INFO   - #38 ;
+INFO   - (48) Koriscenje (lokalna) promenljive 'z'  tipa: int
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 zapreminaK
+INFO   - #39 ,
+INFO   - (53) Ubacena: (globalna) promenljiva sa imenom 'zapreminaK'
+INFO   - #48 zapreminaS
+INFO   - #38 ;
+INFO   - (53) Ubacena: (globalna) promenljiva sa imenom 'zapreminaS'
+INFO   - #48 int
+INFO   - #48 tezinaK
+INFO   - #39 ,
+INFO   - (54) Ubacena: (globalna) promenljiva sa imenom 'tezinaK'
+INFO   - #48 tezinaS
+INFO   - #38 ;
+INFO   - (54) Ubacena: (globalna) promenljiva sa imenom 'tezinaS'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (56) Obradjuje se  lokalna funkcija 'main'
+INFO   - #41 )
+INFO   - #48 Predmet
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - (56) Ubacen novi niz: (lokalna) promenljiva za funkciju main sa imenom 'predmeti'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
+INFO   - #48 Sfera
+INFO   - #48 s1
+INFO   - #39 ,
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 's1'
+INFO   - #48 s2
+INFO   - #39 ,
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 's2'
+INFO   - #48 s3
+INFO   - #38 ;
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 's3'
+INFO   - #48 Kvadar
+INFO   - #48 k1
+INFO   - #39 ,
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'k1'
+INFO   - #48 k2
+INFO   - #39 ,
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'k2'
+INFO   - #48 k3
+INFO   - #38 ;
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'k3'
+INFO   - #48 int
+INFO   - #48 t
+INFO   - #38 ;
+INFO   - (56) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 't'
+INFO   - #42 {
+INFO   - #48 predmeti
+INFO   - #17 =
+INFO   - (59) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #15 new
+INFO   - #48 Predmet
+INFO   - #44 [
+INFO   - #47 6
+INFO   - #45 ]
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 s1
+INFO   - #17 =
+INFO   - (60) Koriscenje (lokalna) promenljive 's1'  tipa: class
+INFO   - #15 new
+INFO   - #48 Sfera
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 s2
+INFO   - #17 =
+INFO   - (61) Koriscenje (lokalna) promenljive 's2'  tipa: class
+INFO   - #15 new
+INFO   - #48 Sfera
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 s3
+INFO   - #17 =
+INFO   - (62) Koriscenje (lokalna) promenljive 's3'  tipa: class
+INFO   - #15 new
+INFO   - #48 Sfera
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 k1
+INFO   - #17 =
+INFO   - (64) Koriscenje (lokalna) promenljive 'k1'  tipa: class
+INFO   - #15 new
+INFO   - #48 Kvadar
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 k2
+INFO   - #17 =
+INFO   - (65) Koriscenje (lokalna) promenljive 'k2'  tipa: class
+INFO   - #15 new
+INFO   - #48 Kvadar
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 k3
+INFO   - #17 =
+INFO   - (66) Koriscenje (lokalna) promenljive 'k3'  tipa: class
+INFO   - #15 new
+INFO   - #48 Kvadar
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 s1
+INFO   - #46 .
+INFO   - (68) Koriscenje (lokalna) promenljive 's1'  tipa: class
+INFO   - #48 postaviPoluprecnik
+s1
+Scope changed
+INFO   - #40 (
+s1	postaviPoluprecnik
+INFO   - #47 1
+INFO   - Pronadjen poziv funkcije: 'postaviPoluprecnik' na liniji 68
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 s2
+INFO   - #46 .
+INFO   - (69) Koriscenje (lokalna) promenljive 's2'  tipa: class
+INFO   - #48 postaviPoluprecnik
+s2
+Scope changed
+INFO   - #40 (
+s2	postaviPoluprecnik
+INFO   - #47 2
+INFO   - Pronadjen poziv funkcije: 'postaviPoluprecnik' na liniji 69
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 s3
+INFO   - #46 .
+INFO   - (70) Koriscenje (lokalna) promenljive 's3'  tipa: class
+INFO   - #48 postaviPoluprecnik
+s3
+Scope changed
+INFO   - #40 (
+s3	postaviPoluprecnik
+INFO   - #47 3
+INFO   - Pronadjen poziv funkcije: 'postaviPoluprecnik' na liniji 70
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 k1
+INFO   - #46 .
+INFO   - (72) Koriscenje (lokalna) promenljive 'k1'  tipa: class
+INFO   - #48 postaviStranice
+k1
+Scope changed
+INFO   - #40 (
+k1	postaviStranice
+INFO   - #47 1
+INFO   - Pronadjen poziv funkcije: 'postaviStranice' na liniji 72
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 k2
+INFO   - #46 .
+INFO   - (73) Koriscenje (lokalna) promenljive 'k2'  tipa: class
+INFO   - #48 postaviStranice
+k2
+Scope changed
+INFO   - #40 (
+k2	postaviStranice
+INFO   - #47 2
+INFO   - Pronadjen poziv funkcije: 'postaviStranice' na liniji 73
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 k3
+INFO   - #46 .
+INFO   - (74) Koriscenje (lokalna) promenljive 'k3'  tipa: class
+INFO   - #48 postaviStranice
+k3
+Scope changed
+INFO   - #40 (
+k3	postaviStranice
+INFO   - #47 3
+INFO   - Pronadjen poziv funkcije: 'postaviStranice' na liniji 74
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - #47 5
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (76) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 0
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 s1
+INFO   - #38 ;
+INFO   - (76) Koriscenje (lokalna) promenljive 's1'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (77) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 2
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 s2
+INFO   - #38 ;
+INFO   - (77) Koriscenje (lokalna) promenljive 's2'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (78) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 4
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 s3
+INFO   - #38 ;
+INFO   - (78) Koriscenje (lokalna) promenljive 's3'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (79) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 k1
+INFO   - #38 ;
+INFO   - (79) Koriscenje (lokalna) promenljive 'k1'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (80) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 3
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 k2
+INFO   - #38 ;
+INFO   - (80) Koriscenje (lokalna) promenljive 'k2'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (81) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #47 5
+INFO   - #45 ]
+INFO   - #17 =
+INFO   - #48 k3
+INFO   - #38 ;
+INFO   - (81) Koriscenje (lokalna) promenljive 'k3'  tipa: class
+INFO   - Izvrena operacija = (assignop)
+INFO   - #14 read
+INFO   - #40 (
+INFO   - #48 t
+INFO   - #41 )
+INFO   - (83) Koriscenje (lokalna) promenljive 't'  tipa: int
+INFO   - #38 ;
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (84) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (84) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (84) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 6
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (84) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (86) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #45 ]
+INFO   - (86) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #46 .
+INFO   - #48 postaviTezinu
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (86) Koriscenje metode 'postaviTezinu'  tipa: void
+predmeti[]	postaviTezinu
+INFO   - #48 t
+INFO   - Pronadjen poziv funkcije: 'postaviTezinu' na liniji 86
+INFO   - #41 )
+INFO   - (86) Koriscenje (lokalna) promenljive 't'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 i
+DEBUG  - (85) Smanjena dubina for petlje, dubina = 0
+INFO   - #17 =
+INFO   - (89) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 zapreminaS
+INFO   - #17 =
+INFO   - (90) Koriscenje (globalna) promenljive 'zapreminaS'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 tezinaS
+INFO   - #17 =
+INFO   - (91) Koriscenje (globalna) promenljive 'tezinaS'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (92) Uvecana dubina for petlje, dubina = 1
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (92) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 6
+INFO   - #38 ;
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (94) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #22 %
+INFO   - (95) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 2
+INFO   - #23 ==
+INFO   - #47 0
+INFO   - #41 )
+INFO   - #10 continue
+INFO   - #38 ;
+INFO   - #48 zapreminaS
+INFO   - #31 +=
+INFO   - (96) Koriscenje (globalna) promenljive 'zapreminaS'  tipa: int
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (96) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (96) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 zapremina
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (96) Koriscenje metode 'zapremina'  tipa: int
+predmeti[]	zapremina
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'zapremina' na liniji 96
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 tezinaS
+INFO   - #31 +=
+INFO   - (97) Koriscenje (globalna) promenljive 'tezinaS'  tipa: int
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (97) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (97) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 Q
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (97) Koriscenje metode 'Q'  tipa: int
+predmeti[]	Q
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'Q' na liniji 97
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (98) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (98) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 ispis
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (98) Koriscenje metode 'ispis'  tipa: void
+predmeti[]	ispis
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'ispis' na liniji 98
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 i
+DEBUG  - (93) Smanjena dubina for petlje, dubina = 0
+INFO   - #17 =
+INFO   - (101) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 zapreminaK
+INFO   - #17 =
+INFO   - (102) Koriscenje (globalna) promenljive 'zapreminaK'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 tezinaK
+INFO   - #17 =
+INFO   - (102) Koriscenje (globalna) promenljive 'tezinaK'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (103) Uvecana dubina for petlje, dubina = 1
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (103) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 6
+INFO   - #38 ;
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (105) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #22 %
+INFO   - (106) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 2
+INFO   - #23 ==
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #10 continue
+INFO   - #38 ;
+INFO   - #48 zapreminaK
+INFO   - #31 +=
+INFO   - (107) Koriscenje (globalna) promenljive 'zapreminaK'  tipa: int
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (107) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (107) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 zapremina
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (107) Koriscenje metode 'zapremina'  tipa: int
+predmeti[]	zapremina
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'zapremina' na liniji 107
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 tezinaK
+INFO   - #31 +=
+INFO   - (108) Koriscenje (globalna) promenljive 'tezinaK'  tipa: int
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (108) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (108) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 Q
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (108) Koriscenje metode 'Q'  tipa: int
+predmeti[]	Q
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'Q' na liniji 108
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 predmeti
+INFO   - #44 [
+INFO   - (109) Koriscenje (lokalna) niza 'predmeti'  tipa: array
+INFO   - #48 i
+INFO   - #19 -
+INFO   - (109) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 1
+INFO   - #45 ]
+INFO   - #46 .
+INFO   - #48 ispis
+predmeti[]
+Scope changed
+INFO   - #40 (
+INFO   - (109) Koriscenje metode 'ispis'  tipa: void
+predmeti[]	ispis
+INFO   - #41 )
+INFO   - Pronadjen poziv funkcije: 'ispis' na liniji 109
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #13 print
+DEBUG  - (104) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+INFO   - #48 zapreminaS
+INFO   - #41 )
+INFO   - (112) Koriscenje (globalna) promenljive 'zapreminaS'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (112) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 zapreminaK
+INFO   - #41 )
+INFO   - (113) Koriscenje (globalna) promenljive 'zapreminaK'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (113) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 tezinaS
+INFO   - #41 )
+INFO   - (114) Koriscenje (globalna) promenljive 'tezinaS'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (114) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 tezinaK
+INFO   - #41 )
+INFO   - (115) Koriscenje (globalna) promenljive 'tezinaK'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (115) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==========================SINTAKSNA ANALIZA============================
+
+INFO   - 
+--------------------------------- A -----------------------------------
+INFO   - Broj definicija globalnih promenljivih = 4
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 9
+INFO   - Broj definicije globalnih konstanti = 2
+INFO   - 
+--------------------------------- B -----------------------------------
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 13
+INFO   - Broj poziv funkicje u telu metode main = 21
+INFO   - Broj delaracija formalnih argumenata funkcije  = 8
+INFO   - 
+--------------------------------- C -----------------------------------
+INFO   - Broj definicjije unutrasnjih klasa = 3
+INFO   - Broj defiicije metoda unutrasnjih klasa = 12
+INFO   - Broj deklaracija polja unutrasnjih klasa = 6
+
+=====================SYMBOL TABLE DUMP=========================
+Con cinilac: int, 4, 0 
+Con delilac: int, 3, 0 
+Type Predmet: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+   Var this: , 0, 1 
+   Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+   Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+   Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+   Var this: , 0, 1 
+Meth Q: int, 48, 0 
+   Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+   Var this: , 0, 1 
+   Var vrsta: char, 1, 1 
+], 0, 0 
+Type Sfera: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+   Var this: , 0, 1 
+   Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+   Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+   Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+   Var this: , 0, 1 
+Meth Q: int, 48, 0 
+   Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+   Var this: , 0, 1 
+   Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+   Var this: , 0, 1 
+   Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+   Var this: , 0, 1 
+   Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+   Var this: , 0, 1 
+   Var z: int, 1, 1 
+], 0, 0 
+Type Kvadar: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+   Var this: , 0, 1 
+   Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+   Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+   Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+   Var this: , 0, 1 
+Meth Q: int, 48, 0 
+   Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+   Var this: , 0, 1 
+   Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+   Var this: , 0, 1 
+   Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+   Var this: , 0, 1 
+   Var a: int, 1, 1 
+   Var b: int, 2, 1 
+   Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+   Var this: , 0, 1 
+   Var z: int, 1, 1 
+], 0, 0 
+Var zapreminaK: int, 0, 0 
+Var zapreminaS: int, 1, 0 
+Var tezinaK: int, 2, 0 
+Var tezinaS: int, 3, 0 
+Meth main: notype, 199, 0 
+   Var predmeti: Arr of Class, 0, 1 
+   Var i: int, 1, 1 
+   Var s1: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 2, 1 
+   Var s2: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 3, 1 
+   Var s3: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 4, 1 
+   Var k1: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 5, 1 
+   Var k2: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 6, 1 
+   Var k3: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 7, 1 
+   Var t: int, 8, 1 
+
+Type int: int, -1, -1 
+Type char: char, -1, -1 
+Con eol: char, 10, 0 
+Con null: Class [], 0, 0 
+Meth chr: char, 0, 1 
+   Var i: int, 0, 1 
+
+Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+Meth len: int, 0, 1 
+   Var arr: Arr of notype, 0, 1 
+
+Type bool: bool, -1, -1 
+Prog test_303: notype, 0, 1 
+   Var predmeti: Arr of Class, 0, 1 
+   Var i: int, 1, 1 
+   Var s1: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 2, 1 
+   Var s2: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 3, 1 
+   Var s3: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld r: int, 1, 1 Meth postaviTezinu: notype, 71, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviPoluprecnik: notype, 88, 1 
+      Var this: , 0, 1 
+      Var r: int, 1, 1 
+Meth zapremina: int, 105, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 4, 1 
+   Var k1: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 5, 1 
+   Var k2: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 6, 1 
+   Var k3: Class [Fld super: Class [Fld tezina: int, 0, 1 Fld vrsta: char, 1, 1 Meth postaviTezinu: notype, 0, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth ucitajTezinu: notype, 9, 0 
+      Var this: , 0, 1 
+Meth ispis: notype, 18, 0 
+      Var this: , 0, 1 
+Meth zapremina: int, 40, 0 
+      Var this: , 0, 1 
+Meth Q: int, 48, 0 
+      Var this: , 0, 1 
+Meth postaviVrstu: notype, 62, 1 
+      Var this: , 0, 1 
+      Var vrsta: char, 1, 1 
+], 0, 1 Fld a: int, 1, 1 Fld b: int, 2, 1 Fld c: int, 3, 1 Meth postaviTezinu: notype, 129, 1 
+      Var this: , 0, 1 
+      Var tezina: int, 1, 1 
+Meth postaviStranice: notype, 146, 3 
+      Var this: , 0, 1 
+      Var a: int, 1, 1 
+      Var b: int, 2, 1 
+      Var c: int, 3, 1 
+Meth zapremina: int, 171, 0 
+      Var this: , 0, 1 
+      Var z: int, 1, 1 
+], 7, 1 
+   Var t: int, 8, 1 
+
+
+INFO   - Parsiranje uspesno zavrseno!

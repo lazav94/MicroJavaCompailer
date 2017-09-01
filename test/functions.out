@@ -1,0 +1,885 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\functions.mj
+INFO   - #2 program
+INFO   - #48 Program
+INFO   - #42 {
+INFO   - #48 int
+INFO   - #48 f29
+INFO   - #40 (
+INFO   - (5) Obradjuje se  lokalna funkcija 'f29'
+INFO   - #48 int
+INFO   - #48 a0
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a0'
+INFO   - #48 int
+INFO   - #48 a1
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a1'
+INFO   - #48 int
+INFO   - #48 a2
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a2'
+INFO   - #48 int
+INFO   - #48 a3
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a3'
+INFO   - #48 int
+INFO   - #48 a4
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a4'
+INFO   - #48 int
+INFO   - #48 a5
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a5'
+INFO   - #48 int
+INFO   - #48 a6
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a6'
+INFO   - #48 int
+INFO   - #48 a7
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a7'
+INFO   - #48 int
+INFO   - #48 a8
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a8'
+INFO   - #48 int
+INFO   - #48 a9
+INFO   - #39 ,
+INFO   - (5) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a9'
+INFO   - #48 int
+INFO   - #48 a10
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a10'
+INFO   - #48 int
+INFO   - #48 a11
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a11'
+INFO   - #48 int
+INFO   - #48 a12
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a12'
+INFO   - #48 int
+INFO   - #48 a13
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a13'
+INFO   - #48 int
+INFO   - #48 a14
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a14'
+INFO   - #48 int
+INFO   - #48 a15
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a15'
+INFO   - #48 int
+INFO   - #48 a16
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a16'
+INFO   - #48 int
+INFO   - #48 a17
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a17'
+INFO   - #48 int
+INFO   - #48 a18
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a18'
+INFO   - #48 int
+INFO   - #48 a19
+INFO   - #39 ,
+INFO   - (6) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a19'
+INFO   - #48 int
+INFO   - #48 a20
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a20'
+INFO   - #48 int
+INFO   - #48 a21
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a21'
+INFO   - #48 int
+INFO   - #48 a22
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a22'
+INFO   - #48 int
+INFO   - #48 a23
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a23'
+INFO   - #48 int
+INFO   - #48 a24
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a24'
+INFO   - #48 int
+INFO   - #48 a25
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a25'
+INFO   - #48 int
+INFO   - #48 a26
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a26'
+INFO   - #48 int
+INFO   - #48 a27
+INFO   - #39 ,
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a27'
+INFO   - #48 int
+INFO   - #48 a28
+INFO   - #41 )
+INFO   - (7) Ubacena: (lokalna) promenljiva za funkciju f29 sa imenom 'a28'
+INFO   - #42 {
+INFO   - #16 return
+INFO   - #48 a0
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a0'  tipa: int
+INFO   - #48 a1
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a1'  tipa: int
+INFO   - #48 a2
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a2'  tipa: int
+INFO   - #48 a3
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a3'  tipa: int
+INFO   - #48 a4
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a4'  tipa: int
+INFO   - #48 a5
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a5'  tipa: int
+INFO   - #48 a6
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a6'  tipa: int
+INFO   - #48 a7
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a7'  tipa: int
+INFO   - #48 a8
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a8'  tipa: int
+INFO   - #48 a9
+INFO   - #18 +
+INFO   - (9) Koriscenje (lokalna) promenljive 'a9'  tipa: int
+INFO   - #48 a10
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a10'  tipa: int
+INFO   - #48 a11
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a11'  tipa: int
+INFO   - #48 a12
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a12'  tipa: int
+INFO   - #48 a13
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a13'  tipa: int
+INFO   - #48 a14
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a14'  tipa: int
+INFO   - #48 a15
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a15'  tipa: int
+INFO   - #48 a16
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a16'  tipa: int
+INFO   - #48 a17
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a17'  tipa: int
+INFO   - #48 a18
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a18'  tipa: int
+INFO   - #48 a19
+INFO   - #18 +
+INFO   - (10) Koriscenje (lokalna) promenljive 'a19'  tipa: int
+INFO   - #48 a20
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a20'  tipa: int
+INFO   - #48 a21
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a21'  tipa: int
+INFO   - #48 a22
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a22'  tipa: int
+INFO   - #48 a23
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a23'  tipa: int
+INFO   - #48 a24
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a24'  tipa: int
+INFO   - #48 a25
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a25'  tipa: int
+INFO   - #48 a26
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a26'  tipa: int
+INFO   - #48 a27
+INFO   - #18 +
+INFO   - (11) Koriscenje (lokalna) promenljive 'a27'  tipa: int
+INFO   - #48 a28
+INFO   - #38 ;
+INFO   - (11) Koriscenje (lokalna) promenljive 'a28'  tipa: int
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 fac
+INFO   - #40 (
+INFO   - (13) Obradjuje se  lokalna funkcija 'fac'
+INFO   - #48 int
+INFO   - #48 n
+INFO   - #41 )
+INFO   - (13) Ubacena: (lokalna) promenljiva za funkciju fac sa imenom 'n'
+INFO   - #42 {
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (14) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 0
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (15) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 1
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #16 return
+INFO   - #48 n
+INFO   - #20 *
+INFO   - (16) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #48 fac
+INFO   - #40 (
+INFO   - (16) Koriscenje metode 'fac'  tipa: int
+INFO   - #48 n
+INFO   - Pronadjen poziv funkcije: 'fac' na liniji 16
+INFO   - #19 -
+INFO   - (16) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 fac2
+INFO   - #40 (
+INFO   - (19) Obradjuje se  lokalna funkcija 'fac2'
+INFO   - #48 int
+INFO   - #48 n
+INFO   - #41 )
+INFO   - (19) Ubacena: (lokalna) promenljiva za funkciju fac2 sa imenom 'n'
+INFO   - #42 {
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (20) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 0
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (21) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 1
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #16 return
+INFO   - #48 n
+INFO   - #18 +
+INFO   - (22) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #48 fac2
+INFO   - #40 (
+INFO   - (22) Koriscenje metode 'fac2'  tipa: int
+INFO   - #48 n
+INFO   - Pronadjen poziv funkcije: 'fac2' na liniji 22
+INFO   - #19 -
+INFO   - (22) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 fac3
+INFO   - #40 (
+INFO   - (25) Obradjuje se  lokalna funkcija 'fac3'
+INFO   - #48 int
+INFO   - #48 n
+INFO   - #41 )
+INFO   - (25) Ubacena: (lokalna) promenljiva za funkciju fac3 sa imenom 'n'
+INFO   - #42 {
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (26) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 0
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 n
+INFO   - #23 ==
+INFO   - (27) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #16 return
+INFO   - #47 1
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #16 return
+INFO   - #48 n
+INFO   - #19 -
+INFO   - (28) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #48 fac2
+INFO   - #40 (
+INFO   - (28) Koriscenje metode 'fac2'  tipa: int
+INFO   - #48 n
+INFO   - Pronadjen poziv funkcije: 'fac2' na liniji 28
+INFO   - #19 -
+INFO   - (28) Koriscenje (lokalna) promenljive 'n'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 int
+INFO   - #48 sum
+INFO   - #40 (
+INFO   - (32) Obradjuje se  lokalna funkcija 'sum'
+INFO   - #48 int
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #46 .
+INFO   - #48 a
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 s
+INFO   - #38 ;
+INFO   - (32) Ubacena: (lokalna) promenljiva za funkciju sum sa imenom 's'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (32) Ubacena: (lokalna) promenljiva za funkciju sum sa imenom 'i'
+INFO   - #42 {
+INFO   - #48 s
+INFO   - #17 =
+INFO   - (33) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (34) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (34) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (34) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #48 len
+INFO   - #40 (
+INFO   - (34) Koriscenje metode 'len'  tipa: int
+INFO   - #48 a
+INFO   - Pronadjen poziv funkcije: 'len' na liniji 34
+INFO   - #41 )
+INFO   - (34) Koriscenje (lokalna) niza 'a'  tipa: array
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (34) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #48 s
+INFO   - #31 +=
+INFO   - (35) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #48 a
+INFO   - #44 [
+INFO   - (35) Koriscenje (lokalna) niza 'a'  tipa: array
+INFO   - #48 i
+INFO   - #45 ]
+INFO   - (35) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #16 return
+DEBUG  - (35) Smanjena dubina for petlje, dubina = 0
+INFO   - #48 s
+INFO   - #38 ;
+INFO   - (36) Koriscenje (lokalna) promenljive 's'  tipa: int
+INFO   - #43 }
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (40) Obradjuje se  lokalna funkcija 'main'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 N
+INFO   - #38 ;
+INFO   - (40) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'N'
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (40) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'r'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'e'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'a'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'd'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 '?'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (42) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #14 read
+INFO   - #40 (
+INFO   - #48 N
+INFO   - #41 )
+INFO   - (43) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #38 ;
+INFO   - #48 N
+INFO   - #17 =
+INFO   - (44) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #48 fac
+INFO   - #40 (
+INFO   - (44) Koriscenje metode 'fac'  tipa: int
+INFO   - #48 N
+INFO   - Pronadjen poziv funkcije: 'fac' na liniji 44
+INFO   - #41 )
+INFO   - (44) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (45) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 N
+INFO   - #41 )
+INFO   - (46) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (47) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #48 N
+INFO   - #17 =
+INFO   - (51) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (52) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (52) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (52) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 29
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (52) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #48 N
+INFO   - #31 +=
+INFO   - (53) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (53) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - Izvrena operacija = (assignop)
+INFO   - #43 }
+INFO   - #13 print
+DEBUG  - (52) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+INFO   - #48 N
+INFO   - #41 )
+INFO   - (55) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 eol
+INFO   - #41 )
+INFO   - (57) Koriscenje konstante 'eol'  tipa: char
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 N
+INFO   - #23 ==
+INFO   - (58) Koriscenje (lokalna) promenljive 'N'  tipa: int
+INFO   - #48 f29
+INFO   - #40 (
+INFO   - (58) Koriscenje metode 'f29'  tipa: int
+INFO   - #47 0
+INFO   - Pronadjen poziv funkcije: 'f29' na liniji 58
+INFO   - #39 ,
+INFO   - #47 1
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - #47 5
+INFO   - #39 ,
+INFO   - #47 6
+INFO   - #39 ,
+INFO   - #47 7
+INFO   - #39 ,
+INFO   - #47 8
+INFO   - #39 ,
+INFO   - #47 9
+INFO   - #39 ,
+INFO   - #47 10
+INFO   - #39 ,
+INFO   - #47 11
+INFO   - #39 ,
+INFO   - #47 12
+INFO   - #39 ,
+INFO   - #47 13
+INFO   - #39 ,
+INFO   - #47 14
+INFO   - #39 ,
+INFO   - #47 15
+INFO   - #39 ,
+INFO   - #47 16
+INFO   - #39 ,
+INFO   - #47 17
+INFO   - #39 ,
+INFO   - #47 18
+INFO   - #39 ,
+INFO   - #47 19
+INFO   - #39 ,
+INFO   - #47 20
+INFO   - #39 ,
+INFO   - #47 21
+INFO   - #39 ,
+INFO   - #47 22
+INFO   - #39 ,
+INFO   - #47 23
+INFO   - #39 ,
+INFO   - #47 24
+INFO   - #39 ,
+INFO   - #47 25
+INFO   - #39 ,
+INFO   - #47 26
+INFO   - #39 ,
+INFO   - #47 27
+INFO   - #39 ,
+INFO   - #47 28
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'O'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'k'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #12 else
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'n'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'o'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'O'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'k'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 sum
+INFO   - #40 (
+INFO   - (68) Koriscenje metode 'sum'  tipa: int
+INFO   - #47 0
+INFO   - Pronadjen poziv funkcije: 'sum' na liniji 68
+INFO   - #39 ,
+INFO   - #47 1
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - #47 5
+INFO   - #39 ,
+INFO   - #47 6
+INFO   - #39 ,
+INFO   - #47 7
+INFO   - #39 ,
+INFO   - #47 8
+INFO   - #39 ,
+INFO   - #47 9
+INFO   - #39 ,
+INFO   - #47 10
+INFO   - #39 ,
+INFO   - #47 11
+INFO   - #39 ,
+INFO   - #47 12
+INFO   - #39 ,
+INFO   - #47 13
+INFO   - #39 ,
+INFO   - #47 14
+INFO   - #39 ,
+INFO   - #47 15
+INFO   - #39 ,
+INFO   - #47 16
+INFO   - #39 ,
+INFO   - #47 17
+INFO   - #39 ,
+INFO   - #47 18
+INFO   - #39 ,
+INFO   - #47 19
+INFO   - #39 ,
+INFO   - #47 20
+INFO   - #39 ,
+INFO   - #47 21
+INFO   - #39 ,
+INFO   - #47 22
+INFO   - #39 ,
+INFO   - #47 23
+INFO   - #39 ,
+INFO   - #47 24
+INFO   - #39 ,
+INFO   - #47 25
+INFO   - #39 ,
+INFO   - #47 26
+INFO   - #39 ,
+INFO   - #47 27
+INFO   - #39 ,
+INFO   - #47 28
+INFO   - #41 )
+INFO   - #23 ==
+INFO   - #48 f29
+INFO   - #40 (
+INFO   - (68) Koriscenje metode 'f29'  tipa: int
+INFO   - #47 0
+INFO   - Pronadjen poziv funkcije: 'f29' na liniji 68
+INFO   - #39 ,
+INFO   - #47 1
+INFO   - #39 ,
+INFO   - #47 2
+INFO   - #39 ,
+INFO   - #47 3
+INFO   - #39 ,
+INFO   - #47 4
+INFO   - #39 ,
+INFO   - #47 5
+INFO   - #39 ,
+INFO   - #47 6
+INFO   - #39 ,
+INFO   - #47 7
+INFO   - #39 ,
+INFO   - #47 8
+INFO   - #39 ,
+INFO   - #47 9
+INFO   - #39 ,
+INFO   - #47 10
+INFO   - #39 ,
+INFO   - #47 11
+INFO   - #39 ,
+INFO   - #47 12
+INFO   - #39 ,
+INFO   - #47 13
+INFO   - #39 ,
+INFO   - #47 14
+INFO   - #39 ,
+INFO   - #47 15
+INFO   - #39 ,
+INFO   - #47 16
+INFO   - #39 ,
+INFO   - #47 17
+INFO   - #39 ,
+INFO   - #47 18
+INFO   - #39 ,
+INFO   - #47 19
+INFO   - #39 ,
+INFO   - #47 20
+INFO   - #39 ,
+INFO   - #47 21
+INFO   - #39 ,
+INFO   - #47 22
+INFO   - #39 ,
+INFO   - #47 23
+INFO   - #39 ,
+INFO   - #47 24
+INFO   - #39 ,
+INFO   - #47 25
+INFO   - #39 ,
+INFO   - #47 26
+INFO   - #39 ,
+INFO   - #47 27
+INFO   - #39 ,
+INFO   - #47 28
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'L'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 fac3
+INFO   - #40 (
+INFO   - (71) Koriscenje metode 'fac3'  tipa: int
+INFO   - #48 fac2
+INFO   - Pronadjen poziv funkcije: 'fac3' na liniji 71
+INFO   - #40 (
+INFO   - (71) Koriscenje metode 'fac2'  tipa: int
+INFO   - #47 3
+INFO   - Pronadjen poziv funkcije: 'fac2' na liniji 71
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==========================SINTAKSNA ANALIZA============================
+
+INFO   - 
+--------------------------------- A -----------------------------------
+INFO   - Broj definicija globalnih promenljivih = 0
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 2
+INFO   - Broj definicije globalnih konstanti = 0
+INFO   - 
+--------------------------------- B -----------------------------------
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 6
+INFO   - Broj poziv funkicje u telu metode main = 25
+INFO   - Broj delaracija formalnih argumenata funkcije  = 32
+INFO   - 
+--------------------------------- C -----------------------------------
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 0
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
+
+=====================SYMBOL TABLE DUMP=========================
+Type int: int, -1, -1 
+Type char: char, -1, -1 
+Con eol: char, 10, 0 
+Con null: Class [], 0, 0 
+Meth chr: char, 0, 1 
+   Var i: int, 0, 1 
+
+Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+Meth len: int, 0, 1 
+   Var arr: Arr of notype, 0, 1 
+
+Type bool: bool, -1, -1 
+Prog Program: notype, 0, 1 
+   Meth f29: int, 0, 29 
+      Var a0: int, 0, 1 
+      Var a1: int, 1, 1 
+      Var a2: int, 2, 1 
+      Var a3: int, 3, 1 
+      Var a4: int, 4, 1 
+      Var a5: int, 5, 1 
+      Var a6: int, 6, 1 
+      Var a7: int, 7, 1 
+      Var a8: int, 8, 1 
+      Var a9: int, 9, 1 
+      Var a10: int, 10, 1 
+      Var a11: int, 11, 1 
+      Var a12: int, 12, 1 
+      Var a13: int, 13, 1 
+      Var a14: int, 14, 1 
+      Var a15: int, 15, 1 
+      Var a16: int, 16, 1 
+      Var a17: int, 17, 1 
+      Var a18: int, 18, 1 
+      Var a19: int, 19, 1 
+      Var a20: int, 20, 1 
+      Var a21: int, 21, 1 
+      Var a22: int, 22, 1 
+      Var a23: int, 23, 1 
+      Var a24: int, 24, 1 
+      Var a25: int, 25, 1 
+      Var a26: int, 26, 1 
+      Var a27: int, 27, 1 
+      Var a28: int, 28, 1 
+
+   Meth fac: int, 89, 1 
+      Var n: int, 0, 1 
+
+   Meth fac2: int, 126, 1 
+      Var n: int, 0, 1 
+
+   Meth fac3: int, 163, 1 
+      Var n: int, 0, 1 
+
+   Meth sum: int, 200, 1 
+      Var a: Arr of int, 0, 1 
+      Var s: int, 1, 1 
+      Var i: int, 2, 1 
+
+   Meth main: notype, 237, 0 
+      Var N: int, 0, 1 
+      Var i: int, 1, 1 
+
+
+
+INFO   - Parsiranje uspesno zavrseno!

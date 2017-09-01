@@ -1,3 +1,209 @@
-1) Array 
-2) Minus
-3) This i vidljivost klase
+// Eclipse CMD /////////
+
+/////////////////////////
+Lexer  =  -d src\pp1\vl130298 spec\mjlexer.flex
+Parser =  -destdir src\pp1\vl130298 -parser MJParser spec\mjparser.cup
+Run    =   test\program.obj
+Disasm =   test\operators.obj
+
+
+MJTest 		 = test/operators.mj output/lexer.lex
+MJParserTest = test/program.mj
+
+
+
+//CMD ////////////////////////////////
+
+
+javac -cp .;src;config;lib\java-cup-11a.jar;lib\mj-runtime-1.1.jar;lib\symboltable.jar;lib\log4j-1.2.17.jar src\pp1\vl130298\util\*.java src\pp1\vl130298\*.java
+java -cp .;src;config;lib\java-cup-11a.jar;lib\mj-runtime-1.1.jar;lib\symboltable.jar;lib\log4j-1.2.17.jar pp1.vl130298.MJTest test\ARRAYS.mj output\lexer.lex
+
+
+java -cp lib\mj-runtime-1.1.jar rs.etf.pp1.mj.runtime.Run test\program.obj
+
+
+/////////////////////////////////
+
+- testiranje operatora sa skalarnim tipovima (svih),
+
+- testiranje kontrolnih struktura
+
+- testiranje vektora i operacija nad vektorima,
+
+- testiranje (poziva i prevodjenja) funkcija (testirati sva ogranicenja uJava virtuelne masine, napraviti funkciju sa min 20 parametara i rekurzivno pozivanje dubine najmanje 10, kao i unakrsno rekurzivno pozivanje),
+
+- testiranje klasa i polimorfizma, rezolucija navigacionih izraza a.b.c.d[2].e.f.... do duzine najmanje 10,
+
+- posebni testovi za dodatne funkcionalnosti,
+
+
+- sve ono sto nije navedeno u ovoj listi, a zasluzuje posebnu klasu testova.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// Modification from forum!!! 
+
+LEXER:
+
+	"<=>" { return new_symbol(sym.SWAP , yytext()); } // razmena vrednost
+	"~"  { return new_symbol(sym.MUL1 , yytext()); }  //a^2 * 3b
+	"@"   { return new_symbol(sym.MUL2 , yytext()); } //a^2 * 3b
+ 
+ CUP:
+	| MUL1 {: RESULT = new Integer(98); :} | MUL2 {: RESULT = new Integer(97); 
+ 
+	SWAP {: RESULT =  new Integer(99); :} 
+	
+	
+Singleton:
+	if(op.intValue() == 99){
+								
+								
+								Code.load(expr);
+								Code.load(designator); 
+								
+								Code.store(expr);
+								Code.store(designator);
+			
+							}
+							
+							else {
+							
+							
+	case 98:
+		
+			Obj a = new Obj(Obj.Var, "swap1", Tab.intType);
+			Obj b = new Obj(Obj.Var, "swap2", Tab.intType);
+			
+			b.setAdr(Code.pc % 128);
+			Code.store(b);
+			
+			a.setAdr(Code.pc % 128);
+			Code.store(a);
+			
+			Code.load(b);
+			Code.put(Code.dup);
+			Code.put(Code.mul);
+			
+			Code.load(a);
+			Code.put(Code.dup);
+			Code.put(Code.mul);
+
+			Code.load(b);
+			
+			Code.put(Code.add);
+			Code.put(Code.add);
+			
+			 
+			System.out.println("OVO KAO RADI");
+			
+			break;
+		case 97:
+			
+			Obj a1 = new Obj(Obj.Var, "swap1", Tab.intType);
+			Obj b1 = new Obj(Obj.Var, "swap2", Tab.intType);
+			
+			b1.setAdr(Code.pc % 128);
+			Code.store(b1);
+			
+			Code.loadConst(2);
+			Code.put(Code.mul);
+			
+			Code.load(b1);
+			Code.loadConst(3);
+			Code.put(Code.mul);
+
+			Code.put(Code.add);
+			
+			 
+			System.out.println("OVO KAO RADI");
+			
+			break;
+ 
+ 
+ case 95:
+			
+			int top = Code.pc;
+			Code.put(Code.dup);
+			Code.loadConst(0);
+			Code.putFalseJump(Code.gt, 0);
+			int adr = Code.pc - 2;
+			// stuf
+			Code.put(Code.dup_x1);
+			Code.put(Code.rem);
+			
+			Code.putJump(top);
+			Code.fixup(adr);
+			
+			Code.put(Code.pop);
+			/**
+			r = a1;
+			a2 = a1 % a2;
+			a1 = r
+			
+			*/
+			
+			break;
+			
+			
+---------------------------------------------------------------			
+			
+FPowList ::= PowList | /* */ ;
+ 			
+PowList ::= PowList {:  Code.put(Code.dup); Code.put(Code.mul); :} POW 
+			|
+			POW {:  Code.put(Code.dup); Code.put(Code.mul); :};	
+			
+			
+			
+				Factor:factor 
+					{: 
+						isLonlyFactor = true;
+						RESULT = factor;
+						
+					:}
+					FPowList
+	---------------------------------------------------------------
+	ASSIGNOP
+				if(op.intValue() == 99){
+									Code.put(Code.pop);
+									Code.load(designator);
+									for(int i = 0; i  < parser.stars; i++)
+										Code.put(Code.dup);
+										
+									for(int i = 0; i  < parser.stars - 1; i++)
+										Code.put(Code.mul);
+									
+									
+									Code.store(designator);
+									Code.loadConst(parser.stars);
+									Code.store(expr);
+							
+								}
+ 
+ StarList ::=	StarList:r
+		   	{:
+		   		parser.stars++;
+		   		
+		   	:}
+		   	MUL 
+			|
+			MUL {: 
+				
+				parser.stars++; 
+			:}
+			;
+ 
+ 

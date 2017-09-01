@@ -12,6 +12,7 @@ program Prilepi
 
 		read(a);
 		read(b);
+		step = 1;
 
 		novi = 0;
 		if(a < b){
@@ -26,6 +27,9 @@ program Prilepi
 			pom = pom/x;
 			step = step*x;
 		}
-		novi = veci*step + manji;
+
+		novi = veci * step + manji;
+
+		print(novi);
 	}
 }

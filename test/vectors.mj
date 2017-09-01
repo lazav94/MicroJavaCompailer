@@ -1,0 +1,59 @@
+// Test301
+
+program test301
+	const int jedan = 1;
+	const int pet = 5;
+
+	int niz[];
+	
+	char alpha[];
+	
+	bool nizb[];
+	
+	
+{
+	
+	void main()	int bodovi, i;
+	{
+	
+
+		niz = new int[29];
+		alpha = new char[26];
+		
+		for(i = 0; i < len(niz); i++)
+			niz[i] = i;
+			
+		for(i = 0; i < len(alpha); i++)
+			alpha[i] = chr(i + 65);
+		
+		for(i = 0; i < len(alpha); i++)
+			print(alpha[i]);
+			
+		print(eol);
+		
+		alpha[niz[niz[5] + 2 ] + 3] = 't';
+		
+		alpha[niz[niz[niz[niz[niz[niz[20]]]]]]] = '@';
+		
+		for(i = 0; i < len(alpha); i++)
+			print(alpha[i]);
+		print(eol);
+		
+		
+	
+ 			
+		niz[2] /=   niz[0] + niz[1]+ niz[0] - bodovi    +   2    + (niz[0] += niz[1] -= 20 + niz[0]);
+		
+		print(niz[0]);
+		print(niz[1]);
+		print(niz[2]);
+		print(bodovi);
+		
+		
+		
+
+
+	}
+}
+
+

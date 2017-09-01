@@ -1,0 +1,18 @@
+program Program
+{
+	int fac(int n){
+		if(n == 0) return 0;
+		if(n == 1) return 1;
+		else return n * fac(n-1);
+	}
+	
+	void main() int N;
+	{
+		print('r');print('e');print('a');print('d');print('?'); print(eol);
+		read(N);
+		N = fac(N);
+		print('f');print('a');print('t'); print(eol);
+		print(N);
+			
+	}
+}

@@ -1,0 +1,45 @@
+//file:operators.mj
+// testiranje operatora sa skalarnim tipovima (svih)
+
+program Program
+
+	int a, b;
+	bool flag;
+	{
+	void main() int c;
+	{
+		read(a);
+		read(b);
+		read(c);
+		
+		 a = b + c; print(a);
+		 a = b - c; print(a);
+		 a = b * c; print(a);
+		 a = b / c; print(a);
+		 a = b % c; print(a);
+		 
+		 print(eol);
+		 a += a; print(a);
+		 a -= b; print(a);
+		 a *= a; print(a);
+		 a /= a; print(a);
+		 a %= b; print(a);
+		 
+		 print(eol);
+		 a--;  print(a);
+		 a++;  print(a);
+	
+		print(eol);
+		if(a == b){}
+		if( a != c){}
+		if( a > b){}
+		if( a >= b){}
+		if( a < b){}
+		if( a <= b){}
+		if( flag && false){}
+		if( flag || true){}
+		if( flag && flag){}
+		
+		
+	}
+}

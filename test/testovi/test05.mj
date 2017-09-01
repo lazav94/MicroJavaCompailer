@@ -39,10 +39,10 @@ program Rastojanje
 		if(a+u > v && a+v > u && u+v > a){     
 			obim(a, b, u, v);                // semanticka, broj parametara se ne poklapa
 			povrsina(5+2, 'w', c);           // semanticka, c nedeklarisan, ne poklapaju se tipovi drugog i treceg parametra
-			print("Povrsina" + " trougla " + "je : ");
+			print(2+a);
 		}
 		else{
-			print("Tacke ne formiraju trougao!");
+			print('T');
 			print(eol);
 		}
 		

@@ -7,13 +7,14 @@ class Predmet
 {
 	int tezina;
 	char vrsta;
+
 	{
 		void postaviTezinu(int tezina) {this.tezina = tezina;}  
 		void ucitajTezinu() { read(tezina); }
-		static void ispis( int P) {  }
+		// static void ispis(Predmet p) { print(p.vrsta); print(eol); print(p.tezina);}
 		int zapremina() { return 0;}
 		int Q() {return zapremina() * tezina;}
-		void postaviVrstu(char vrsta) {this.vrsta = vrsta;}
+		void postaviVrstu(char vrsta) { this.vrsta = vrsta;}
 	}
 }
 
@@ -21,7 +22,6 @@ class Sfera extends Predmet
 {
 	int r;
 	{
-	
 		void postaviTezinu(int tezina) {this.tezina = tezina; vrsta = 's';}
 		void postaviPoluprecnik(int r) {this.r = r; postaviVrstu('s');}
 		int zapremina()
@@ -95,7 +95,7 @@ int tezinaK, tezinaS;
 			if(i % 2 == 0) continue; 
 			zapreminaS += predmeti[i - 1].zapremina();
 			tezinaS += predmeti[i - 1].Q();
-			Predmet.ispis(1);
+			//predmeti[i - 1].ispis();
 		}
 
 		i = 0;
@@ -106,7 +106,7 @@ int tezinaK, tezinaS;
 			if(i % 2 == 1) continue; 
 			zapreminaK += predmeti[i - 1].zapremina();
 			tezinaK += predmeti[i - 1].Q();
-			Predmet.ispis(1);
+			//predmeti[i - 1].ispis();
 		}
 
 		print(zapreminaS); print(eol);

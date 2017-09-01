@@ -1,0 +1,69 @@
+//nivo C
+
+program MJAlfabet
+
+char str1, str2;
+char i;
+class Alfa{
+	char a, b;
+	int rez;
+	{
+		void dodaj(int x, int y, int z){
+			z = x + y;                   
+		}
+
+		void saberi (int x, int y) {
+			rez = x + y;                 
+		}
+	}
+}
+
+class Beta extends Alfa{
+	int c;
+	char d[];
+	{
+		void dodaj(int x, int y, int z) bool bulova; {
+			b = 'b';                     
+			print(b);
+		}
+	}
+}
+
+class Gama extends Alfa{
+	int a;
+	{
+		void dodaj(int x, int y, int z)int niz[];  {
+			
+			a = x;
+			i = 'i';                         
+			for(;x < 5;)                    
+				niz[x] = x + y + z + a;      
+				x++;                       
+		}
+	}
+}
+
+class Delta{
+	{
+		bool stampaj(){
+			print('a');    //semanticka, fali return
+			return true;
+		}
+	}
+}
+
+{
+	void main() Alfa a1, a2; Beta b; Gama g; Delta d;{
+		a1 = new Alfa;
+		a2 = new Beta;
+		g = new Gama;
+		d = new Delta;
+		
+		a1.dodaj(1, 2, 3);            
+		if (a1 == a2)                   
+			print('a');    
+		else if(3 > 4)                    
+			print('t');
+		
+	}
+}

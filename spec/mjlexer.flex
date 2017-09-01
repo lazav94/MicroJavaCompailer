@@ -9,6 +9,8 @@ import pp1.vl130298.Singleton;
   Singleton s = Singleton.getInstance();
   public boolean printColumn = true; 
   
+  public int powSize = 0;
+  
   private Symbol new_symbol(int type){
   		return new Symbol(type, yyline + 1, yycolumn);
   }
@@ -95,11 +97,13 @@ import pp1.vl130298.Singleton;
 "]"		   { return new_symbol(sym.QRBRACE , yytext()); }
 
 
+
 // Identifikatori i konstante
 [0-9]+                          { return new_symbol (sym.NUMBER , new Integer(yytext())); }
 "true" | "false"                { return new_symbol (sym.BOOL   ,             yytext());  }
 ([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{ return new_symbol (sym.IDENT  ,             yytext());  }
 '[ -~]'                         { return new_symbol (sym.ASCII  ,             yytext());  }  
+
 
 
 . {	

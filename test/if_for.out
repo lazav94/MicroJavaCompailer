@@ -1,0 +1,291 @@
+INFO   - Compiling source file: C:\Users\laza\Desktop\PP\MicroJavaCompailer\test\if_for.mj
+INFO   - #2 program
+INFO   - #48 Program
+INFO   - #48 int
+INFO   - #48 a
+INFO   - #38 ;
+INFO   - (6) Ubacena: (globalna) promenljiva sa imenom 'a'
+INFO   - #42 {
+INFO   - #6 void
+INFO   - #48 main
+INFO   - #40 (
+INFO   - (8) Obradjuje se  lokalna funkcija 'main'
+INFO   - #41 )
+INFO   - #48 int
+INFO   - #48 i
+INFO   - #38 ;
+INFO   - (8) Ubacena: (lokalna) promenljiva za funkciju main sa imenom 'i'
+INFO   - #42 {
+INFO   - #14 read
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #41 )
+INFO   - (10) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #23 ==
+INFO   - (12) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 '1'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #23 ==
+INFO   - (14) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 2
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 '2'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #23 ==
+INFO   - (16) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 3
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 '3'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'A'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (23) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (23) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (23) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 10
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (23) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #41 )
+INFO   - (24) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #8 for
+DEBUG  - (24) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+DEBUG  - (26) Uvecana dubina for petlje, dubina = 1
+INFO   - #48 i
+INFO   - #17 =
+INFO   - (26) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #48 i
+INFO   - #25 <
+INFO   - (26) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 10
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (26) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #22 %
+INFO   - (27) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 2
+INFO   - #23 ==
+INFO   - #47 0
+INFO   - #41 )
+INFO   - #10 continue
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #41 )
+INFO   - (28) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #48 i
+DEBUG  - (26) Smanjena dubina for petlje, dubina = 0
+INFO   - #17 =
+INFO   - (30) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 0
+INFO   - #38 ;
+INFO   - Izvrena operacija = (assignop)
+INFO   - #8 for
+INFO   - #40 (
+DEBUG  - (31) Uvecana dubina for petlje, dubina = 1
+INFO   - #38 ;
+INFO   - #49 true
+INFO   - #38 ;
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #23 ==
+INFO   - (32) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #47 5
+INFO   - #41 )
+INFO   - #9 break
+INFO   - #38 ;
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #48 i
+INFO   - #41 )
+INFO   - (33) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #48 i
+INFO   - #36 ++
+INFO   - (34) Koriscenje (lokalna) promenljive 'i'  tipa: int
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #11 if
+DEBUG  - (31) Smanjena dubina for petlje, dubina = 0
+INFO   - #40 (
+INFO   - #49 true
+INFO   - #29 &&
+INFO   - #49 false
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'a'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'b'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #49 true
+INFO   - #30 ||
+INFO   - #49 false
+INFO   - #41 )
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'c'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #12 else
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'd'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #23 ==
+INFO   - (49) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #11 if
+INFO   - #40 (
+INFO   - #48 a
+INFO   - #23 ==
+INFO   - (51) Koriscenje (globalna) promenljive 'a'  tipa: int
+INFO   - #47 2
+INFO   - #41 )
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #47 2
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #43 }
+INFO   - #12 else
+INFO   - #42 {
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #19 -
+INFO   - #47 1
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #13 print
+INFO   - #40 (
+INFO   - #50 'K'
+INFO   - #41 )
+INFO   - #38 ;
+INFO   - #43 }
+INFO   - #43 }
+INFO   - 
+
+INFO   - 
+
+==========================SINTAKSNA ANALIZA============================
+
+INFO   - 
+--------------------------------- A -----------------------------------
+INFO   - Broj definicija globalnih promenljivih = 1
+INFO   - Broj definicija lokalnih promeljivih (u main funkciji) = 1
+INFO   - Broj definicije globalnih konstanti = 0
+INFO   - 
+--------------------------------- B -----------------------------------
+INFO   - Broj definicija globalniih i statickih funkicja unutrasnjih klasa = 1
+INFO   - Broj poziv funkicje u telu metode main = 15
+INFO   - Broj delaracija formalnih argumenata funkcije  = 0
+INFO   - 
+--------------------------------- C -----------------------------------
+INFO   - Broj definicjije unutrasnjih klasa = 0
+INFO   - Broj defiicije metoda unutrasnjih klasa = 0
+INFO   - Broj deklaracija polja unutrasnjih klasa = 0
+
+=====================SYMBOL TABLE DUMP=========================
+Type int: int, -1, -1 
+Type char: char, -1, -1 
+Con eol: char, 10, 0 
+Con null: Class [], 0, 0 
+Meth chr: char, 0, 1 
+   Var i: int, 0, 1 
+
+Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+Meth len: int, 0, 1 
+   Var arr: Arr of notype, 0, 1 
+
+Type bool: bool, -1, -1 
+Prog Program: notype, 0, 1 
+   Var a: int, 0, 0 
+   Meth main: notype, 0, 0 
+      Var i: int, 0, 1 
+
+
+
+INFO   - Parsiranje uspesno zavrseno!

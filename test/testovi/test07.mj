@@ -8,7 +8,7 @@ program Geometrija
 	
 	class kvadrat
 	{
-		string ime;
+		char ime;
 		int a;
 		int b;
 		
@@ -94,7 +94,7 @@ program Geometrija
 			rezultati[2]=kvad.povrsina();
 			rezultati[3]=obim2(kvad);	
 			
-			if (c>0) {while(c>0)read(c);}
+			if (c>0) {for(;c>0;)read(c);}
 			c= racunaj();
 		}
 		

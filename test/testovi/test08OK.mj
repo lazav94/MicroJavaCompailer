@@ -1,0 +1,52 @@
+//nivo C
+
+program test08
+
+	class Alfa { 
+		int x;
+		char b;
+		{
+			void k(){
+				this.b = 'a';
+			}
+			
+			int f(int sss){        
+				this.b = 'b';           
+				k();
+				return x;              
+			}
+		}
+		
+	}
+	
+	class Beta{
+		int a,b;
+		{
+			void setA(){
+				read(a);
+			}
+			
+			void setAB(int aa, int bb){
+				a = aa;
+				b = bb;
+			}
+		}
+	}
+	
+	class Gama extends Beta{
+		Beta b;
+	}
+	
+	Gama g;
+{
+	void main()            
+	Alfa a;
+	{
+		a = new Alfa;
+		g = new Gama;
+		print(a.f((3 + 5)-4));
+		
+		g.setA();             
+		g.setAB(2,3);              //semanticka, isto (ovde je manjak parametara)
+	}
+}	

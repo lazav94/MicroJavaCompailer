@@ -14,37 +14,22 @@ import java_cup.runtime.Symbol;
 import pp1.vl130298.util.Log4JUtils;
 
 public class MJTest {
-
-	static {
-		// DOMConfigurator.configure(Log4JUtils.instance().findLoggerConfigFile());
-		// Log4JUtils.instance().prepareLogFile(Logger.getRootLogger());
-	}
+	static boolean test = false;
 
 	public static void main(String[] args) throws IOException {
 		PrintWriter outputFile;
-		String filename = "";
-		if ("-f".equals(args[0]))
-			filename = "config/log4j_file.xml";
-		else if ("-c".equals(args[0]))
-			filename = "config/log4j_console.xml";
-		else if ("-cf".equals(args[0]) || "-fc".equals(args[0]) || "".equals(args[0]))
-			filename = "config/log4j.xml";
-		else {
-			System.err.println(
-					"Invalid argument for output option\n Choose: \n -c - for consol \n -f - for file \n -cf or -fc or blank for consol and file");
-			return;
-		}
-
+		String filename = "config/log4j.xml";
+		
 		DOMConfigurator.configure(filename);
 		Log4JUtils.instance().prepareLogFile(Logger.getRootLogger());
 
-		String inputFilePath = "test/LEXER_TEST.mj";
-		String outputFilePath = "output/lexer.lex";
+		String inputFilePath = args[0];
+		String outputFilePath = args[1];
 		
-		if (args.length > 2) {
-
-			inputFilePath = args[1] != null ? args[1] : "test/LEXER_TEST.mj";
-			outputFilePath = args[2] != null ? args[2] : "output/lexer.lex";
+		
+		if (test == true) {
+			inputFilePath = "test/LEXER_TEST.mj";
+			outputFilePath = "output/lexer.lex";
 		}
 
 		outputFile = new PrintWriter(outputFilePath, "UTF-8");
@@ -63,7 +48,6 @@ public class MJTest {
 			Symbol currToken = null;
 			while ((currToken = lexer.next_token()).sym != sym.EOF) {
 				if (currToken != null) {
-					
 					s.log.info(currToken.toString() + " " + currToken.value.toString());
 					outputFile.println(currToken.toString() + " " + currToken.value.toString());
 				}
@@ -76,6 +60,7 @@ public class MJTest {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+			s.log.info("jflex end");
 		}
 	}
 

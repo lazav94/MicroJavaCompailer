@@ -501,6 +501,7 @@ public class Singleton {
 	public Obj insertVariable(int line, String name) {
 
 		Obj temp = Tab.currentScope.findSymbol(name);
+
 		if (temp == null && !action.methodErrorDetected) {
 
 			if (parser.lastVarType != Tab.noType) {
@@ -511,6 +512,15 @@ public class Singleton {
 					s = parser.lastVarType;
 
 				if (parser.isClass) {
+					if (action.staticFldMap.get(action.currentClass.getType()) == null
+							|| action.nonStaticFldMap.get(action.currentClass.getType()) == null)
+						return Tab.noObj;
+
+					if (action.currentClass == null)
+						return Tab.noObj;
+					if (action.staticFldMap == null || action.nonStaticFldMap == null)
+						return Tab.noObj;
+
 					if (!parser.isMethod) {
 						temp = Tab.insert(Obj.Fld, name, s);
 						action.thisFld.add(temp);
@@ -595,6 +605,8 @@ public class Singleton {
 		if (func.getName().equals("len"))
 			Code.put(Code.arraylength);
 		else if (!(func.getName().equals("chr") || func.getName().equals("ord"))) {
+			if (action.currentMethodStack.isEmpty())
+				return Tab.noObj;
 			if (isMethodWithVarArgs(action.currentMethodStack.peek())) {
 
 				patchVarArgs();
@@ -607,7 +619,6 @@ public class Singleton {
 			int destAdr = func.getAdr() - Code.pc;
 			Code.put(Code.call);
 			Code.put2(destAdr);
-
 		}
 
 		if (!factor) {
@@ -623,8 +634,10 @@ public class Singleton {
 		// else
 		// System.out.println("current method stack pop, EMPTY : ");
 
-		if (func.getName().equals("len"))
-			action.FormalParamStack.remove(0);
+		if (func.getName().equals("len")) {
+			if (!action.FormalParamStack.isEmpty())
+				action.FormalParamStack.remove(0);
+		}
 		return func;
 
 	}
@@ -666,7 +679,7 @@ public class Singleton {
 			// obrada main fje
 			if (name.equals("main")) {
 				if (retType.getKind() != Struct.None)
-					semanticError(line, "Main funkcija treba ne treba da ima povratu vrednost");
+					semanticError(line, "Main funkcija ne treba da ima povratnu vrednost");
 				action.haveMain = true;
 				parser.isMain = true;
 			} else
@@ -675,6 +688,11 @@ public class Singleton {
 			// counting
 			parser.methods++;
 			if (parser.isClass == true) {
+
+				if (action.staticFldMap.get(action.currentClass.getType()) == null
+						|| action.nonStaticFldMap.get(action.currentClass.getType()) == null)
+					return;
+
 				if (parser.isStatic) {
 
 					action.nonStaticFldMap.get(action.currentClass.getType()).add(temp);
@@ -690,8 +708,8 @@ public class Singleton {
 	}
 
 	public void methodError(int line, char safeChar, String message) {
-		// String msg = "Oporavak (" + safeChar + ") ";
-		sintaxError(line, message);
+		String msg = "Oporavak (" + safeChar + ") ";
+		sintaxError(line, msg + message);
 	}
 
 	/** Proverava da li je povratna vrednost metode odgovarajuca */
@@ -750,6 +768,10 @@ public class Singleton {
 	 * metode
 	 */
 	public void methodEnd() {
+
+		if (action.currentClass != null && (action.staticFldMap.get(action.currentClass.getType()) == null
+				|| action.nonStaticFldMap.get(action.currentClass.getType()) == null))
+			return;
 
 		if (!action.methodErrorDetected) {
 			if (parser.isClass) {
@@ -982,7 +1004,7 @@ public class Singleton {
 
 	}
 
-	private void printList(List<Obj> list) {
+	void printList(List<Obj> list) {
 		System.out.println("size: " + list.size());
 		for (Obj o : list)
 			System.out.println("  " + o.getName() + "  " + getTypeName(o.getType().getKind()));
@@ -1105,19 +1127,20 @@ public class Singleton {
 	public static boolean first = false;
 
 	public void changeToGlobalScope(Obj classObj) {
-		if (!"this".equals(classObj.getName())) {
+
+		//if (!"this".equals(classObj.getName())) {
 			System.out.println(classObj.getName());
 			temp = Tab.currentScope;
 			Tab.currentScope = classScope.get(classObj.getType());
-			System.out.println("Scope changed");
-		}
+			// System.out.println("Scope changed");
+		//}
 	}
 
 	public void resetScope(Obj classObj) {
-		if (!"this".equals(classObj.getName())) {
+		//if (!"this".equals(classObj.getName())) {
 			Tab.currentScope = temp;
 			temp = null;
-		}
+		//}
 	}
 
 	public boolean isMethodWithVarArgs(Obj method) {
@@ -1191,29 +1214,29 @@ public class Singleton {
 
 		} else {
 			if (!parser.isClass) {
-				System.out.println("LAST" + parser.lastDesignator.peek().getName());
-
-				if (isClassType(parser.lastDesignator.peek())) {
-					List<Obj> list = getAllClassFld(parser.lastDesignator.peek());
-					symbol = Tab.noObj;
-					for (Obj o : list) {
-						if (o != null && o.getName().equals(designatorName)) {
-							symbol = o;
-							if (isMethod(o)) {
-								action.currentMethodStack.push(o);
-								addFormalParam(o);
-								if (isMethodWithVarArgs(o)) {
-									action.varArgsType = getVarArgsType(o);
-									action.varArgsStack.push(new ArrayList<Obj>());
+				if (!parser.lastDesignator.isEmpty()) {
+					
+					if (isClassType(parser.lastDesignator.get(0))) {
+						List<Obj> list = getAllClassFld(parser.lastDesignator.get(0));
+						symbol = Tab.noObj;
+						for (Obj o : list) {
+							if (o != null && o.getName().equals(designatorName)) {
+								symbol = o;
+								if (isMethod(o)) {
+									action.currentMethodStack.push(o);
+									addFormalParam(o);
+									if (isMethodWithVarArgs(o)) {
+										action.varArgsType = getVarArgsType(o);
+										action.varArgsStack.push(new ArrayList<Obj>());
+									}
 								}
+								return symbol;
 							}
-							return symbol;
 						}
 					}
 				}
 				sintaxError(line, "Simbol '" + designatorName + "' ne postoji u tabeli simbola!");
 			} else { // ako je u klasi
-
 				if ("this".equals(designatorName) || "super".equals(designatorName)) {
 					return new Obj(Obj.Fld, designatorName, Tab.nullType);
 				} else {
@@ -1245,15 +1268,43 @@ public class Singleton {
 		return symbol;
 	}
 
+	/**
+	 * (11) <i> Designator mora oznacavati promenljivu element niza ili polje
+	 * unutar klase. <br>
+	 * Tip nerterminala <i>expr</i> mora biti <u>kompatibline pri dodeli</u> sa
+	 * tipom neterminala <i>designator</i>
+	 */
 	public Obj designatorAssignop(Obj designator, Obj expr, int line) {
 
 		if (!isVariablClassFieldArrayElem(designator)) {
-			semanticError(line, "Designator nije variabla, polje klase ili element niza (dodela vrednosti, assignop)");
+			semanticError(line,
+					"Designator  mora oznacavati promenljivu element niza ili polje unutar klase. (dodela vrednosti, assignop)");
 			return Tab.noObj;
 		}
 
 		if (isClassType(designator) && isClassType(expr)) {
-			// TODO
+
+			Obj superObj = Tab.noObj;
+			List<Obj> list = new ArrayList<Obj>();
+			list.addAll(new ArrayList<Obj>(expr.getType().getMembers()));
+			for (Obj o : list) {
+				if ("super".equals(o.getName())) {
+					superObj = o;
+					break;
+				}
+			}
+
+			if (superObj != Tab.noObj) {
+
+				if (superObj.getType() != designator.getType() && designator.getType() != expr.getType())
+					semanticError(line, "Leva i desna nisu kompatibilne pri dodeli vrednost klasa2 (assignop)");
+
+			} else {
+				if (designator.getType() != expr.getType()) {
+					semanticError(line, "Leva i desna nisu kompatibilne pri dodeli vrednost klasa (assignop)");
+				}
+			}
+
 		} else {
 			Struct designtatorType = ((isArray(designator)) ? designator.getType().getElemType()
 					: designator.getType());
@@ -1267,7 +1318,7 @@ public class Singleton {
 				semanticError(line,
 						"Leva (" + getTypeName(designtatorType.getKind()) + ") i desna ("
 								+ getTypeName(exprType.getKind())
-								+ ") strana kod dodele vrednosti nisu kopmatibilne (assignop)");
+								+ ") strana nisu kompatibilne pri dodeli vrednost (assignop)");
 				return Tab.noObj;
 			}
 		}
@@ -1340,7 +1391,8 @@ public class Singleton {
 	public boolean exprArray(Obj expr, int line) {
 
 		if (!isInt(expr)) {
-			semanticError(line, "Expr mora biti tipa int! (desingator array) " + expr.getName());
+			semanticError(line, "Tip neterminala expr " + expr.getName()
+					+ " mora biti tipa int (desingator array), a ne :" + getTypeName(expr.getType().getKind()));
 			return false;
 		}
 		return true;
@@ -1432,7 +1484,7 @@ public class Singleton {
 					designator1 = action.currentClass;
 
 				for (Obj o : list) {
-					if (designator2.getName().equals(o.getName())) {
+					if (o != null && designator2.getName().equals(o.getName())) {
 
 						List<Obj> staticFldlist = action.staticFldMap.get(designator1.getType());
 						if (action.parentClass != null)
@@ -1449,11 +1501,14 @@ public class Singleton {
 				semanticError(line, "Kod . (DOT) nije pronadjeno ovo polje: " + designator2.getName() + " u klasi "
 						+ designator1.getName());
 				return Tab.noObj;
-			} else
+			} else {
+				semanticInfo("DOT " + designator2.getName());
 				return designator2;
+			}
 		} else {
-			semanticError(line, "Designator 1 kod . (DOT) mora da bude klasa ili klasnog tipa a ne "
-					+ getTypeName(designator1.getType().getKind()));
+			semanticError(line,
+					"Designator 1 " + designator1.getName() + " kod . (DOT) mora da bude klasa ili klasnog tipa a ne "
+							+ getTypeName(designator1.getType().getKind()));
 			return Tab.noObj;
 		}
 	}
@@ -1489,11 +1544,13 @@ public class Singleton {
 		}
 
 		if (!isInt(term)) {
-			semanticError(line, "U Expr (addop) term nije tipa int");
+			semanticError(line,
+					"U Expr (addop) term mora biti tipa int, a ne : " + getTypeName(term.getType().getKind()));
 			return Tab.noObj;
 		}
 		if (!isInt(addopTerm)) {
-			semanticError(line, "U Expr (addop) addopTerm nije tipa int");
+			semanticError(line,
+					"U Expr (addop) addopTerm mora biti tipa int, a ne: " + getTypeName(addopTerm.getType().getKind()));
 			return Tab.noObj;
 		}
 
@@ -1541,10 +1598,11 @@ public class Singleton {
 			return Tab.noObj;
 		}
 
-		if (!isVariablClassFieldArrayElem(designator))
+		if (!isVariablClassFieldArrayElem(designator)) {
 			semanticError(line, "U read expr mora biti promenljiva, element niza ili polje unutar objekta");
-
-		return Tab.noObj;
+			return Tab.noObj;
+		}
+		return designator;
 	}
 
 	public void loadDelayedObj(Obj obj) {
@@ -1566,7 +1624,7 @@ public class Singleton {
 				action.opStack.push(new Stack<>());
 
 			action.opStack.peek().add(op);
-			System.out.println("DOAO NA STEK: " + obj.getName());
+			// System.out.println("DOAO NA STEK: " + obj.getName());
 			action.objStack.push(obj);
 
 		} else
@@ -1584,8 +1642,8 @@ public class Singleton {
 					obj = action.objStack.pop();
 				}
 
-				for (Obj o : action.objStack)
-					System.out.println(o.getName());
+//				for (Obj o : action.objStack)
+//					System.out.println(o.getName());
 
 				calculateOp(op, null, null);
 
@@ -1660,7 +1718,8 @@ public class Singleton {
 		Struct expr2Type = isArray(expr2) ? expr2.getType().getElemType() : expr2.getType();
 
 		if (!expr1Type.compatibleWith(expr2Type)) {
-			semanticError(line, "Expr1 nije kompatiblian sa Expr2 (condition fact)");
+			semanticError(line, "Expr1: " + getTypeName(expr1Type.getKind()) + " nije kompatiblian sa Expr2: "
+					+ getTypeName(expr2Type.getKind()) + " (condition fact)");
 			return Tab.noObj;
 		}
 
@@ -1703,15 +1762,25 @@ public class Singleton {
 			semanticError(line, "Type kod new Type mora da bude klasnog tipa");
 			return Tab.noObj;
 		}
-		return new Obj(Obj.Con, "New class", Tab.nullType);
+		return new Obj(Obj.Con, "New class", type);
 	}
 
 	/**
 	 * (32) Tip neterminala <code>expr</code> mora biti tipa <code>int</code>
 	 */
-	public Obj factorArray(Obj expr, int line) {
+	public Obj factorArray(Obj expr, Struct type, int line) {
 		if (!isInt(expr)) {
 			semanticError(line, "Expr kod new[expr] mora da bude tipa int");
+			return Tab.noObj;
+		}
+		if (!type.equals(parser.lastDesignator.peek().getType().getElemType())) {
+			if (parser.lastDesignator.peek().getType().getElemType() == null)
+				semanticError(line, "Kod new array tip niza:  se ne slaze sa tipom: " + getTypeName(type.getKind()));
+			else
+				semanticError(line,
+						"Kod new array tip niza: "
+								+ getTypeName(parser.lastDesignator.peek().getType().getElemType().getKind())
+								+ " se ne slaze sa tipom: " + getTypeName(type.getKind()));
 			return Tab.noObj;
 		}
 
@@ -1738,7 +1807,6 @@ public class Singleton {
 	public static boolean RIGHT = true;
 
 	public void calculateOp(Integer OP, Obj object, Boolean inc) {
-
 		if (OP.intValue() == 101) {
 			semanticError("Fatal error, calculate op, check singleton");
 			return;
@@ -1937,10 +2005,13 @@ public class Singleton {
 
 		Code.load(designator);
 		Obj o;
+		
 
 		o = new Obj(Obj.Elem, designator.getName() + "[]", designator.getType().getElemType());
 		parser.lastDesignator.pop();
 		parser.lastDesignator.push(o);
+		
+		
 		return o;
 
 	}
@@ -1962,8 +2033,6 @@ public class Singleton {
 
 	// CONDITIONS
 	public void condFact() {
-		// Ovo su AND, posto ne znamo gde treba da skacemo stavimo false jump
-		// azurramo listu cond fact
 		Code.putFalseJump(action.currentRelop, 0);
 		action.condFactJumps.addFirst(new Integer(Code.pc - 2));
 	}
@@ -1992,11 +2061,9 @@ public class Singleton {
 			Code.fixup(i);
 		action.condTermJumps = new LinkedList<Integer>();
 
-		// za skakanje u else granu ako je takav uslov
 		action.elseAdr.addLast(action.condFactJumps);
 		action.condFactJumps = new LinkedList<Integer>();
 
-		// za kad su BREAKS
 		action.currBreakJump = new LinkedList<Integer>();
 
 	}
@@ -2021,7 +2088,8 @@ public class Singleton {
 	public void ifAfterElseStatement() {
 		Code.fixup(action.afterElseAdr.pop());
 
-		if (action.elseAdr != null)
+		// if(parser.forLoopLevel > 0 || parser.ifLevel == 1)
+		if (action.elseAdr != null) {
 			if (action.elseAdr.peekLast() != null) {
 				LinkedList<Integer> l = action.elseAdr.removeLast();
 				if (l != null)
@@ -2030,6 +2098,7 @@ public class Singleton {
 							Code.fixup(i);
 					}
 			}
+		}
 	}
 
 	public void forAfterCondition() {

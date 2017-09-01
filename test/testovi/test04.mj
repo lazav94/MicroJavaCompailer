@@ -2,8 +2,8 @@
 //ispravan test
 
 program test04
-	const string sa = "nesto";
-	string sb;
+	const char sa = 'n';
+	char sb;
 	int x, y;
 	int a[];
 	bool log;
@@ -15,16 +15,17 @@ program test04
 	
 	void main(){
 		read(sb);
-		sb = sb + sa;
 		a = new int[5];
+		
 		log = true;
 		x = 0; y = 3;
-		while(log){
+		for(;log;){
 			a[x] = sum(y,x) + 1;
 			x = sum(x,1);
 			if(x == 5) break;
 		}
 		print(a[3]);
-		print(sb + "jos nesto");
+		print(sb);
 	}
 }
+

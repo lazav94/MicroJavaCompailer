@@ -18,7 +18,7 @@ class A{
 }
 
 const int pi = 3, e = 2;
-const string strin="aaa";
+const char strin='a';
 
 class B extends A{
 	int i; int x[];
@@ -43,7 +43,7 @@ class B extends A{
 }
 class C extends B{
 	A theA;
-	string a = "bas je roze i zut";          //sintaksna greska, dodela vrednosti pri deklaraciji promenljive,
+	char a = "b";          //sintaksna greska, dodela vrednosti pri deklaraciji promenljive,
 	                                         //oporavak do ;
 	{
 		void glupost(int ,m) int i, bool c {  //sintaksna, oporavak do ) i do {
@@ -63,14 +63,14 @@ class E extends {                           //sintaksna greska
 {
 
 int met(int par){return par-1;}
-string strfunc(string s){ return s+"aa";}
+char strfunc(char c){ return c;}
 
 void main() A a; B b;C c; int i,y,z; int x[];string str1,str2; bool bulin;
 {
-	str2="abcd";
-	str1="abc"+strfunc(str2);
-	str2="mama"+"tata";
-	strin = "ne moze se dodeliti vrednost konstantnom stringu";    //semanticka
+	str2='d';
+	str1=strfunc(str2);
+	str2='m'
+	strin = 'n';    //semanticka
 	bulin = -true;                 //semanticka, unarni operator ne moze da se primenu na boolean promenjivu
 	print(bulin);
 	a = new A;
@@ -84,7 +84,7 @@ void main() A a; B b;C c; int i,y,z; int x[];string str1,str2; bool bulin;
 	x = new int[3];
 	i=0;
 	read(c.i);
-	while(i<5) {
+	for(;i<5;) {
 		read(c.x[i]); read(c.theA.x[i]); 
 		i++;
 		
@@ -104,7 +104,7 @@ void main() A a; B b;C c; int i,y,z; int x[];string str1,str2; bool bulin;
 		a = b;
 	if(true)i++;
 	
-	while(str2 == "kraj" || str1 == "kraj"){
+	for(;str2 == 'k' || str1 == 'k';){
 		c.theA.x[i] = a.x[i];
 		if(b.theAA.y[i] == c.theA.x[i] && c.pr1()) break;   //semanticka c.pr1() vraca int (uslov mora biti boolean)
 		read(str1);
